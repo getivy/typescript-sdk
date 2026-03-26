@@ -1,6 +1,6 @@
 {
   "name": "augustus",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "The official TypeScript library for the Augustus API",
   "author": "Augustus <developer@getivy.de>",
   "types": "dist/index.d.ts",
