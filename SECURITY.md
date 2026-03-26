@@ -20,7 +20,7 @@ or products provided by Augustus, please follow the respective company's securit
 
 ### Augustus Terms and Policies
 
-Please contact developer@getivy.de for any questions or concerns regarding the security of our services.
+Please contact developer@augustus.com for any questions or concerns regarding the security of our services.
 
 ---
 

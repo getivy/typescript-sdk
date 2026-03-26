@@ -1,41 +1,36 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../core/resource';
-import { APIPromise } from '../core/api-promise';
-import { buildHeaders } from '../internal/headers';
-import { RequestOptions } from '../internal/request-options';
-import { path } from '../internal/utils/path';
+import { APIResource } from '../resource';
+import { isRequestOptions } from '../core';
+import * as Core from '../core';
 
 export class Payouts extends APIResource {
   /**
    * Creates a new payout.
    */
-  create(params: PayoutCreateParams, options?: RequestOptions): APIPromise<PayoutCreateResponse> {
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    return this._client.post('/v1/payouts', {
-      body,
-      ...options,
-      headers: buildHeaders([
-        { ...(idempotencyKey != null ? { 'Idempotency-Key': idempotencyKey } : undefined) },
-        options?.headers,
-      ]),
-    });
+  create(body: PayoutCreateParams, options?: Core.RequestOptions): Core.APIPromise<PayoutCreateResponse> {
+    return this._client.post('/v1/payouts', { body, ...options });
   }
 
   /**
    * Retrieves a payout by ID.
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<PayoutRetrieveResponse> {
-    return this._client.get(path`/v1/payouts/${id}`, options);
+  retrieve(id: string, options?: Core.RequestOptions): Core.APIPromise<PayoutRetrieveResponse> {
+    return this._client.get(`/v1/payouts/${id}`, options);
   }
 
   /**
    * Lists payouts for the merchant with cursor-based pagination.
    */
+  list(query?: PayoutListParams, options?: Core.RequestOptions): Core.APIPromise<PayoutListResponse>;
+  list(options?: Core.RequestOptions): Core.APIPromise<PayoutListResponse>;
   list(
-    query: PayoutListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<PayoutListResponse> {
+    query: PayoutListParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<PayoutListResponse> {
+    if (isRequestOptions(query)) {
+      return this.list({}, query);
+    }
     return this._client.get('/v1/payouts', { query, ...options });
   }
 }
@@ -535,17 +530,17 @@ export namespace PayoutListResponse {
 
 export interface PayoutCreateParams {
   /**
-   * Body param: Amount as a string decimal (e.g. "100.50").
+   * Amount as a string decimal (e.g. "100.50").
    */
   amount: string;
 
   /**
-   * Body param: ISO 4217 currency code for the payout amount.
+   * ISO 4217 currency code for the payout amount.
    */
   currency: 'EUR' | 'GBP' | 'USDC';
 
   /**
-   * Body param: Bank account or crypto wallet to send funds to.
+   * Bank account or crypto wallet to send funds to.
    */
   destination:
     | PayoutCreateParams.UnionMember0
@@ -553,31 +548,24 @@ export interface PayoutCreateParams {
     | PayoutCreateParams.UnionMember2;
 
   /**
-   * Body param: Payment reference.
+   * Payment reference.
    */
   reference: string;
 
   /**
-   * Body param: ID of the account to debit.
+   * ID of the account to debit.
    */
   source_account_id: string;
 
   /**
-   * Body param: Key-value pairs stored with the payout.
+   * Key-value pairs stored with the payout.
    */
   metadata?: { [key: string]: string };
 
   /**
-   * Body param: Payment rail. It is enforced when provided, otherwise auto-selected.
+   * Payment rail. It is enforced when provided, otherwise auto-selected.
    */
   rail?: 'sepa_instant' | 'sepa' | 'faster_payments';
-
-  /**
-   * Header param: Idempotency key for safe retries. Reusing a key with an identical
-   * request body returns the cached response. Reusing a key with a different body
-   * returns 409.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export namespace PayoutCreateParams {

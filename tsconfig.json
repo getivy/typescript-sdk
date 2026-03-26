@@ -1,6 +1,6 @@
 {
   "include": ["src", "tests", "examples"],
-  "exclude": [],
+  "exclude": ["src/_shims/**/*-deno.ts"],
   "compilerOptions": {
     "target": "es2020",
     "lib": ["es2020"],
@@ -8,8 +8,9 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "paths": {
-      "augustus/*": ["./src/*"],
-      "augustus": ["./src/index.ts"]
+      "@augustus/typescript-sdk/_shims/auto/*": ["./src/_shims/auto/*-node"],
+      "@augustus/typescript-sdk/*": ["./src/*"],
+      "@augustus/typescript-sdk": ["./src/index.ts"]
     },
     "noEmit": true,
 
@@ -30,7 +31,7 @@
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
-    "isolatedModules": false,
+		"isolatedModules": false,
 
     "skipLibCheck": true
   }

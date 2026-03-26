@@ -1,4 +1,4 @@
-import { combine, merge, is_buffer, assign_single_source } from 'augustus/internal/qs/utils';
+import { combine, merge, is_buffer, assign_single_source } from '@augustus/typescript-sdk/internal/qs/utils';
 
 describe('merge()', function () {
   // t.deepEqual(merge(null, true), [null, true], 'merges true into null');
@@ -66,7 +66,7 @@ describe('merge()', function () {
       // st.equal(getCount, 1);
       expect(setCount).toEqual(0);
       expect(getCount).toEqual(1);
-      observed[0] = observed[0];
+      observed[0] = observed[0]; // eslint-disable-line no-self-assign
       // st.equal(setCount, 1);
       // st.equal(getCount, 2);
       expect(setCount).toEqual(1);

@@ -1,12 +1,12 @@
 {
   "extends": "./tsconfig.json",
   "include": ["dist/src"],
-  "exclude": [],
+  "exclude": ["dist/src/_shims/*-deno.ts"],
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "augustus/*": ["./dist/src/*"],
-      "augustus": ["./dist/src/index.ts"]
+      "@augustus/typescript-sdk/*": ["./dist/src/*"],
+      "@augustus/typescript-sdk": ["./dist/src/index.ts"],
     },
     "noEmit": false,
     "declaration": true,

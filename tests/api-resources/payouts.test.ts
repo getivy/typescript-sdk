@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Augustus from 'augustus';
+import Augustus from '@augustus/typescript-sdk';
+import { Response } from 'node-fetch';
 
 const client = new Augustus({
   apiKey: 'My API Key',
@@ -45,7 +46,6 @@ describe('resource payouts', () => {
       source_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       metadata: { foo: 'string' },
       rail: 'sepa_instant',
-      'Idempotency-Key': 'Idempotency-Key',
     });
   });
 
@@ -62,6 +62,14 @@ describe('resource payouts', () => {
   });
 
   // Mock server tests are disabled
+  test.skip('retrieve: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.payouts.retrieve('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Augustus.NotFoundError);
+  });
+
+  // Mock server tests are disabled
   test.skip('list', async () => {
     const responsePromise = client.payouts.list();
     const rawResponse = await responsePromise.asResponse();
@@ -71,6 +79,14 @@ describe('resource payouts', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  // Mock server tests are disabled
+  test.skip('list: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.payouts.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Augustus.NotFoundError,
+    );
   });
 
   // Mock server tests are disabled

@@ -1,7 +1,7 @@
 import iconv from 'iconv-lite';
-import { stringify } from 'augustus/internal/qs';
-import { encode } from 'augustus/internal/qs/utils';
-import { StringifyOptions } from 'augustus/internal/qs/types';
+import { stringify } from '@augustus/typescript-sdk/internal/qs';
+import { encode } from '@augustus/typescript-sdk/internal/qs/utils';
+import { StringifyOptions } from '@augustus/typescript-sdk/internal/qs/types';
 import { empty_test_cases } from './empty-keys-cases';
 import assert from 'assert';
 
