@@ -7,4 +7,5 @@ export {
   type PayoutListResponse,
   type PayoutCreateParams,
   type PayoutListParams,
+  type PayoutListResponsesCursorPage,
 } from './payouts';
