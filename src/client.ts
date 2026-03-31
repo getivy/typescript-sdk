@@ -28,6 +28,15 @@ import {
   PayoutRetrieveResponse,
   Payouts,
 } from './resources/payouts';
+import {
+  ConversionCreateParams,
+  ConversionCreateResponse,
+  ConversionListParams,
+  ConversionListResponse,
+  ConversionListResponsesCursorPage,
+  ConversionRetrieveResponse,
+  Conversions,
+} from './resources/conversions/conversions';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
@@ -775,9 +784,11 @@ export class Augustus {
   static toFile = Uploads.toFile;
 
   payouts: API.Payouts = new API.Payouts(this);
+  conversions: API.Conversions = new API.Conversions(this);
 }
 
 Augustus.Payouts = Payouts;
+Augustus.Conversions = Conversions;
 
 export declare namespace Augustus {
   export type RequestOptions = Opts.RequestOptions;
@@ -793,5 +804,15 @@ export declare namespace Augustus {
     type PayoutListResponsesCursorPage as PayoutListResponsesCursorPage,
     type PayoutCreateParams as PayoutCreateParams,
     type PayoutListParams as PayoutListParams,
+  };
+
+  export {
+    Conversions as Conversions,
+    type ConversionCreateResponse as ConversionCreateResponse,
+    type ConversionRetrieveResponse as ConversionRetrieveResponse,
+    type ConversionListResponse as ConversionListResponse,
+    type ConversionListResponsesCursorPage as ConversionListResponsesCursorPage,
+    type ConversionCreateParams as ConversionCreateParams,
+    type ConversionListParams as ConversionListParams,
   };
 }

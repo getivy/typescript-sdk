@@ -8,13 +8,5 @@ export {
   type ConversionCreateParams,
   type ConversionListParams,
   type ConversionListResponsesCursorPage,
-} from './conversions/conversions';
-export {
-  Payouts,
-  type PayoutCreateResponse,
-  type PayoutRetrieveResponse,
-  type PayoutListResponse,
-  type PayoutCreateParams,
-  type PayoutListParams,
-  type PayoutListResponsesCursorPage,
-} from './payouts';
+} from './conversions';
+export { Quote, type QuoteRetrieveResponse, type QuoteRetrieveParams } from './quote';
