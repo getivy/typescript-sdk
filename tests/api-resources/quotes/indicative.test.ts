@@ -7,10 +7,10 @@ const client = new Augustus({
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource quote', () => {
+describe('resource indicative', () => {
   // Mock server tests are disabled
   test.skip('retrieve: only required params', async () => {
-    const responsePromise = client.conversions.quote.retrieve({
+    const responsePromise = client.quotes.indicative.retrieve({
       source_currency: 'source_currency',
       target_currency: 'target_currency',
     });
@@ -25,7 +25,7 @@ describe('resource quote', () => {
 
   // Mock server tests are disabled
   test.skip('retrieve: required and optional params', async () => {
-    const response = await client.conversions.quote.retrieve({
+    const response = await client.quotes.indicative.retrieve({
       source_currency: 'source_currency',
       target_currency: 'target_currency',
       source_amount: 'source_amount',

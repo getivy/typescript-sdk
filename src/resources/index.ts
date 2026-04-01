@@ -8,7 +8,7 @@ export {
   type ConversionCreateParams,
   type ConversionListParams,
   type ConversionListResponsesCursorPage,
-} from './conversions/conversions';
+} from './conversions';
 export {
   Payouts,
   type PayoutCreateResponse,
@@ -18,3 +18,4 @@ export {
   type PayoutListParams,
   type PayoutListResponsesCursorPage,
 } from './payouts';
+export { Quotes, type QuoteRetrieveResponse } from './quotes/quotes';

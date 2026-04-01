@@ -4,20 +4,23 @@ import { APIResource } from '../../core/resource';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 
-export class Quote extends APIResource {
+export class Indicative extends APIResource {
   /**
    * Returns an indicative quote for a currency pair. Not persisted or holdable.
    */
-  retrieve(query: QuoteRetrieveParams, options?: RequestOptions): APIPromise<QuoteRetrieveResponse> {
-    return this._client.get('/v1/conversions/quote', { query, ...options });
+  retrieve(
+    query: IndicativeRetrieveParams,
+    options?: RequestOptions,
+  ): APIPromise<IndicativeRetrieveResponse> {
+    return this._client.get('/v1/quotes/indicative', { query, ...options });
   }
 }
 
-export interface QuoteRetrieveResponse {
+export interface IndicativeRetrieveResponse {
   /**
    * Conversion fee, or null if no fee applies.
    */
-  fee: QuoteRetrieveResponse.Fee | null;
+  fee: IndicativeRetrieveResponse.Fee | null;
 
   /**
    * ISO 8601 UTC timestamp when the quote was fetched.
@@ -55,7 +58,7 @@ export interface QuoteRetrieveResponse {
   venue: string;
 }
 
-export namespace QuoteRetrieveResponse {
+export namespace IndicativeRetrieveResponse {
   /**
    * Conversion fee, or null if no fee applies.
    */
@@ -72,7 +75,7 @@ export namespace QuoteRetrieveResponse {
   }
 }
 
-export interface QuoteRetrieveParams {
+export interface IndicativeRetrieveParams {
   /**
    * Source currency code (e.g. EUR, USDC).
    */
@@ -89,9 +92,9 @@ export interface QuoteRetrieveParams {
   source_amount?: string;
 }
 
-export declare namespace Quote {
+export declare namespace Indicative {
   export {
-    type QuoteRetrieveResponse as QuoteRetrieveResponse,
-    type QuoteRetrieveParams as QuoteRetrieveParams,
+    type IndicativeRetrieveResponse as IndicativeRetrieveResponse,
+    type IndicativeRetrieveParams as IndicativeRetrieveParams,
   };
 }

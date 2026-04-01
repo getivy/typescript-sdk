@@ -16,22 +16,32 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/conversions/conversions.ts">ConversionCreateResponse</a></code>
-- <code><a href="./src/resources/conversions/conversions.ts">ConversionRetrieveResponse</a></code>
-- <code><a href="./src/resources/conversions/conversions.ts">ConversionListResponse</a></code>
+- <code><a href="./src/resources/conversions.ts">ConversionCreateResponse</a></code>
+- <code><a href="./src/resources/conversions.ts">ConversionRetrieveResponse</a></code>
+- <code><a href="./src/resources/conversions.ts">ConversionListResponse</a></code>
 
 Methods:
 
-- <code title="post /v1/conversions">client.conversions.<a href="./src/resources/conversions/conversions.ts">create</a>({ ...params }) -> ConversionCreateResponse</code>
-- <code title="get /v1/conversions/{id}">client.conversions.<a href="./src/resources/conversions/conversions.ts">retrieve</a>(id) -> ConversionRetrieveResponse</code>
-- <code title="get /v1/conversions">client.conversions.<a href="./src/resources/conversions/conversions.ts">list</a>({ ...params }) -> ConversionListResponsesCursorPage</code>
+- <code title="post /v1/conversions">client.conversions.<a href="./src/resources/conversions.ts">create</a>({ ...params }) -> ConversionCreateResponse</code>
+- <code title="get /v1/conversions/{id}">client.conversions.<a href="./src/resources/conversions.ts">retrieve</a>(id) -> ConversionRetrieveResponse</code>
+- <code title="get /v1/conversions">client.conversions.<a href="./src/resources/conversions.ts">list</a>({ ...params }) -> ConversionListResponsesCursorPage</code>
 
-## Quote
+# Quotes
 
 Types:
 
-- <code><a href="./src/resources/conversions/quote.ts">QuoteRetrieveResponse</a></code>
+- <code><a href="./src/resources/quotes/quotes.ts">QuoteRetrieveResponse</a></code>
 
 Methods:
 
-- <code title="get /v1/conversions/quote">client.conversions.quote.<a href="./src/resources/conversions/quote.ts">retrieve</a>({ ...params }) -> QuoteRetrieveResponse</code>
+- <code title="get /v1/quotes/{id}">client.quotes.<a href="./src/resources/quotes/quotes.ts">retrieve</a>(id) -> QuoteRetrieveResponse</code>
+
+## Indicative
+
+Types:
+
+- <code><a href="./src/resources/quotes/indicative.ts">IndicativeRetrieveResponse</a></code>
+
+Methods:
+
+- <code title="get /v1/quotes/indicative">client.quotes.indicative.<a href="./src/resources/quotes/indicative.ts">retrieve</a>({ ...params }) -> IndicativeRetrieveResponse</code>
