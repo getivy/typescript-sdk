@@ -2,7 +2,7 @@
 
 import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
-import { buildHeaders } from '../internal/headers';
+import { CursorPage, type CursorPageParams, PagePromise } from '../core/pagination';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
@@ -10,16 +10,8 @@ export class Payouts extends APIResource {
   /**
    * Creates a new payout.
    */
-  create(params: PayoutCreateParams, options?: RequestOptions): APIPromise<PayoutCreateResponse> {
-    const { 'Idempotency-Key': idempotencyKey, ...body } = params;
-    return this._client.post('/v1/payouts', {
-      body,
-      ...options,
-      headers: buildHeaders([
-        { ...(idempotencyKey != null ? { 'Idempotency-Key': idempotencyKey } : undefined) },
-        options?.headers,
-      ]),
-    });
+  create(body: PayoutCreateParams, options?: RequestOptions): APIPromise<PayoutCreateResponse> {
+    return this._client.post('/v1/payouts', { body, ...options });
   }
 
   /**
@@ -35,10 +27,12 @@ export class Payouts extends APIResource {
   list(
     query: PayoutListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<PayoutListResponse> {
-    return this._client.get('/v1/payouts', { query, ...options });
+  ): PagePromise<PayoutListResponsesCursorPage, PayoutListResponse> {
+    return this._client.getAPIList('/v1/payouts', CursorPage<PayoutListResponse>, { query, ...options });
   }
 }
+
+export type PayoutListResponsesCursorPage = CursorPage<PayoutListResponse>;
 
 export interface PayoutCreateResponse {
   /**
@@ -365,187 +359,180 @@ export namespace PayoutRetrieveResponse {
 }
 
 export interface PayoutListResponse {
-  data: Array<PayoutListResponse.Data>;
+  /**
+   * Unique identifier of the payout.
+   */
+  id: string;
 
-  has_more: boolean;
+  /**
+   * Amount as a string decimal (e.g. "100.50").
+   */
+  amount: string;
 
-  next_cursor: string | null;
+  /**
+   * ISO 8601 UTC timestamp when the payout was created.
+   */
+  created_at: string;
+
+  /**
+   * ISO 4217 currency code.
+   */
+  currency: string;
+
+  /**
+   * Bank account or crypto wallet the payout was sent to.
+   */
+  destination:
+    | PayoutListResponse.UnionMember0
+    | PayoutListResponse.UnionMember1
+    | PayoutListResponse.UnionMember2;
+
+  /**
+   * Failure details when status is failed, otherwise null.
+   */
+  failure: PayoutListResponse.Failure | null;
+
+  /**
+   * Key-value pairs stored with the payout.
+   */
+  metadata: { [key: string]: string };
+
+  /**
+   * Payment reference.
+   */
+  reference: string;
+
+  /**
+   * ID of the account that was debited.
+   */
+  source_account_id: string;
+
+  /**
+   * Current status of the payout.
+   */
+  status: 'pending' | 'paid' | 'failed' | 'returned';
+
+  /**
+   * Resource type discriminator.
+   */
+  type: 'payout';
+
+  /**
+   * ISO 8601 UTC timestamp when the payout was last updated.
+   */
+  updated_at: string;
 }
 
 export namespace PayoutListResponse {
-  export interface Data {
+  export interface UnionMember0 {
     /**
-     * Unique identifier of the payout.
+     * Name of the account holder.
      */
-    id: string;
+    account_holder_name: string;
 
     /**
-     * Amount as a string decimal (e.g. "100.50").
+     * Bank Identifier Code, or null if not provided.
      */
-    amount: string;
+    bic: string | null;
 
     /**
-     * ISO 8601 UTC timestamp when the payout was created.
+     * International Bank Account Number.
      */
-    created_at: string;
+    iban: string;
 
     /**
-     * ISO 4217 currency code.
+     * Discriminator for IBAN destination.
      */
-    currency: string;
-
-    /**
-     * Bank account or crypto wallet the payout was sent to.
-     */
-    destination: Data.UnionMember0 | Data.UnionMember1 | Data.UnionMember2;
-
-    /**
-     * Failure details when status is failed, otherwise null.
-     */
-    failure: Data.Failure | null;
-
-    /**
-     * Key-value pairs stored with the payout.
-     */
-    metadata: { [key: string]: string };
-
-    /**
-     * Payment reference.
-     */
-    reference: string;
-
-    /**
-     * ID of the account that was debited.
-     */
-    source_account_id: string;
-
-    /**
-     * Current status of the payout.
-     */
-    status: 'pending' | 'paid' | 'failed' | 'returned';
-
-    /**
-     * Resource type discriminator.
-     */
-    type: 'payout';
-
-    /**
-     * ISO 8601 UTC timestamp when the payout was last updated.
-     */
-    updated_at: string;
+    type: 'iban';
   }
 
-  export namespace Data {
-    export interface UnionMember0 {
-      /**
-       * Name of the account holder.
-       */
-      account_holder_name: string;
-
-      /**
-       * Bank Identifier Code, or null if not provided.
-       */
-      bic: string | null;
-
-      /**
-       * International Bank Account Number.
-       */
-      iban: string;
-
-      /**
-       * Discriminator for IBAN destination.
-       */
-      type: 'iban';
-    }
-
-    export interface UnionMember1 {
-      /**
-       * Name of the account holder.
-       */
-      account_holder_name: string;
-
-      /**
-       * UK account number (8 digits).
-       */
-      account_number: string;
-
-      /**
-       * UK sort code (6 digits).
-       */
-      sort_code: string;
-
-      /**
-       * Discriminator for UK sort code destination.
-       */
-      type: 'sort_code';
-    }
-
-    export interface UnionMember2 {
-      /**
-       * Wallet address on the specified blockchain.
-       */
-      address: string;
-
-      /**
-       * Blockchain network for the crypto wallet.
-       */
-      blockchain: 'ethereum' | 'solana' | 'polygon';
-
-      /**
-       * Discriminator for crypto wallet destination.
-       */
-      type: 'crypto_wallet';
-    }
+  export interface UnionMember1 {
+    /**
+     * Name of the account holder.
+     */
+    account_holder_name: string;
 
     /**
-     * Failure details when status is failed, otherwise null.
+     * UK account number (8 digits).
      */
-    export interface Failure {
-      /**
-       * Failure code.
-       */
-      code:
-        | 'account_closed'
-        | 'account_blocked'
-        | 'insufficient_funds'
-        | 'invalid_account_format'
-        | 'invalid_instruction'
-        | 'invalid_amount'
-        | 'invalid_time'
-        | 'duplicate_transaction'
-        | 'payee_verification_failed'
-        | 'system_error'
-        | 'provider_system_error'
-        | 'rejected_by_correspondent_bank'
-        | 'blocked_by_review'
-        | 'unknown';
+    account_number: string;
 
-      /**
-       * Human-readable description of the failure.
-       */
-      message: string;
+    /**
+     * UK sort code (6 digits).
+     */
+    sort_code: string;
 
-      /**
-       * Whether the payout can be retried.
-       */
-      retry: boolean;
-    }
+    /**
+     * Discriminator for UK sort code destination.
+     */
+    type: 'sort_code';
+  }
+
+  export interface UnionMember2 {
+    /**
+     * Wallet address on the specified blockchain.
+     */
+    address: string;
+
+    /**
+     * Blockchain network for the crypto wallet.
+     */
+    blockchain: 'ethereum' | 'solana' | 'polygon';
+
+    /**
+     * Discriminator for crypto wallet destination.
+     */
+    type: 'crypto_wallet';
+  }
+
+  /**
+   * Failure details when status is failed, otherwise null.
+   */
+  export interface Failure {
+    /**
+     * Failure code.
+     */
+    code:
+      | 'account_closed'
+      | 'account_blocked'
+      | 'insufficient_funds'
+      | 'invalid_account_format'
+      | 'invalid_instruction'
+      | 'invalid_amount'
+      | 'invalid_time'
+      | 'duplicate_transaction'
+      | 'payee_verification_failed'
+      | 'system_error'
+      | 'provider_system_error'
+      | 'rejected_by_correspondent_bank'
+      | 'blocked_by_review'
+      | 'unknown';
+
+    /**
+     * Human-readable description of the failure.
+     */
+    message: string;
+
+    /**
+     * Whether the payout can be retried.
+     */
+    retry: boolean;
   }
 }
 
 export interface PayoutCreateParams {
   /**
-   * Body param: Amount as a string decimal (e.g. "100.50").
+   * Amount as a string decimal (e.g. "100.50").
    */
   amount: string;
 
   /**
-   * Body param: ISO 4217 currency code for the payout amount.
+   * ISO 4217 currency code for the payout amount.
    */
   currency: 'EUR' | 'GBP' | 'USDC';
 
   /**
-   * Body param: Bank account or crypto wallet to send funds to.
+   * Bank account or crypto wallet to send funds to.
    */
   destination:
     | PayoutCreateParams.UnionMember0
@@ -553,31 +540,24 @@ export interface PayoutCreateParams {
     | PayoutCreateParams.UnionMember2;
 
   /**
-   * Body param: Payment reference.
+   * Payment reference.
    */
   reference: string;
 
   /**
-   * Body param: ID of the account to debit.
+   * ID of the account to debit.
    */
   source_account_id: string;
 
   /**
-   * Body param: Key-value pairs stored with the payout.
+   * Key-value pairs stored with the payout.
    */
   metadata?: { [key: string]: string };
 
   /**
-   * Body param: Payment rail. It is enforced when provided, otherwise auto-selected.
+   * Payment rail. It is enforced when provided, otherwise auto-selected.
    */
   rail?: 'sepa_instant' | 'sepa' | 'faster_payments';
-
-  /**
-   * Header param: Idempotency key for safe retries. Reusing a key with an identical
-   * request body returns the cached response. Reusing a key with a different body
-   * returns 409.
-   */
-  'Idempotency-Key'?: string;
 }
 
 export namespace PayoutCreateParams {
@@ -643,18 +623,8 @@ export namespace PayoutCreateParams {
   }
 }
 
-export interface PayoutListParams {
+export interface PayoutListParams extends CursorPageParams {
   created_at?: PayoutListParams.CreatedAt;
-
-  /**
-   * Opaque cursor from a previous next_cursor.
-   */
-  cursor?: string;
-
-  /**
-   * Number of results per page (1-100). Defaults to 10.
-   */
-  limit?: number;
 
   /**
    * Filter by payout status.
@@ -681,6 +651,7 @@ export declare namespace Payouts {
     type PayoutCreateResponse as PayoutCreateResponse,
     type PayoutRetrieveResponse as PayoutRetrieveResponse,
     type PayoutListResponse as PayoutListResponse,
+    type PayoutListResponsesCursorPage as PayoutListResponsesCursorPage,
     type PayoutCreateParams as PayoutCreateParams,
     type PayoutListParams as PayoutListParams,
   };

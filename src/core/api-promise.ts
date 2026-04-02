@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { type AugustusNew } from '../client';
+import { type Augustus } from '../client';
 
 import { type PromiseOrValue } from '../internal/types';
 import { APIResponseProps, defaultParseResponse } from '../internal/parse';
@@ -11,13 +11,13 @@ import { APIResponseProps, defaultParseResponse } from '../internal/parse';
  */
 export class APIPromise<T> extends Promise<T> {
   private parsedPromise: Promise<T> | undefined;
-  #client: AugustusNew;
+  #client: Augustus;
 
   constructor(
-    client: AugustusNew,
+    client: Augustus,
     private responsePromise: Promise<APIResponseProps>,
     private parseResponse: (
-      client: AugustusNew,
+      client: Augustus,
       props: APIResponseProps,
     ) => PromiseOrValue<T> = defaultParseResponse,
   ) {
