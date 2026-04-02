@@ -1,9 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Augustus from '@augustus/typescript-sdk';
-import { Response } from 'node-fetch';
+import AugustusNew from 'augustus-new';
 
-const client = new Augustus({
+const client = new AugustusNew({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
@@ -46,6 +45,7 @@ describe('resource payouts', () => {
       source_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       metadata: { foo: 'string' },
       rail: 'sepa_instant',
+      'Idempotency-Key': 'Idempotency-Key',
     });
   });
 
@@ -62,14 +62,6 @@ describe('resource payouts', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('retrieve: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.payouts.retrieve('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Augustus.NotFoundError);
-  });
-
-  // Mock server tests are disabled
   test.skip('list', async () => {
     const responsePromise = client.payouts.list();
     const rawResponse = await responsePromise.asResponse();
@@ -82,26 +74,18 @@ describe('resource payouts', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('list: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.payouts.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Augustus.NotFoundError,
-    );
-  });
-
-  // Mock server tests are disabled
   test.skip('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.payouts.list(
         {
-          created_at: { after: 'after', before: 'before' },
+          created_at: { after: '2019-12-27T18:11:19.117Z', before: '2019-12-27T18:11:19.117Z' },
           cursor: 'cursor',
-          limit: 0,
+          limit: 2,
           status: 'pending',
         },
         { path: '/_stainless_unknown_path' },
       ),
-    ).rejects.toThrow(Augustus.NotFoundError);
+    ).rejects.toThrow(AugustusNew.NotFoundError);
   });
 });

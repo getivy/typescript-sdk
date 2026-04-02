@@ -7,15 +7,15 @@ const config: JestConfigWithTsJest = {
     '^.+\\.(t|j)sx?$': ['@swc/jest', { sourceMaps: 'inline' }],
   },
   moduleNameMapper: {
-    '^@augustus/typescript-sdk$': '<rootDir>/src/index.ts',
-    '^@augustus/typescript-sdk/_shims/auto/(.*)$': '<rootDir>/src/_shims/auto/$1-node',
-    '^@augustus/typescript-sdk/(.*)$': '<rootDir>/src/$1',
+    '^augustus-new$': '<rootDir>/src/index.ts',
+    '^augustus-new/(.*)$': '<rootDir>/src/$1',
   },
   modulePathIgnorePatterns: [
     '<rootDir>/ecosystem-tests/',
     '<rootDir>/dist/',
     '<rootDir>/deno/',
     '<rootDir>/deno_tests/',
+    '<rootDir>/packages/',
   ],
   testPathIgnorePatterns: ['scripts'],
 };
