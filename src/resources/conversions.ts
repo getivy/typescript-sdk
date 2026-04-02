@@ -318,7 +318,7 @@ export interface ConversionListParams extends CursorPageParams {
   source_currency?: string;
 
   /**
-   * Filter by status.
+   * Filter by conversion status.
    */
   status?: 'pending' | 'completed' | 'failed';
 

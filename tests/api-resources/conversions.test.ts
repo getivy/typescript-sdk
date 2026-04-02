@@ -36,7 +36,7 @@ describe('resource conversions', () => {
 
   // Mock server tests are disabled
   test.skip('retrieve', async () => {
-    const responsePromise = client.conversions.retrieve('id');
+    const responsePromise = client.conversions.retrieve('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -65,7 +65,7 @@ describe('resource conversions', () => {
       client.conversions.list(
         {
           cursor: 'cursor',
-          limit: 0,
+          limit: 2,
           source_currency: 'source_currency',
           status: 'pending',
           target_currency: 'target_currency',

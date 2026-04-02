@@ -78,9 +78,9 @@ describe('resource payouts', () => {
     await expect(
       client.payouts.list(
         {
-          created_at: { after: 'after', before: 'before' },
+          created_at: { after: '2019-12-27T18:11:19.117Z', before: '2019-12-27T18:11:19.117Z' },
           cursor: 'cursor',
-          limit: 0,
+          limit: 2,
           status: 'pending',
         },
         { path: '/_stainless_unknown_path' },

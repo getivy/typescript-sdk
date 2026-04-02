@@ -28,7 +28,7 @@ describe('resource indicative', () => {
     const response = await client.quotes.indicative.retrieve({
       source_currency: 'source_currency',
       target_currency: 'target_currency',
-      source_amount: 'source_amount',
+      source_amount: '321669910225',
     });
   });
 });
