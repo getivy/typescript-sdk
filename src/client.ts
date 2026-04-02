@@ -14,6 +14,8 @@ import * as Opts from './internal/request-options';
 import { stringifyQuery } from './internal/utils/query';
 import { VERSION } from './version';
 import * as Errors from './core/error';
+import * as Pagination from './core/pagination';
+import { AbstractPage, type CursorPageParams, CursorPageResponse } from './core/pagination';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
@@ -22,6 +24,7 @@ import {
   ConversionCreateResponse,
   ConversionListParams,
   ConversionListResponse,
+  ConversionListResponsesCursorPage,
   ConversionRetrieveResponse,
   Conversions,
 } from './resources/conversions';
@@ -30,15 +33,11 @@ import {
   PayoutCreateResponse,
   PayoutListParams,
   PayoutListResponse,
+  PayoutListResponsesCursorPage,
   PayoutRetrieveResponse,
   Payouts,
 } from './resources/payouts';
-import {
-  QuoteRetrieveIndicativeParams,
-  QuoteRetrieveIndicativeResponse,
-  QuoteRetrieveResponse,
-  Quotes,
-} from './resources/quotes';
+import { QuoteRetrieveResponse, Quotes } from './resources/quotes/quotes';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
@@ -60,7 +59,7 @@ type Environment = keyof typeof environments;
 
 export interface ClientOptions {
   /**
-   * Bearer token for authentication with Augustus Banking API
+   * Bearer token for the Augustus Banking API
    */
   apiKey?: string | undefined;
 
@@ -76,7 +75,7 @@ export interface ClientOptions {
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
    *
-   * Defaults to process.env['AUGUSTUS_NEW_BASE_URL'].
+   * Defaults to process.env['AUGUSTUS_BASE_URL'].
    */
   baseURL?: string | null | undefined;
 
@@ -130,7 +129,7 @@ export interface ClientOptions {
   /**
    * Set the log level.
    *
-   * Defaults to process.env['AUGUSTUS_NEW_LOG'] or 'warn' if it isn't set.
+   * Defaults to process.env['AUGUSTUS_LOG'] or 'warn' if it isn't set.
    */
   logLevel?: LogLevel | undefined;
 
@@ -143,9 +142,9 @@ export interface ClientOptions {
 }
 
 /**
- * API Client for interfacing with the Augustus New API.
+ * API Client for interfacing with the Augustus API.
  */
-export class AugustusNew {
+export class Augustus {
   apiKey: string;
 
   baseURL: string;
@@ -161,11 +160,11 @@ export class AugustusNew {
   private _options: ClientOptions;
 
   /**
-   * API Client for interfacing with the Augustus New API.
+   * API Client for interfacing with the Augustus API.
    *
-   * @param {string | undefined} [opts.apiKey=process.env['AUGUSTUS_NEW_API_KEY'] ?? undefined]
+   * @param {string | undefined} [opts.apiKey=process.env['AUGUSTUS_API_KEY'] ?? undefined]
    * @param {Environment} [opts.environment=production] - Specifies the environment URL to use for the API.
-   * @param {string} [opts.baseURL=process.env['AUGUSTUS_NEW_BASE_URL'] ?? https://api.augustus.com] - Override the default base URL for the API.
+   * @param {string} [opts.baseURL=process.env['AUGUSTUS_BASE_URL'] ?? https://api.augustus.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
    * @param {Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
@@ -174,13 +173,13 @@ export class AugustusNew {
    * @param {Record<string, string | undefined>} opts.defaultQuery - Default query parameters to include with every request to the API.
    */
   constructor({
-    baseURL = readEnv('AUGUSTUS_NEW_BASE_URL'),
-    apiKey = readEnv('AUGUSTUS_NEW_API_KEY'),
+    baseURL = readEnv('AUGUSTUS_BASE_URL'),
+    apiKey = readEnv('AUGUSTUS_API_KEY'),
     ...opts
   }: ClientOptions = {}) {
     if (apiKey === undefined) {
-      throw new Errors.AugustusNewError(
-        "The AUGUSTUS_NEW_API_KEY environment variable is missing or empty; either provide it, or instantiate the AugustusNew client with an apiKey option, like new AugustusNew({ apiKey: 'My API Key' }).",
+      throw new Errors.AugustusError(
+        "The AUGUSTUS_API_KEY environment variable is missing or empty; either provide it, or instantiate the Augustus client with an apiKey option, like new Augustus({ apiKey: 'My API Key' }).",
       );
     }
 
@@ -192,20 +191,20 @@ export class AugustusNew {
     };
 
     if (baseURL && opts.environment) {
-      throw new Errors.AugustusNewError(
-        'Ambiguous URL; The `baseURL` option (or AUGUSTUS_NEW_BASE_URL env var) and the `environment` option are given. If you want to use the environment you must pass baseURL: null',
+      throw new Errors.AugustusError(
+        'Ambiguous URL; The `baseURL` option (or AUGUSTUS_BASE_URL env var) and the `environment` option are given. If you want to use the environment you must pass baseURL: null',
       );
     }
 
     this.baseURL = options.baseURL || environments[options.environment || 'production'];
-    this.timeout = options.timeout ?? AugustusNew.DEFAULT_TIMEOUT /* 1 minute */;
+    this.timeout = options.timeout ?? Augustus.DEFAULT_TIMEOUT /* 1 minute */;
     this.logger = options.logger ?? console;
     const defaultLogLevel = 'warn';
     // Set default logLevel early so that we can log a warning in parseLogLevel.
     this.logLevel = defaultLogLevel;
     this.logLevel =
       parseLogLevel(options.logLevel, 'ClientOptions.logLevel', this) ??
-      parseLogLevel(readEnv('AUGUSTUS_NEW_LOG'), "process.env['AUGUSTUS_NEW_LOG']", this) ??
+      parseLogLevel(readEnv('AUGUSTUS_LOG'), "process.env['AUGUSTUS_LOG']", this) ??
       defaultLogLevel;
     this.fetchOptions = options.fetchOptions;
     this.maxRetries = options.maxRetries ?? 2;
@@ -213,6 +212,7 @@ export class AugustusNew {
     this.#encoder = Opts.FallbackEncoder;
 
     this._options = options;
+    this.idempotencyHeader = 'Idempotency-Key';
 
     this.apiKey = apiKey;
   }
@@ -513,6 +513,30 @@ export class AugustusNew {
     return { response, options, controller, requestLogID, retryOfRequestLogID, startTime };
   }
 
+  getAPIList<Item, PageClass extends Pagination.AbstractPage<Item> = Pagination.AbstractPage<Item>>(
+    path: string,
+    Page: new (...args: any[]) => PageClass,
+    opts?: PromiseOrValue<RequestOptions>,
+  ): Pagination.PagePromise<PageClass, Item> {
+    return this.requestAPIList(
+      Page,
+      opts && 'then' in opts ?
+        opts.then((opts) => ({ method: 'get', path, ...opts }))
+      : { method: 'get', path, ...opts },
+    );
+  }
+
+  requestAPIList<
+    Item = unknown,
+    PageClass extends Pagination.AbstractPage<Item> = Pagination.AbstractPage<Item>,
+  >(
+    Page: new (...args: ConstructorParameters<typeof Pagination.AbstractPage>) => PageClass,
+    options: PromiseOrValue<FinalRequestOptions>,
+  ): Pagination.PagePromise<PageClass, Item> {
+    const request = this.makeRequest(options, null, undefined);
+    return new Pagination.PagePromise<PageClass, Item>(this as any as Augustus, request, Page);
+  }
+
   async fetchWithTimeout(
     url: RequestInfo,
     init: RequestInit | undefined,
@@ -741,10 +765,10 @@ export class AugustusNew {
     }
   }
 
-  static AugustusNew = this;
+  static Augustus = this;
   static DEFAULT_TIMEOUT = 60000; // 1 minute
 
-  static AugustusNewError = Errors.AugustusNewError;
+  static AugustusError = Errors.AugustusError;
   static APIError = Errors.APIError;
   static APIConnectionError = Errors.APIConnectionError;
   static APIConnectionTimeoutError = Errors.APIConnectionTimeoutError;
@@ -765,18 +789,22 @@ export class AugustusNew {
   quotes: API.Quotes = new API.Quotes(this);
 }
 
-AugustusNew.Payouts = Payouts;
-AugustusNew.Conversions = Conversions;
-AugustusNew.Quotes = Quotes;
+Augustus.Payouts = Payouts;
+Augustus.Conversions = Conversions;
+Augustus.Quotes = Quotes;
 
-export declare namespace AugustusNew {
+export declare namespace Augustus {
   export type RequestOptions = Opts.RequestOptions;
+
+  export import CursorPage = Pagination.CursorPage;
+  export { type CursorPageParams as CursorPageParams, type CursorPageResponse as CursorPageResponse };
 
   export {
     Payouts as Payouts,
     type PayoutCreateResponse as PayoutCreateResponse,
     type PayoutRetrieveResponse as PayoutRetrieveResponse,
     type PayoutListResponse as PayoutListResponse,
+    type PayoutListResponsesCursorPage as PayoutListResponsesCursorPage,
     type PayoutCreateParams as PayoutCreateParams,
     type PayoutListParams as PayoutListParams,
   };
@@ -786,14 +814,10 @@ export declare namespace AugustusNew {
     type ConversionCreateResponse as ConversionCreateResponse,
     type ConversionRetrieveResponse as ConversionRetrieveResponse,
     type ConversionListResponse as ConversionListResponse,
+    type ConversionListResponsesCursorPage as ConversionListResponsesCursorPage,
     type ConversionCreateParams as ConversionCreateParams,
     type ConversionListParams as ConversionListParams,
   };
 
-  export {
-    Quotes as Quotes,
-    type QuoteRetrieveResponse as QuoteRetrieveResponse,
-    type QuoteRetrieveIndicativeResponse as QuoteRetrieveIndicativeResponse,
-    type QuoteRetrieveIndicativeParams as QuoteRetrieveIndicativeParams,
-  };
+  export { Quotes as Quotes, type QuoteRetrieveResponse as QuoteRetrieveResponse };
 }
