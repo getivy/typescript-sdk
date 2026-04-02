@@ -8,8 +8,8 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "paths": {
-      "augustus-new/*": ["./src/*"],
-      "augustus-new": ["./src/index.ts"]
+      "@augustus/typescript-sdk/*": ["./src/*"],
+      "@augustus/typescript-sdk": ["./src/index.ts"]
     },
     "noEmit": true,
 

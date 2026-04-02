@@ -1,12 +1,13 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export { AugustusNew as default } from './client';
+export { Augustus as default } from './client';
 
 export { type Uploadable, toFile } from './core/uploads';
 export { APIPromise } from './core/api-promise';
-export { AugustusNew, type ClientOptions } from './client';
+export { Augustus, type ClientOptions } from './client';
+export { PagePromise } from './core/pagination';
 export {
-  AugustusNewError,
+  AugustusError,
   APIError,
   APIConnectionError,
   APIConnectionTimeoutError,

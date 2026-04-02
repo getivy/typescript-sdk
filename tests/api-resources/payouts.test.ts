@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import AugustusNew from 'augustus-new';
+import Augustus from '@augustus/typescript-sdk';
 
-const client = new AugustusNew({
+const client = new Augustus({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
@@ -45,7 +45,6 @@ describe('resource payouts', () => {
       source_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       metadata: { foo: 'string' },
       rail: 'sepa_instant',
-      'Idempotency-Key': 'Idempotency-Key',
     });
   });
 
@@ -86,6 +85,6 @@ describe('resource payouts', () => {
         },
         { path: '/_stainless_unknown_path' },
       ),
-    ).rejects.toThrow(AugustusNew.NotFoundError);
+    ).rejects.toThrow(Augustus.NotFoundError);
   });
 });
