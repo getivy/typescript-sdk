@@ -18,7 +18,7 @@ jobs:
   lint:
     timeout-minutes: 10
     name: lint
-    runs-on: ${{ github.repository == 'stainless-sdks/augustus-node' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
+    runs-on: ${{ github.repository == 'stainless-sdks/augustus-new-typescript' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
     if: (github.event_name == 'push' || github.event.pull_request.head.repo.fork) && (github.event_name != 'push' || github.event.head_commit.message != 'codegen metadata')
     steps:
       - uses: actions/checkout@v6
@@ -26,7 +26,12 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: '10.30.1'
 
       - name: Bootstrap
         run: ./scripts/bootstrap
@@ -37,7 +42,7 @@ jobs:
   build:
     timeout-minutes: 5
     name: build
-    runs-on: ${{ github.repository == 'stainless-sdks/augustus-node' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
+    runs-on: ${{ github.repository == 'stainless-sdks/augustus-new-typescript' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
     if: (github.event_name == 'push' || github.event.pull_request.head.repo.fork) && (github.event_name != 'push' || github.event.head_commit.message != 'codegen metadata')
     permissions:
       contents: read
@@ -48,7 +53,12 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: '10.30.1'
 
       - name: Bootstrap
         run: ./scripts/bootstrap
@@ -58,7 +68,7 @@ jobs:
 
       - name: Get GitHub OIDC Token
         if: |-
-          github.repository == 'stainless-sdks/augustus-node' &&
+          github.repository == 'stainless-sdks/augustus-new-typescript' &&
           !startsWith(github.ref, 'refs/heads/stl/')
         id: github-oidc
         uses: actions/github-script@v8
@@ -67,7 +77,7 @@ jobs:
 
       - name: Upload tarball
         if: |-
-          github.repository == 'stainless-sdks/augustus-node' &&
+          github.repository == 'stainless-sdks/augustus-new-typescript' &&
           !startsWith(github.ref, 'refs/heads/stl/')
         env:
           URL: https://pkg.stainless.com/s
@@ -77,7 +87,7 @@ jobs:
   test:
     timeout-minutes: 10
     name: test
-    runs-on: ${{ github.repository == 'stainless-sdks/augustus-node' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
+    runs-on: ${{ github.repository == 'stainless-sdks/augustus-new-typescript' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
     if: github.event_name == 'push' || github.event.pull_request.head.repo.fork
     steps:
       - uses: actions/checkout@v6
@@ -86,6 +96,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: '10.30.1'
 
       - name: Bootstrap
         run: ./scripts/bootstrap
