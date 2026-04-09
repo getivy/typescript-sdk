@@ -37,6 +37,14 @@ import {
   PayoutRetrieveResponse,
   Payouts,
 } from './resources/payouts';
+import {
+  PayoutCreatedWebhookEvent,
+  PayoutFailedWebhookEvent,
+  PayoutInitiatedWebhookEvent,
+  PayoutPaidWebhookEvent,
+  UnwrapWebhookEvent,
+  Webhooks,
+} from './resources/webhooks';
 import { QuoteRetrieveResponse, Quotes } from './resources/quotes/quotes';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
@@ -62,6 +70,11 @@ export interface ClientOptions {
    * Bearer token for the Augustus Banking API
    */
   apiKey?: string | undefined;
+
+  /**
+   * Webhook signing secret for verifying webhook signatures
+   */
+  webhookKey?: string | null | undefined;
 
   /**
    * Specifies the environment to use for the API.
@@ -146,6 +159,7 @@ export interface ClientOptions {
  */
 export class Augustus {
   apiKey: string;
+  webhookKey: string | null;
 
   baseURL: string;
   maxRetries: number;
@@ -163,6 +177,7 @@ export class Augustus {
    * API Client for interfacing with the Augustus API.
    *
    * @param {string | undefined} [opts.apiKey=process.env['AUGUSTUS_API_KEY'] ?? undefined]
+   * @param {string | null | undefined} [opts.webhookKey=process.env['AUGUSTUS_WEBHOOK_KEY'] ?? null]
    * @param {Environment} [opts.environment=production] - Specifies the environment URL to use for the API.
    * @param {string} [opts.baseURL=process.env['AUGUSTUS_BASE_URL'] ?? https://api.augustus.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
@@ -175,6 +190,7 @@ export class Augustus {
   constructor({
     baseURL = readEnv('AUGUSTUS_BASE_URL'),
     apiKey = readEnv('AUGUSTUS_API_KEY'),
+    webhookKey = readEnv('AUGUSTUS_WEBHOOK_KEY') ?? null,
     ...opts
   }: ClientOptions = {}) {
     if (apiKey === undefined) {
@@ -185,6 +201,7 @@ export class Augustus {
 
     const options: ClientOptions = {
       apiKey,
+      webhookKey,
       ...opts,
       baseURL,
       environment: opts.environment ?? 'production',
@@ -215,6 +232,7 @@ export class Augustus {
     this.idempotencyHeader = 'Idempotency-Key';
 
     this.apiKey = apiKey;
+    this.webhookKey = webhookKey;
   }
 
   /**
@@ -232,6 +250,7 @@ export class Augustus {
       fetch: this.fetch,
       fetchOptions: this.fetchOptions,
       apiKey: this.apiKey,
+      webhookKey: this.webhookKey,
       ...options,
     });
     return client;
@@ -784,11 +803,13 @@ export class Augustus {
 
   static toFile = Uploads.toFile;
 
+  webhooks: API.Webhooks = new API.Webhooks(this);
   payouts: API.Payouts = new API.Payouts(this);
   conversions: API.Conversions = new API.Conversions(this);
   quotes: API.Quotes = new API.Quotes(this);
 }
 
+Augustus.Webhooks = Webhooks;
 Augustus.Payouts = Payouts;
 Augustus.Conversions = Conversions;
 Augustus.Quotes = Quotes;
@@ -798,6 +819,15 @@ export declare namespace Augustus {
 
   export import CursorPage = Pagination.CursorPage;
   export { type CursorPageParams as CursorPageParams, type CursorPageResponse as CursorPageResponse };
+
+  export {
+    Webhooks as Webhooks,
+    type PayoutCreatedWebhookEvent as PayoutCreatedWebhookEvent,
+    type PayoutInitiatedWebhookEvent as PayoutInitiatedWebhookEvent,
+    type PayoutPaidWebhookEvent as PayoutPaidWebhookEvent,
+    type PayoutFailedWebhookEvent as PayoutFailedWebhookEvent,
+    type UnwrapWebhookEvent as UnwrapWebhookEvent,
+  };
 
   export {
     Payouts as Payouts,

@@ -19,3 +19,11 @@ export {
   type PayoutListResponsesCursorPage,
 } from './payouts';
 export { Quotes, type QuoteRetrieveResponse } from './quotes/quotes';
+export {
+  Webhooks,
+  type PayoutCreatedWebhookEvent,
+  type PayoutInitiatedWebhookEvent,
+  type PayoutPaidWebhookEvent,
+  type PayoutFailedWebhookEvent,
+  type UnwrapWebhookEvent,
+} from './webhooks';
