@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.2.0 (2026-04-09)
+
+Full Changelog: [v0.1.0...v0.2.0](https://github.com/getivy/typescript-sdk/compare/v0.1.0...v0.2.0)
+
+### Features
+
+* **api:** api update ([a78b492](https://github.com/getivy/typescript-sdk/commit/a78b492d0883b2cd4f637abb4ef7184dd05037fd))
+
+
+### Chores
+
+* **internal:** codegen related update ([2cd1869](https://github.com/getivy/typescript-sdk/commit/2cd186974e51eac0db52bc8b7275f5928636f828))
+
 ## 0.1.0 (2026-04-02)
 
 Full Changelog: [v0.0.1...v0.1.0](https://github.com/getivy/typescript-sdk/compare/v0.0.1...v0.1.0)
