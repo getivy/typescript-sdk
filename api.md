@@ -1,3 +1,17 @@
+# Webhooks
+
+Types:
+
+- <code><a href="./src/resources/webhooks.ts">PayoutCreatedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">PayoutInitiatedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">PayoutPaidWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">PayoutFailedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">UnwrapWebhookEvent</a></code>
+
+Methods:
+
+- <code>client.webhooks.<a href="./src/resources/webhooks.ts">unwrap</a>(body) -> void</code>
+
 # Payouts
 
 Types:
