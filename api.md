@@ -26,6 +26,16 @@ Methods:
 - <code title="get /v1/payouts/{id}">client.payouts.<a href="./src/resources/payouts.ts">retrieve</a>(id) -> PayoutRetrieveResponse</code>
 - <code title="get /v1/payouts">client.payouts.<a href="./src/resources/payouts.ts">list</a>({ ...params }) -> PayoutListResponsesCursorPage</code>
 
+# Deposits
+
+Types:
+
+- <code><a href="./src/resources/deposits.ts">DepositRetrieveResponse</a></code>
+
+Methods:
+
+- <code title="get /v1/deposits/{id}">client.deposits.<a href="./src/resources/deposits.ts">retrieve</a>(id) -> DepositRetrieveResponse</code>
+
 # Conversions
 
 Types:
@@ -59,3 +69,21 @@ Types:
 Methods:
 
 - <code title="get /v1/quotes/indicative">client.quotes.indicative.<a href="./src/resources/quotes/indicative.ts">retrieve</a>({ ...params }) -> IndicativeRetrieveResponse</code>
+
+# WebhookSubscriptions
+
+Types:
+
+- <code><a href="./src/resources/webhook-subscriptions.ts">WebhookSubscriptionCreateResponse</a></code>
+- <code><a href="./src/resources/webhook-subscriptions.ts">WebhookSubscriptionRetrieveResponse</a></code>
+- <code><a href="./src/resources/webhook-subscriptions.ts">WebhookSubscriptionUpdateResponse</a></code>
+- <code><a href="./src/resources/webhook-subscriptions.ts">WebhookSubscriptionListResponse</a></code>
+- <code><a href="./src/resources/webhook-subscriptions.ts">WebhookSubscriptionDeleteResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/webhook_subscriptions">client.webhookSubscriptions.<a href="./src/resources/webhook-subscriptions.ts">create</a>({ ...params }) -> WebhookSubscriptionCreateResponse</code>
+- <code title="get /v1/webhook_subscriptions/{id}">client.webhookSubscriptions.<a href="./src/resources/webhook-subscriptions.ts">retrieve</a>(id) -> WebhookSubscriptionRetrieveResponse</code>
+- <code title="post /v1/webhook_subscriptions/{id}">client.webhookSubscriptions.<a href="./src/resources/webhook-subscriptions.ts">update</a>(id, { ...params }) -> WebhookSubscriptionUpdateResponse</code>
+- <code title="get /v1/webhook_subscriptions">client.webhookSubscriptions.<a href="./src/resources/webhook-subscriptions.ts">list</a>({ ...params }) -> WebhookSubscriptionListResponsesCursorPage</code>
+- <code title="delete /v1/webhook_subscriptions/{id}">client.webhookSubscriptions.<a href="./src/resources/webhook-subscriptions.ts">delete</a>(id) -> WebhookSubscriptionDeleteResponse</code>
