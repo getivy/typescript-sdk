@@ -28,6 +28,7 @@ import {
   ConversionRetrieveResponse,
   Conversions,
 } from './resources/conversions';
+import { DepositRetrieveResponse, Deposits } from './resources/deposits';
 import {
   PayoutCreateParams,
   PayoutCreateResponse,
@@ -37,6 +38,18 @@ import {
   PayoutRetrieveResponse,
   Payouts,
 } from './resources/payouts';
+import {
+  WebhookSubscriptionCreateParams,
+  WebhookSubscriptionCreateResponse,
+  WebhookSubscriptionDeleteResponse,
+  WebhookSubscriptionListParams,
+  WebhookSubscriptionListResponse,
+  WebhookSubscriptionListResponsesCursorPage,
+  WebhookSubscriptionRetrieveResponse,
+  WebhookSubscriptionUpdateParams,
+  WebhookSubscriptionUpdateResponse,
+  WebhookSubscriptions,
+} from './resources/webhook-subscriptions';
 import {
   PayoutCreatedWebhookEvent,
   PayoutFailedWebhookEvent,
@@ -805,14 +818,18 @@ export class Augustus {
 
   webhooks: API.Webhooks = new API.Webhooks(this);
   payouts: API.Payouts = new API.Payouts(this);
+  deposits: API.Deposits = new API.Deposits(this);
   conversions: API.Conversions = new API.Conversions(this);
   quotes: API.Quotes = new API.Quotes(this);
+  webhookSubscriptions: API.WebhookSubscriptions = new API.WebhookSubscriptions(this);
 }
 
 Augustus.Webhooks = Webhooks;
 Augustus.Payouts = Payouts;
+Augustus.Deposits = Deposits;
 Augustus.Conversions = Conversions;
 Augustus.Quotes = Quotes;
+Augustus.WebhookSubscriptions = WebhookSubscriptions;
 
 export declare namespace Augustus {
   export type RequestOptions = Opts.RequestOptions;
@@ -839,6 +856,8 @@ export declare namespace Augustus {
     type PayoutListParams as PayoutListParams,
   };
 
+  export { Deposits as Deposits, type DepositRetrieveResponse as DepositRetrieveResponse };
+
   export {
     Conversions as Conversions,
     type ConversionCreateResponse as ConversionCreateResponse,
@@ -850,4 +869,17 @@ export declare namespace Augustus {
   };
 
   export { Quotes as Quotes, type QuoteRetrieveResponse as QuoteRetrieveResponse };
+
+  export {
+    WebhookSubscriptions as WebhookSubscriptions,
+    type WebhookSubscriptionCreateResponse as WebhookSubscriptionCreateResponse,
+    type WebhookSubscriptionRetrieveResponse as WebhookSubscriptionRetrieveResponse,
+    type WebhookSubscriptionUpdateResponse as WebhookSubscriptionUpdateResponse,
+    type WebhookSubscriptionListResponse as WebhookSubscriptionListResponse,
+    type WebhookSubscriptionDeleteResponse as WebhookSubscriptionDeleteResponse,
+    type WebhookSubscriptionListResponsesCursorPage as WebhookSubscriptionListResponsesCursorPage,
+    type WebhookSubscriptionCreateParams as WebhookSubscriptionCreateParams,
+    type WebhookSubscriptionUpdateParams as WebhookSubscriptionUpdateParams,
+    type WebhookSubscriptionListParams as WebhookSubscriptionListParams,
+  };
 }

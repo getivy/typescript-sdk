@@ -9,6 +9,7 @@ export {
   type ConversionListParams,
   type ConversionListResponsesCursorPage,
 } from './conversions';
+export { Deposits, type DepositRetrieveResponse } from './deposits';
 export {
   Payouts,
   type PayoutCreateResponse,
@@ -19,6 +20,18 @@ export {
   type PayoutListResponsesCursorPage,
 } from './payouts';
 export { Quotes, type QuoteRetrieveResponse } from './quotes/quotes';
+export {
+  WebhookSubscriptions,
+  type WebhookSubscriptionCreateResponse,
+  type WebhookSubscriptionRetrieveResponse,
+  type WebhookSubscriptionUpdateResponse,
+  type WebhookSubscriptionListResponse,
+  type WebhookSubscriptionDeleteResponse,
+  type WebhookSubscriptionCreateParams,
+  type WebhookSubscriptionUpdateParams,
+  type WebhookSubscriptionListParams,
+  type WebhookSubscriptionListResponsesCursorPage,
+} from './webhook-subscriptions';
 export {
   Webhooks,
   type PayoutCreatedWebhookEvent,
