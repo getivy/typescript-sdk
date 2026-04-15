@@ -61,7 +61,7 @@ export namespace PayoutCreatedWebhookEvent {
     created_at: string;
 
     /**
-     * ISO 4217 currency code.
+     * Currency code (ISO 4217 currency code or crypto currency code).
      */
     currency: string;
 
@@ -247,7 +247,7 @@ export namespace PayoutInitiatedWebhookEvent {
     created_at: string;
 
     /**
-     * ISO 4217 currency code.
+     * Currency code (ISO 4217 currency code or crypto currency code).
      */
     currency: string;
 
@@ -433,7 +433,7 @@ export namespace PayoutPaidWebhookEvent {
     created_at: string;
 
     /**
-     * ISO 4217 currency code.
+     * Currency code (ISO 4217 currency code or crypto currency code).
      */
     currency: string;
 
@@ -619,7 +619,7 @@ export namespace PayoutFailedWebhookEvent {
     created_at: string;
 
     /**
-     * ISO 4217 currency code.
+     * Currency code (ISO 4217 currency code or crypto currency code).
      */
     currency: string;
 
@@ -762,11 +762,455 @@ export namespace PayoutFailedWebhookEvent {
   }
 }
 
+export interface ReturnInitiatedWebhookEvent {
+  /**
+   * Unique identifier for the event. Stable across retries.
+   */
+  id: string;
+
+  /**
+   * ISO 8601 UTC timestamp when the event was created.
+   */
+  date: string;
+
+  /**
+   * Full resource snapshot at the time of the event.
+   */
+  payload: ReturnInitiatedWebhookEvent.Payload;
+
+  /**
+   * Event type in resource.action format.
+   */
+  type: 'return.initiated';
+}
+
+export namespace ReturnInitiatedWebhookEvent {
+  /**
+   * Full resource snapshot at the time of the event.
+   */
+  export interface Payload {
+    /**
+     * Unique identifier of the return.
+     */
+    id: string;
+
+    /**
+     * Amount as a string decimal (e.g. "100.50").
+     */
+    amount: string;
+
+    /**
+     * ISO 8601 UTC timestamp when the return was created.
+     */
+    created_at: string;
+
+    /**
+     * Currency code (ISO 4217 currency code or crypto currency code).
+     */
+    currency: string;
+
+    /**
+     * ID of the parent deposit.
+     */
+    deposit_id: string;
+
+    /**
+     * Failure details when status is failed, otherwise null.
+     */
+    failure: Payload.Failure | null;
+
+    /**
+     * Current status of the return.
+     */
+    status: 'pending' | 'paid' | 'failed' | 'returned';
+
+    /**
+     * Type of the resource.
+     */
+    type: 'return';
+
+    /**
+     * ISO 8601 UTC timestamp when the return was last updated.
+     */
+    updated_at: string;
+  }
+
+  export namespace Payload {
+    /**
+     * Failure details when status is failed, otherwise null.
+     */
+    export interface Failure {
+      /**
+       * Failure code.
+       */
+      code:
+        | 'account_closed'
+        | 'account_blocked'
+        | 'insufficient_funds'
+        | 'invalid_account_format'
+        | 'invalid_instruction'
+        | 'invalid_amount'
+        | 'invalid_time'
+        | 'duplicate_transaction'
+        | 'payee_verification_failed'
+        | 'system_error'
+        | 'provider_system_error'
+        | 'rejected_by_correspondent_bank'
+        | 'blocked_by_review'
+        | 'unknown';
+
+      /**
+       * Human-readable description of the failure.
+       */
+      message: string;
+
+      /**
+       * Whether the return can be retried.
+       */
+      retry: boolean;
+    }
+  }
+}
+
+export interface ReturnPaidWebhookEvent {
+  /**
+   * Unique identifier for the event. Stable across retries.
+   */
+  id: string;
+
+  /**
+   * ISO 8601 UTC timestamp when the event was created.
+   */
+  date: string;
+
+  /**
+   * Full resource snapshot at the time of the event.
+   */
+  payload: ReturnPaidWebhookEvent.Payload;
+
+  /**
+   * Event type in resource.action format.
+   */
+  type: 'return.paid';
+}
+
+export namespace ReturnPaidWebhookEvent {
+  /**
+   * Full resource snapshot at the time of the event.
+   */
+  export interface Payload {
+    /**
+     * Unique identifier of the return.
+     */
+    id: string;
+
+    /**
+     * Amount as a string decimal (e.g. "100.50").
+     */
+    amount: string;
+
+    /**
+     * ISO 8601 UTC timestamp when the return was created.
+     */
+    created_at: string;
+
+    /**
+     * Currency code (ISO 4217 currency code or crypto currency code).
+     */
+    currency: string;
+
+    /**
+     * ID of the parent deposit.
+     */
+    deposit_id: string;
+
+    /**
+     * Failure details when status is failed, otherwise null.
+     */
+    failure: Payload.Failure | null;
+
+    /**
+     * Current status of the return.
+     */
+    status: 'pending' | 'paid' | 'failed' | 'returned';
+
+    /**
+     * Type of the resource.
+     */
+    type: 'return';
+
+    /**
+     * ISO 8601 UTC timestamp when the return was last updated.
+     */
+    updated_at: string;
+  }
+
+  export namespace Payload {
+    /**
+     * Failure details when status is failed, otherwise null.
+     */
+    export interface Failure {
+      /**
+       * Failure code.
+       */
+      code:
+        | 'account_closed'
+        | 'account_blocked'
+        | 'insufficient_funds'
+        | 'invalid_account_format'
+        | 'invalid_instruction'
+        | 'invalid_amount'
+        | 'invalid_time'
+        | 'duplicate_transaction'
+        | 'payee_verification_failed'
+        | 'system_error'
+        | 'provider_system_error'
+        | 'rejected_by_correspondent_bank'
+        | 'blocked_by_review'
+        | 'unknown';
+
+      /**
+       * Human-readable description of the failure.
+       */
+      message: string;
+
+      /**
+       * Whether the return can be retried.
+       */
+      retry: boolean;
+    }
+  }
+}
+
+export interface ReturnFailedWebhookEvent {
+  /**
+   * Unique identifier for the event. Stable across retries.
+   */
+  id: string;
+
+  /**
+   * ISO 8601 UTC timestamp when the event was created.
+   */
+  date: string;
+
+  /**
+   * Full resource snapshot at the time of the event.
+   */
+  payload: ReturnFailedWebhookEvent.Payload;
+
+  /**
+   * Event type in resource.action format.
+   */
+  type: 'return.failed';
+}
+
+export namespace ReturnFailedWebhookEvent {
+  /**
+   * Full resource snapshot at the time of the event.
+   */
+  export interface Payload {
+    /**
+     * Unique identifier of the return.
+     */
+    id: string;
+
+    /**
+     * Amount as a string decimal (e.g. "100.50").
+     */
+    amount: string;
+
+    /**
+     * ISO 8601 UTC timestamp when the return was created.
+     */
+    created_at: string;
+
+    /**
+     * Currency code (ISO 4217 currency code or crypto currency code).
+     */
+    currency: string;
+
+    /**
+     * ID of the parent deposit.
+     */
+    deposit_id: string;
+
+    /**
+     * Failure details when status is failed, otherwise null.
+     */
+    failure: Payload.Failure | null;
+
+    /**
+     * Current status of the return.
+     */
+    status: 'pending' | 'paid' | 'failed' | 'returned';
+
+    /**
+     * Type of the resource.
+     */
+    type: 'return';
+
+    /**
+     * ISO 8601 UTC timestamp when the return was last updated.
+     */
+    updated_at: string;
+  }
+
+  export namespace Payload {
+    /**
+     * Failure details when status is failed, otherwise null.
+     */
+    export interface Failure {
+      /**
+       * Failure code.
+       */
+      code:
+        | 'account_closed'
+        | 'account_blocked'
+        | 'insufficient_funds'
+        | 'invalid_account_format'
+        | 'invalid_instruction'
+        | 'invalid_amount'
+        | 'invalid_time'
+        | 'duplicate_transaction'
+        | 'payee_verification_failed'
+        | 'system_error'
+        | 'provider_system_error'
+        | 'rejected_by_correspondent_bank'
+        | 'blocked_by_review'
+        | 'unknown';
+
+      /**
+       * Human-readable description of the failure.
+       */
+      message: string;
+
+      /**
+       * Whether the return can be retried.
+       */
+      retry: boolean;
+    }
+  }
+}
+
+export interface ReturnReturnedWebhookEvent {
+  /**
+   * Unique identifier for the event. Stable across retries.
+   */
+  id: string;
+
+  /**
+   * ISO 8601 UTC timestamp when the event was created.
+   */
+  date: string;
+
+  /**
+   * Full resource snapshot at the time of the event.
+   */
+  payload: ReturnReturnedWebhookEvent.Payload;
+
+  /**
+   * Event type in resource.action format.
+   */
+  type: 'return.returned';
+}
+
+export namespace ReturnReturnedWebhookEvent {
+  /**
+   * Full resource snapshot at the time of the event.
+   */
+  export interface Payload {
+    /**
+     * Unique identifier of the return.
+     */
+    id: string;
+
+    /**
+     * Amount as a string decimal (e.g. "100.50").
+     */
+    amount: string;
+
+    /**
+     * ISO 8601 UTC timestamp when the return was created.
+     */
+    created_at: string;
+
+    /**
+     * Currency code (ISO 4217 currency code or crypto currency code).
+     */
+    currency: string;
+
+    /**
+     * ID of the parent deposit.
+     */
+    deposit_id: string;
+
+    /**
+     * Failure details when status is failed, otherwise null.
+     */
+    failure: Payload.Failure | null;
+
+    /**
+     * Current status of the return.
+     */
+    status: 'pending' | 'paid' | 'failed' | 'returned';
+
+    /**
+     * Type of the resource.
+     */
+    type: 'return';
+
+    /**
+     * ISO 8601 UTC timestamp when the return was last updated.
+     */
+    updated_at: string;
+  }
+
+  export namespace Payload {
+    /**
+     * Failure details when status is failed, otherwise null.
+     */
+    export interface Failure {
+      /**
+       * Failure code.
+       */
+      code:
+        | 'account_closed'
+        | 'account_blocked'
+        | 'insufficient_funds'
+        | 'invalid_account_format'
+        | 'invalid_instruction'
+        | 'invalid_amount'
+        | 'invalid_time'
+        | 'duplicate_transaction'
+        | 'payee_verification_failed'
+        | 'system_error'
+        | 'provider_system_error'
+        | 'rejected_by_correspondent_bank'
+        | 'blocked_by_review'
+        | 'unknown';
+
+      /**
+       * Human-readable description of the failure.
+       */
+      message: string;
+
+      /**
+       * Whether the return can be retried.
+       */
+      retry: boolean;
+    }
+  }
+}
+
 export type UnwrapWebhookEvent =
   | PayoutCreatedWebhookEvent
   | PayoutInitiatedWebhookEvent
   | PayoutPaidWebhookEvent
-  | PayoutFailedWebhookEvent;
+  | PayoutFailedWebhookEvent
+  | ReturnInitiatedWebhookEvent
+  | ReturnPaidWebhookEvent
+  | ReturnFailedWebhookEvent
+  | ReturnReturnedWebhookEvent;
 
 export declare namespace Webhooks {
   export {
@@ -774,6 +1218,10 @@ export declare namespace Webhooks {
     type PayoutInitiatedWebhookEvent as PayoutInitiatedWebhookEvent,
     type PayoutPaidWebhookEvent as PayoutPaidWebhookEvent,
     type PayoutFailedWebhookEvent as PayoutFailedWebhookEvent,
+    type ReturnInitiatedWebhookEvent as ReturnInitiatedWebhookEvent,
+    type ReturnPaidWebhookEvent as ReturnPaidWebhookEvent,
+    type ReturnFailedWebhookEvent as ReturnFailedWebhookEvent,
+    type ReturnReturnedWebhookEvent as ReturnReturnedWebhookEvent,
     type UnwrapWebhookEvent as UnwrapWebhookEvent,
   };
 }
