@@ -72,7 +72,16 @@ export interface WebhookSubscriptionCreateResponse {
   /**
    * Event types this subscription receives.
    */
-  events: Array<'payout.created' | 'payout.initiated' | 'payout.paid' | 'payout.failed'>;
+  events: Array<
+    | 'payout.created'
+    | 'payout.initiated'
+    | 'payout.paid'
+    | 'payout.failed'
+    | 'return.initiated'
+    | 'return.paid'
+    | 'return.failed'
+    | 'return.returned'
+  >;
 
   /**
    * Resource type discriminator.
@@ -104,7 +113,16 @@ export interface WebhookSubscriptionRetrieveResponse {
   /**
    * Event types this subscription receives.
    */
-  events: Array<'payout.created' | 'payout.initiated' | 'payout.paid' | 'payout.failed'>;
+  events: Array<
+    | 'payout.created'
+    | 'payout.initiated'
+    | 'payout.paid'
+    | 'payout.failed'
+    | 'return.initiated'
+    | 'return.paid'
+    | 'return.failed'
+    | 'return.returned'
+  >;
 
   /**
    * Resource type discriminator.
@@ -136,7 +154,16 @@ export interface WebhookSubscriptionUpdateResponse {
   /**
    * Event types this subscription receives.
    */
-  events: Array<'payout.created' | 'payout.initiated' | 'payout.paid' | 'payout.failed'>;
+  events: Array<
+    | 'payout.created'
+    | 'payout.initiated'
+    | 'payout.paid'
+    | 'payout.failed'
+    | 'return.initiated'
+    | 'return.paid'
+    | 'return.failed'
+    | 'return.returned'
+  >;
 
   /**
    * Resource type discriminator.
@@ -168,7 +195,16 @@ export interface WebhookSubscriptionListResponse {
   /**
    * Event types this subscription receives.
    */
-  events: Array<'payout.created' | 'payout.initiated' | 'payout.paid' | 'payout.failed'>;
+  events: Array<
+    | 'payout.created'
+    | 'payout.initiated'
+    | 'payout.paid'
+    | 'payout.failed'
+    | 'return.initiated'
+    | 'return.paid'
+    | 'return.failed'
+    | 'return.returned'
+  >;
 
   /**
    * Resource type discriminator.
@@ -200,7 +236,16 @@ export interface WebhookSubscriptionDeleteResponse {
   /**
    * Event types this subscription receives.
    */
-  events: Array<'payout.created' | 'payout.initiated' | 'payout.paid' | 'payout.failed'>;
+  events: Array<
+    | 'payout.created'
+    | 'payout.initiated'
+    | 'payout.paid'
+    | 'payout.failed'
+    | 'return.initiated'
+    | 'return.paid'
+    | 'return.failed'
+    | 'return.returned'
+  >;
 
   /**
    * Resource type discriminator.
@@ -222,7 +267,17 @@ export interface WebhookSubscriptionCreateParams {
   /**
    * Event types to subscribe to. Use ["*"] for all events.
    */
-  events: Array<'payout.created' | 'payout.initiated' | 'payout.paid' | 'payout.failed' | '*'>;
+  events: Array<
+    | 'payout.created'
+    | 'payout.initiated'
+    | 'payout.paid'
+    | 'payout.failed'
+    | 'return.initiated'
+    | 'return.paid'
+    | 'return.failed'
+    | 'return.returned'
+    | '*'
+  >;
 
   /**
    * The HTTPS URL where webhook events will be delivered.
@@ -234,7 +289,17 @@ export interface WebhookSubscriptionUpdateParams {
   /**
    * Event types to subscribe to. Use ["*"] for all events.
    */
-  events?: Array<'payout.created' | 'payout.initiated' | 'payout.paid' | 'payout.failed' | '*'>;
+  events?: Array<
+    | 'payout.created'
+    | 'payout.initiated'
+    | 'payout.paid'
+    | 'payout.failed'
+    | 'return.initiated'
+    | 'return.paid'
+    | 'return.failed'
+    | 'return.returned'
+    | '*'
+  >;
 
   /**
    * The HTTPS URL where webhook events will be delivered.
