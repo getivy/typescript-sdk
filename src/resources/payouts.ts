@@ -51,7 +51,7 @@ export interface PayoutCreateResponse {
   created_at: string;
 
   /**
-   * ISO 4217 currency code.
+   * Currency code (ISO 4217 currency code or crypto currency code).
    */
   currency: string;
 
@@ -213,7 +213,7 @@ export interface PayoutRetrieveResponse {
   created_at: string;
 
   /**
-   * ISO 4217 currency code.
+   * Currency code (ISO 4217 currency code or crypto currency code).
    */
   currency: string;
 
@@ -375,7 +375,7 @@ export interface PayoutListResponse {
   created_at: string;
 
   /**
-   * ISO 4217 currency code.
+   * Currency code (ISO 4217 currency code or crypto currency code).
    */
   currency: string;
 
@@ -527,7 +527,7 @@ export interface PayoutCreateParams {
   amount: string;
 
   /**
-   * ISO 4217 currency code for the payout amount.
+   * Currency for the payout amount.
    */
   currency: 'EUR' | 'GBP' | 'USDC';
 

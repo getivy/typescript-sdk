@@ -38,6 +38,7 @@ import {
   PayoutRetrieveResponse,
   Payouts,
 } from './resources/payouts';
+import { ReturnRetrieveResponse, Returns } from './resources/returns';
 import {
   WebhookSubscriptionCreateParams,
   WebhookSubscriptionCreateResponse,
@@ -55,6 +56,10 @@ import {
   PayoutFailedWebhookEvent,
   PayoutInitiatedWebhookEvent,
   PayoutPaidWebhookEvent,
+  ReturnFailedWebhookEvent,
+  ReturnInitiatedWebhookEvent,
+  ReturnPaidWebhookEvent,
+  ReturnReturnedWebhookEvent,
   UnwrapWebhookEvent,
   Webhooks,
 } from './resources/webhooks';
@@ -821,6 +826,7 @@ export class Augustus {
   deposits: API.Deposits = new API.Deposits(this);
   conversions: API.Conversions = new API.Conversions(this);
   quotes: API.Quotes = new API.Quotes(this);
+  returns: API.Returns = new API.Returns(this);
   webhookSubscriptions: API.WebhookSubscriptions = new API.WebhookSubscriptions(this);
 }
 
@@ -829,6 +835,7 @@ Augustus.Payouts = Payouts;
 Augustus.Deposits = Deposits;
 Augustus.Conversions = Conversions;
 Augustus.Quotes = Quotes;
+Augustus.Returns = Returns;
 Augustus.WebhookSubscriptions = WebhookSubscriptions;
 
 export declare namespace Augustus {
@@ -843,6 +850,10 @@ export declare namespace Augustus {
     type PayoutInitiatedWebhookEvent as PayoutInitiatedWebhookEvent,
     type PayoutPaidWebhookEvent as PayoutPaidWebhookEvent,
     type PayoutFailedWebhookEvent as PayoutFailedWebhookEvent,
+    type ReturnInitiatedWebhookEvent as ReturnInitiatedWebhookEvent,
+    type ReturnPaidWebhookEvent as ReturnPaidWebhookEvent,
+    type ReturnFailedWebhookEvent as ReturnFailedWebhookEvent,
+    type ReturnReturnedWebhookEvent as ReturnReturnedWebhookEvent,
     type UnwrapWebhookEvent as UnwrapWebhookEvent,
   };
 
@@ -869,6 +880,8 @@ export declare namespace Augustus {
   };
 
   export { Quotes as Quotes, type QuoteRetrieveResponse as QuoteRetrieveResponse };
+
+  export { Returns as Returns, type ReturnRetrieveResponse as ReturnRetrieveResponse };
 
   export {
     WebhookSubscriptions as WebhookSubscriptions,

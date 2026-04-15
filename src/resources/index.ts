@@ -20,6 +20,7 @@ export {
   type PayoutListResponsesCursorPage,
 } from './payouts';
 export { Quotes, type QuoteRetrieveResponse } from './quotes/quotes';
+export { Returns, type ReturnRetrieveResponse } from './returns';
 export {
   WebhookSubscriptions,
   type WebhookSubscriptionCreateResponse,
@@ -38,5 +39,9 @@ export {
   type PayoutInitiatedWebhookEvent,
   type PayoutPaidWebhookEvent,
   type PayoutFailedWebhookEvent,
+  type ReturnInitiatedWebhookEvent,
+  type ReturnPaidWebhookEvent,
+  type ReturnFailedWebhookEvent,
+  type ReturnReturnedWebhookEvent,
   type UnwrapWebhookEvent,
 } from './webhooks';

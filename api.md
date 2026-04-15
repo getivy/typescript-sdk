@@ -6,6 +6,10 @@ Types:
 - <code><a href="./src/resources/webhooks.ts">PayoutInitiatedWebhookEvent</a></code>
 - <code><a href="./src/resources/webhooks.ts">PayoutPaidWebhookEvent</a></code>
 - <code><a href="./src/resources/webhooks.ts">PayoutFailedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">ReturnInitiatedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">ReturnPaidWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">ReturnFailedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">ReturnReturnedWebhookEvent</a></code>
 - <code><a href="./src/resources/webhooks.ts">UnwrapWebhookEvent</a></code>
 
 Methods:
@@ -69,6 +73,16 @@ Types:
 Methods:
 
 - <code title="get /v1/quotes/indicative">client.quotes.indicative.<a href="./src/resources/quotes/indicative.ts">retrieve</a>({ ...params }) -> IndicativeRetrieveResponse</code>
+
+# Returns
+
+Types:
+
+- <code><a href="./src/resources/returns.ts">ReturnRetrieveResponse</a></code>
+
+Methods:
+
+- <code title="get /v1/returns/{id}">client.returns.<a href="./src/resources/returns.ts">retrieve</a>(id) -> ReturnRetrieveResponse</code>
 
 # WebhookSubscriptions
 
