@@ -635,14 +635,16 @@ export interface PayoutListParams extends CursorPageParams {
 export namespace PayoutListParams {
   export interface CreatedAt {
     /**
-     * Include payouts whose created_at is on or after this ISO 8601 timestamp.
+     * Include payouts whose created_at is greater than or equal to this ISO 8601
+     * timestamp.
      */
-    after?: string;
+    gte?: string;
 
     /**
-     * Include payouts whose created_at is on or before this ISO 8601 timestamp.
+     * Include payouts whose created_at is less than or equal to this ISO 8601
+     * timestamp.
      */
-    before?: string;
+    lte?: string;
   }
 }
 
