@@ -1202,6 +1202,181 @@ export namespace ReturnReturnedWebhookEvent {
   }
 }
 
+export interface DepositReceivedWebhookEvent {
+  /**
+   * Unique identifier for the event. Stable across retries.
+   */
+  id: string;
+
+  /**
+   * ISO 8601 UTC timestamp when the event was created.
+   */
+  date: string;
+
+  /**
+   * Full resource snapshot at the time of the event.
+   */
+  payload: DepositReceivedWebhookEvent.Payload;
+
+  /**
+   * Event type in resource.action format.
+   */
+  type: 'deposit.received';
+}
+
+export namespace DepositReceivedWebhookEvent {
+  /**
+   * Full resource snapshot at the time of the event.
+   */
+  export interface Payload {
+    /**
+     * Unique identifier of the deposit.
+     */
+    id: string;
+
+    /**
+     * Amount as a string decimal (e.g. "100.50").
+     */
+    amount: string;
+
+    /**
+     * Reference visible on the bank statement, or null when not applicable.
+     */
+    bank_statement_reference: string | null;
+
+    /**
+     * ISO 8601 UTC timestamp when the deposit was created.
+     */
+    created_at: string;
+
+    /**
+     * Supported fiat or crypto currency code for the deposit amount.
+     */
+    currency: string;
+
+    /**
+     * ID of the merchant account that received the deposit.
+     */
+    destination_account_id: string;
+
+    /**
+     * Payment rail or blockchain used for the deposit.
+     */
+    rail:
+      | 'sepa_instant'
+      | 'faster_payments'
+      | 'sepa'
+      | 'elixir'
+      | 'express_elixir'
+      | 'sek_account_to_account'
+      | 'sumclearing'
+      | 'straksclearing'
+      | 'swift'
+      | 'internal'
+      | 'target'
+      | 'eth'
+      | 'eth_sepolia'
+      | 'sol'
+      | 'sol_devnet'
+      | 'matic'
+      | 'matic_amoy'
+      | null;
+
+    /**
+     * Array of deposit return IDs associated with this deposit.
+     */
+    returns: Array<string>;
+
+    /**
+     * Counterparty bank account or crypto wallet that sent the funds.
+     */
+    source: Payload.UnionMember0 | Payload.UnionMember1 | Payload.UnionMember2;
+
+    /**
+     * Current status of the deposit.
+     */
+    status: 'received' | 'rejected' | 'in_return' | 'returned' | 'return_failed' | 'return_returned';
+
+    /**
+     * Transaction hash for crypto deposits, or null when not known.
+     */
+    tx_hash: string | null;
+
+    /**
+     * Resource type discriminator.
+     */
+    type: 'deposit';
+
+    /**
+     * ISO 8601 UTC timestamp when the deposit was last updated.
+     */
+    updated_at: string;
+  }
+
+  export namespace Payload {
+    export interface UnionMember0 {
+      /**
+       * Name of the account holder.
+       */
+      account_holder_name: string;
+
+      /**
+       * Bank Identifier Code, or null if not provided.
+       */
+      bic: string | null;
+
+      /**
+       * International Bank Account Number.
+       */
+      iban: string;
+
+      /**
+       * Discriminator for IBAN source.
+       */
+      type: 'iban';
+    }
+
+    export interface UnionMember1 {
+      /**
+       * Name of the account holder.
+       */
+      account_holder_name: string;
+
+      /**
+       * UK account number (8 digits).
+       */
+      account_number: string;
+
+      /**
+       * UK sort code (6 digits).
+       */
+      sort_code: string;
+
+      /**
+       * Discriminator for UK sort code source.
+       */
+      type: 'sort_code';
+    }
+
+    export interface UnionMember2 {
+      /**
+       * Wallet address on the specified blockchain.
+       */
+      address: string;
+
+      /**
+       * Blockchain network for the crypto wallet.
+       */
+      blockchain: 'ethereum' | 'solana' | 'polygon';
+
+      /**
+       * Discriminator for crypto wallet source.
+       */
+      type: 'crypto_wallet';
+    }
+  }
+}
+
 export type UnwrapWebhookEvent =
   | PayoutCreatedWebhookEvent
   | PayoutInitiatedWebhookEvent
@@ -1210,7 +1385,8 @@ export type UnwrapWebhookEvent =
   | ReturnInitiatedWebhookEvent
   | ReturnPaidWebhookEvent
   | ReturnFailedWebhookEvent
-  | ReturnReturnedWebhookEvent;
+  | ReturnReturnedWebhookEvent
+  | DepositReceivedWebhookEvent;
 
 export declare namespace Webhooks {
   export {
@@ -1222,6 +1398,7 @@ export declare namespace Webhooks {
     type ReturnPaidWebhookEvent as ReturnPaidWebhookEvent,
     type ReturnFailedWebhookEvent as ReturnFailedWebhookEvent,
     type ReturnReturnedWebhookEvent as ReturnReturnedWebhookEvent,
+    type DepositReceivedWebhookEvent as DepositReceivedWebhookEvent,
     type UnwrapWebhookEvent as UnwrapWebhookEvent,
   };
 }

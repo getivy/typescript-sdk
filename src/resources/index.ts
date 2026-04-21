@@ -9,7 +9,13 @@ export {
   type ConversionListParams,
   type ConversionListResponsesCursorPage,
 } from './conversions';
-export { Deposits, type DepositRetrieveResponse } from './deposits';
+export {
+  Deposits,
+  type DepositRetrieveResponse,
+  type DepositListResponse,
+  type DepositListParams,
+  type DepositListResponsesCursorPage,
+} from './deposits';
 export {
   Payouts,
   type PayoutCreateResponse,
@@ -43,5 +49,6 @@ export {
   type ReturnPaidWebhookEvent,
   type ReturnFailedWebhookEvent,
   type ReturnReturnedWebhookEvent,
+  type DepositReceivedWebhookEvent,
   type UnwrapWebhookEvent,
 } from './webhooks';
