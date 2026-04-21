@@ -28,7 +28,13 @@ import {
   ConversionRetrieveResponse,
   Conversions,
 } from './resources/conversions';
-import { DepositRetrieveResponse, Deposits } from './resources/deposits';
+import {
+  DepositListParams,
+  DepositListResponse,
+  DepositListResponsesCursorPage,
+  DepositRetrieveResponse,
+  Deposits,
+} from './resources/deposits';
 import {
   PayoutCreateParams,
   PayoutCreateResponse,
@@ -52,6 +58,7 @@ import {
   WebhookSubscriptions,
 } from './resources/webhook-subscriptions';
 import {
+  DepositReceivedWebhookEvent,
   PayoutCreatedWebhookEvent,
   PayoutFailedWebhookEvent,
   PayoutInitiatedWebhookEvent,
@@ -854,6 +861,7 @@ export declare namespace Augustus {
     type ReturnPaidWebhookEvent as ReturnPaidWebhookEvent,
     type ReturnFailedWebhookEvent as ReturnFailedWebhookEvent,
     type ReturnReturnedWebhookEvent as ReturnReturnedWebhookEvent,
+    type DepositReceivedWebhookEvent as DepositReceivedWebhookEvent,
     type UnwrapWebhookEvent as UnwrapWebhookEvent,
   };
 
@@ -867,7 +875,13 @@ export declare namespace Augustus {
     type PayoutListParams as PayoutListParams,
   };
 
-  export { Deposits as Deposits, type DepositRetrieveResponse as DepositRetrieveResponse };
+  export {
+    Deposits as Deposits,
+    type DepositRetrieveResponse as DepositRetrieveResponse,
+    type DepositListResponse as DepositListResponse,
+    type DepositListResponsesCursorPage as DepositListResponsesCursorPage,
+    type DepositListParams as DepositListParams,
+  };
 
   export {
     Conversions as Conversions,

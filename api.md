@@ -10,6 +10,7 @@ Types:
 - <code><a href="./src/resources/webhooks.ts">ReturnPaidWebhookEvent</a></code>
 - <code><a href="./src/resources/webhooks.ts">ReturnFailedWebhookEvent</a></code>
 - <code><a href="./src/resources/webhooks.ts">ReturnReturnedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">DepositReceivedWebhookEvent</a></code>
 - <code><a href="./src/resources/webhooks.ts">UnwrapWebhookEvent</a></code>
 
 Methods:
@@ -35,10 +36,12 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/deposits.ts">DepositRetrieveResponse</a></code>
+- <code><a href="./src/resources/deposits.ts">DepositListResponse</a></code>
 
 Methods:
 
 - <code title="get /v1/deposits/{id}">client.deposits.<a href="./src/resources/deposits.ts">retrieve</a>(id) -> DepositRetrieveResponse</code>
+- <code title="get /v1/deposits">client.deposits.<a href="./src/resources/deposits.ts">list</a>({ ...params }) -> DepositListResponsesCursorPage</code>
 
 # Conversions
 

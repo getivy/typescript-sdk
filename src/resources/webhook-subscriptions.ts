@@ -81,6 +81,7 @@ export interface WebhookSubscriptionCreateResponse {
     | 'return.paid'
     | 'return.failed'
     | 'return.returned'
+    | 'deposit.received'
   >;
 
   /**
@@ -122,6 +123,7 @@ export interface WebhookSubscriptionRetrieveResponse {
     | 'return.paid'
     | 'return.failed'
     | 'return.returned'
+    | 'deposit.received'
   >;
 
   /**
@@ -163,6 +165,7 @@ export interface WebhookSubscriptionUpdateResponse {
     | 'return.paid'
     | 'return.failed'
     | 'return.returned'
+    | 'deposit.received'
   >;
 
   /**
@@ -204,6 +207,7 @@ export interface WebhookSubscriptionListResponse {
     | 'return.paid'
     | 'return.failed'
     | 'return.returned'
+    | 'deposit.received'
   >;
 
   /**
@@ -245,6 +249,7 @@ export interface WebhookSubscriptionDeleteResponse {
     | 'return.paid'
     | 'return.failed'
     | 'return.returned'
+    | 'deposit.received'
   >;
 
   /**
@@ -276,6 +281,7 @@ export interface WebhookSubscriptionCreateParams {
     | 'return.paid'
     | 'return.failed'
     | 'return.returned'
+    | 'deposit.received'
     | '*'
   >;
 
@@ -298,6 +304,7 @@ export interface WebhookSubscriptionUpdateParams {
     | 'return.paid'
     | 'return.failed'
     | 'return.returned'
+    | 'deposit.received'
     | '*'
   >;
 
