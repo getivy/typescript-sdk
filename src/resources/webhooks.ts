@@ -124,7 +124,7 @@ export namespace PayoutCreatedWebhookEvent {
       iban: string;
 
       /**
-       * Discriminator for IBAN destination.
+       * Discriminator for IBAN financial address.
        */
       type: 'iban';
     }
@@ -146,7 +146,7 @@ export namespace PayoutCreatedWebhookEvent {
       sort_code: string;
 
       /**
-       * Discriminator for UK sort code destination.
+       * Discriminator for UK sort code financial address.
        */
       type: 'sort_code';
     }
@@ -163,7 +163,7 @@ export namespace PayoutCreatedWebhookEvent {
       blockchain: 'ethereum' | 'solana' | 'polygon';
 
       /**
-       * Discriminator for crypto wallet destination.
+       * Discriminator for crypto wallet financial address.
        */
       type: 'crypto_wallet';
     }
@@ -310,7 +310,7 @@ export namespace PayoutInitiatedWebhookEvent {
       iban: string;
 
       /**
-       * Discriminator for IBAN destination.
+       * Discriminator for IBAN financial address.
        */
       type: 'iban';
     }
@@ -332,7 +332,7 @@ export namespace PayoutInitiatedWebhookEvent {
       sort_code: string;
 
       /**
-       * Discriminator for UK sort code destination.
+       * Discriminator for UK sort code financial address.
        */
       type: 'sort_code';
     }
@@ -349,7 +349,7 @@ export namespace PayoutInitiatedWebhookEvent {
       blockchain: 'ethereum' | 'solana' | 'polygon';
 
       /**
-       * Discriminator for crypto wallet destination.
+       * Discriminator for crypto wallet financial address.
        */
       type: 'crypto_wallet';
     }
@@ -496,7 +496,7 @@ export namespace PayoutPaidWebhookEvent {
       iban: string;
 
       /**
-       * Discriminator for IBAN destination.
+       * Discriminator for IBAN financial address.
        */
       type: 'iban';
     }
@@ -518,7 +518,7 @@ export namespace PayoutPaidWebhookEvent {
       sort_code: string;
 
       /**
-       * Discriminator for UK sort code destination.
+       * Discriminator for UK sort code financial address.
        */
       type: 'sort_code';
     }
@@ -535,7 +535,7 @@ export namespace PayoutPaidWebhookEvent {
       blockchain: 'ethereum' | 'solana' | 'polygon';
 
       /**
-       * Discriminator for crypto wallet destination.
+       * Discriminator for crypto wallet financial address.
        */
       type: 'crypto_wallet';
     }
@@ -682,7 +682,7 @@ export namespace PayoutFailedWebhookEvent {
       iban: string;
 
       /**
-       * Discriminator for IBAN destination.
+       * Discriminator for IBAN financial address.
        */
       type: 'iban';
     }
@@ -704,7 +704,7 @@ export namespace PayoutFailedWebhookEvent {
       sort_code: string;
 
       /**
-       * Discriminator for UK sort code destination.
+       * Discriminator for UK sort code financial address.
        */
       type: 'sort_code';
     }
@@ -721,7 +721,7 @@ export namespace PayoutFailedWebhookEvent {
       blockchain: 'ethereum' | 'solana' | 'polygon';
 
       /**
-       * Discriminator for crypto wallet destination.
+       * Discriminator for crypto wallet financial address.
        */
       type: 'crypto_wallet';
     }

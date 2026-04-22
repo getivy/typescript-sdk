@@ -117,7 +117,7 @@ export namespace PayoutCreateResponse {
     iban: string;
 
     /**
-     * Discriminator for IBAN destination.
+     * Discriminator for IBAN financial address.
      */
     type: 'iban';
   }
@@ -139,7 +139,7 @@ export namespace PayoutCreateResponse {
     sort_code: string;
 
     /**
-     * Discriminator for UK sort code destination.
+     * Discriminator for UK sort code financial address.
      */
     type: 'sort_code';
   }
@@ -156,7 +156,7 @@ export namespace PayoutCreateResponse {
     blockchain: 'ethereum' | 'solana' | 'polygon';
 
     /**
-     * Discriminator for crypto wallet destination.
+     * Discriminator for crypto wallet financial address.
      */
     type: 'crypto_wallet';
   }
@@ -279,7 +279,7 @@ export namespace PayoutRetrieveResponse {
     iban: string;
 
     /**
-     * Discriminator for IBAN destination.
+     * Discriminator for IBAN financial address.
      */
     type: 'iban';
   }
@@ -301,7 +301,7 @@ export namespace PayoutRetrieveResponse {
     sort_code: string;
 
     /**
-     * Discriminator for UK sort code destination.
+     * Discriminator for UK sort code financial address.
      */
     type: 'sort_code';
   }
@@ -318,7 +318,7 @@ export namespace PayoutRetrieveResponse {
     blockchain: 'ethereum' | 'solana' | 'polygon';
 
     /**
-     * Discriminator for crypto wallet destination.
+     * Discriminator for crypto wallet financial address.
      */
     type: 'crypto_wallet';
   }
@@ -441,7 +441,7 @@ export namespace PayoutListResponse {
     iban: string;
 
     /**
-     * Discriminator for IBAN destination.
+     * Discriminator for IBAN financial address.
      */
     type: 'iban';
   }
@@ -463,7 +463,7 @@ export namespace PayoutListResponse {
     sort_code: string;
 
     /**
-     * Discriminator for UK sort code destination.
+     * Discriminator for UK sort code financial address.
      */
     type: 'sort_code';
   }
@@ -480,7 +480,7 @@ export namespace PayoutListResponse {
     blockchain: 'ethereum' | 'solana' | 'polygon';
 
     /**
-     * Discriminator for crypto wallet destination.
+     * Discriminator for crypto wallet financial address.
      */
     type: 'crypto_wallet';
   }
@@ -573,7 +573,7 @@ export namespace PayoutCreateParams {
     iban: string;
 
     /**
-     * Discriminator for IBAN destination.
+     * Discriminator for IBAN financial address.
      */
     type: 'iban';
 
@@ -600,7 +600,7 @@ export namespace PayoutCreateParams {
     sort_code: string;
 
     /**
-     * Discriminator for UK sort code destination.
+     * Discriminator for UK sort code financial address.
      */
     type: 'sort_code';
   }
@@ -617,7 +617,7 @@ export namespace PayoutCreateParams {
     blockchain: 'ethereum' | 'solana' | 'polygon';
 
     /**
-     * Discriminator for crypto wallet destination.
+     * Discriminator for crypto wallet financial address.
      */
     type: 'crypto_wallet';
   }
