@@ -45,9 +45,10 @@ export {
   WebhookDeliveries,
   type WebhookDeliveryRetrieveResponse,
   type WebhookDeliveryListResponse,
+  type WebhookDeliveryRedeliverResponse,
   type WebhookDeliveryListParams,
   type WebhookDeliveryListResponsesCursorPage,
-} from './webhook-deliveries/webhook-deliveries';
+} from './webhook-deliveries';
 export {
   WebhookSubscriptions,
   type WebhookSubscriptionCreateResponse,
@@ -55,6 +56,7 @@ export {
   type WebhookSubscriptionUpdateResponse,
   type WebhookSubscriptionListResponse,
   type WebhookSubscriptionDeleteResponse,
+  type WebhookSubscriptionSendTestEventResponse,
   type WebhookSubscriptionCreateParams,
   type WebhookSubscriptionUpdateParams,
   type WebhookSubscriptionListParams,
@@ -71,5 +73,9 @@ export {
   type ReturnFailedWebhookEvent,
   type ReturnReturnedWebhookEvent,
   type DepositReceivedWebhookEvent,
+  type ConversionCreatedWebhookEvent,
+  type ConversionCompletedWebhookEvent,
+  type ConversionFailedWebhookEvent,
+  type PingTestWebhookEvent,
   type UnwrapWebhookEvent,
 } from './webhooks';

@@ -60,6 +60,14 @@ import {
 } from './resources/payouts';
 import { ReturnRetrieveResponse, Returns } from './resources/returns';
 import {
+  WebhookDeliveries,
+  WebhookDeliveryListParams,
+  WebhookDeliveryListResponse,
+  WebhookDeliveryListResponsesCursorPage,
+  WebhookDeliveryRedeliverResponse,
+  WebhookDeliveryRetrieveResponse,
+} from './resources/webhook-deliveries';
+import {
   WebhookSubscriptionCreateParams,
   WebhookSubscriptionCreateResponse,
   WebhookSubscriptionDeleteResponse,
@@ -67,16 +75,21 @@ import {
   WebhookSubscriptionListResponse,
   WebhookSubscriptionListResponsesCursorPage,
   WebhookSubscriptionRetrieveResponse,
+  WebhookSubscriptionSendTestEventResponse,
   WebhookSubscriptionUpdateParams,
   WebhookSubscriptionUpdateResponse,
   WebhookSubscriptions,
 } from './resources/webhook-subscriptions';
 import {
+  ConversionCompletedWebhookEvent,
+  ConversionCreatedWebhookEvent,
+  ConversionFailedWebhookEvent,
   DepositReceivedWebhookEvent,
   PayoutCreatedWebhookEvent,
   PayoutFailedWebhookEvent,
   PayoutInitiatedWebhookEvent,
   PayoutPaidWebhookEvent,
+  PingTestWebhookEvent,
   ReturnFailedWebhookEvent,
   ReturnInitiatedWebhookEvent,
   ReturnPaidWebhookEvent,
@@ -85,13 +98,6 @@ import {
   Webhooks,
 } from './resources/webhooks';
 import { QuoteRetrieveResponse, Quotes } from './resources/quotes/quotes';
-import {
-  WebhookDeliveries,
-  WebhookDeliveryListParams,
-  WebhookDeliveryListResponse,
-  WebhookDeliveryListResponsesCursorPage,
-  WebhookDeliveryRetrieveResponse,
-} from './resources/webhook-deliveries/webhook-deliveries';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
@@ -889,6 +895,10 @@ export declare namespace Augustus {
     type ReturnFailedWebhookEvent as ReturnFailedWebhookEvent,
     type ReturnReturnedWebhookEvent as ReturnReturnedWebhookEvent,
     type DepositReceivedWebhookEvent as DepositReceivedWebhookEvent,
+    type ConversionCreatedWebhookEvent as ConversionCreatedWebhookEvent,
+    type ConversionCompletedWebhookEvent as ConversionCompletedWebhookEvent,
+    type ConversionFailedWebhookEvent as ConversionFailedWebhookEvent,
+    type PingTestWebhookEvent as PingTestWebhookEvent,
     type UnwrapWebhookEvent as UnwrapWebhookEvent,
   };
 
@@ -939,6 +949,7 @@ export declare namespace Augustus {
     type WebhookSubscriptionUpdateResponse as WebhookSubscriptionUpdateResponse,
     type WebhookSubscriptionListResponse as WebhookSubscriptionListResponse,
     type WebhookSubscriptionDeleteResponse as WebhookSubscriptionDeleteResponse,
+    type WebhookSubscriptionSendTestEventResponse as WebhookSubscriptionSendTestEventResponse,
     type WebhookSubscriptionListResponsesCursorPage as WebhookSubscriptionListResponsesCursorPage,
     type WebhookSubscriptionCreateParams as WebhookSubscriptionCreateParams,
     type WebhookSubscriptionUpdateParams as WebhookSubscriptionUpdateParams,
@@ -957,6 +968,7 @@ export declare namespace Augustus {
     WebhookDeliveries as WebhookDeliveries,
     type WebhookDeliveryRetrieveResponse as WebhookDeliveryRetrieveResponse,
     type WebhookDeliveryListResponse as WebhookDeliveryListResponse,
+    type WebhookDeliveryRedeliverResponse as WebhookDeliveryRedeliverResponse,
     type WebhookDeliveryListResponsesCursorPage as WebhookDeliveryListResponsesCursorPage,
     type WebhookDeliveryListParams as WebhookDeliveryListParams,
   };

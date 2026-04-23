@@ -54,6 +54,17 @@ export class WebhookSubscriptions extends APIResource {
   delete(id: string, options?: RequestOptions): APIPromise<WebhookSubscriptionDeleteResponse> {
     return this._client.delete(path`/v1/webhook_subscriptions/${id}`, options);
   }
+
+  /**
+   * Dispatches a signed `ping.test` event to this subscription's URL through the
+   * same pipeline as real events. Useful for verifying your receiver's reachability
+   * and signature verification in any environment without creating a real business
+   * event. Test-event failures do not affect the subscription's health counters or
+   * trigger failure-notification emails.
+   */
+  sendTestEvent(id: string, options?: RequestOptions): APIPromise<WebhookSubscriptionSendTestEventResponse> {
+    return this._client.post(path`/v1/webhook_subscriptions/${id}/send_test_event`, options);
+  }
 }
 
 export type WebhookSubscriptionListResponsesCursorPage = CursorPage<WebhookSubscriptionListResponse>;
@@ -82,6 +93,9 @@ export interface WebhookSubscriptionCreateResponse {
     | 'return.failed'
     | 'return.returned'
     | 'deposit.received'
+    | 'conversion.created'
+    | 'conversion.completed'
+    | 'conversion.failed'
   >;
 
   /**
@@ -124,6 +138,9 @@ export interface WebhookSubscriptionRetrieveResponse {
     | 'return.failed'
     | 'return.returned'
     | 'deposit.received'
+    | 'conversion.created'
+    | 'conversion.completed'
+    | 'conversion.failed'
   >;
 
   /**
@@ -166,6 +183,9 @@ export interface WebhookSubscriptionUpdateResponse {
     | 'return.failed'
     | 'return.returned'
     | 'deposit.received'
+    | 'conversion.created'
+    | 'conversion.completed'
+    | 'conversion.failed'
   >;
 
   /**
@@ -208,6 +228,9 @@ export interface WebhookSubscriptionListResponse {
     | 'return.failed'
     | 'return.returned'
     | 'deposit.received'
+    | 'conversion.created'
+    | 'conversion.completed'
+    | 'conversion.failed'
   >;
 
   /**
@@ -250,6 +273,9 @@ export interface WebhookSubscriptionDeleteResponse {
     | 'return.failed'
     | 'return.returned'
     | 'deposit.received'
+    | 'conversion.created'
+    | 'conversion.completed'
+    | 'conversion.failed'
   >;
 
   /**
@@ -268,6 +294,47 @@ export interface WebhookSubscriptionDeleteResponse {
   url: string;
 }
 
+export interface WebhookSubscriptionSendTestEventResponse {
+  /**
+   * Unique identifier of the event. Matches the envelope `id` delivered in the
+   * webhook payload and is stable across subscription fan-out and retries.
+   */
+  id: string;
+
+  /**
+   * ISO 8601 UTC timestamp when the event was created.
+   */
+  created_at: string;
+
+  /**
+   * Event payload. Shape matches the resource schema for `event_type`.
+   */
+  data: { [key: string]: unknown };
+
+  /**
+   * Event type.
+   */
+  event_type:
+    | 'payout.created'
+    | 'payout.initiated'
+    | 'payout.paid'
+    | 'payout.failed'
+    | 'return.initiated'
+    | 'return.paid'
+    | 'return.failed'
+    | 'return.returned'
+    | 'deposit.received'
+    | 'conversion.created'
+    | 'conversion.completed'
+    | 'conversion.failed'
+    | 'ping.test';
+
+  /**
+   * Resource type discriminator.
+   */
+  type: 'event';
+}
+
 export interface WebhookSubscriptionCreateParams {
   /**
    * Event types to subscribe to. Use ["*"] for all events.
@@ -282,6 +349,9 @@ export interface WebhookSubscriptionCreateParams {
     | 'return.failed'
     | 'return.returned'
     | 'deposit.received'
+    | 'conversion.created'
+    | 'conversion.completed'
+    | 'conversion.failed'
     | '*'
   >;
 
@@ -305,6 +375,9 @@ export interface WebhookSubscriptionUpdateParams {
     | 'return.failed'
     | 'return.returned'
     | 'deposit.received'
+    | 'conversion.created'
+    | 'conversion.completed'
+    | 'conversion.failed'
     | '*'
   >;
 
@@ -323,6 +396,7 @@ export declare namespace WebhookSubscriptions {
     type WebhookSubscriptionUpdateResponse as WebhookSubscriptionUpdateResponse,
     type WebhookSubscriptionListResponse as WebhookSubscriptionListResponse,
     type WebhookSubscriptionDeleteResponse as WebhookSubscriptionDeleteResponse,
+    type WebhookSubscriptionSendTestEventResponse as WebhookSubscriptionSendTestEventResponse,
     type WebhookSubscriptionListResponsesCursorPage as WebhookSubscriptionListResponsesCursorPage,
     type WebhookSubscriptionCreateParams as WebhookSubscriptionCreateParams,
     type WebhookSubscriptionUpdateParams as WebhookSubscriptionUpdateParams,

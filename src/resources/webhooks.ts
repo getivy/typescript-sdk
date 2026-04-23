@@ -1377,6 +1377,394 @@ export namespace DepositReceivedWebhookEvent {
   }
 }
 
+export interface ConversionCreatedWebhookEvent {
+  /**
+   * Unique identifier for the event. Stable across retries.
+   */
+  id: string;
+
+  /**
+   * ISO 8601 UTC timestamp when the event was created.
+   */
+  date: string;
+
+  /**
+   * Full resource snapshot at the time of the event.
+   */
+  payload: ConversionCreatedWebhookEvent.Payload;
+
+  /**
+   * Event type in resource.action format.
+   */
+  type: 'conversion.created';
+}
+
+export namespace ConversionCreatedWebhookEvent {
+  /**
+   * Full resource snapshot at the time of the event.
+   */
+  export interface Payload {
+    /**
+     * Unique identifier of the conversion.
+     */
+    id: string;
+
+    /**
+     * ISO 8601 UTC timestamp when the conversion completed, or null.
+     */
+    completed_at: string | null;
+
+    /**
+     * ISO 8601 UTC timestamp when the conversion was created.
+     */
+    created_at: string;
+
+    /**
+     * Failure details when status is failed, otherwise null.
+     */
+    failure: Payload.Failure | null;
+
+    /**
+     * Key-value pairs stored with the conversion.
+     */
+    metadata: { [key: string]: string };
+
+    /**
+     * ID of the associated quote, or null.
+     */
+    quote_id: string | null;
+
+    /**
+     * ID of the source account, or null.
+     */
+    source_account_id: string | null;
+
+    /**
+     * Source amount as a string decimal.
+     */
+    source_amount: string;
+
+    /**
+     * Source currency code.
+     */
+    source_currency: string;
+
+    /**
+     * Current status of the conversion.
+     */
+    status: 'pending' | 'completed' | 'failed';
+
+    /**
+     * ID of the target account, or null.
+     */
+    target_account_id: string | null;
+
+    /**
+     * Target currency code.
+     */
+    target_currency: string;
+
+    /**
+     * Resource type discriminator.
+     */
+    type: 'conversion';
+
+    /**
+     * ISO 8601 UTC timestamp when the conversion was last updated.
+     */
+    updated_at: string;
+  }
+
+  export namespace Payload {
+    /**
+     * Failure details when status is failed, otherwise null.
+     */
+    export interface Failure {
+      /**
+       * Human-readable description of the failure.
+       */
+      message: string;
+    }
+  }
+}
+
+export interface ConversionCompletedWebhookEvent {
+  /**
+   * Unique identifier for the event. Stable across retries.
+   */
+  id: string;
+
+  /**
+   * ISO 8601 UTC timestamp when the event was created.
+   */
+  date: string;
+
+  /**
+   * Full resource snapshot at the time of the event.
+   */
+  payload: ConversionCompletedWebhookEvent.Payload;
+
+  /**
+   * Event type in resource.action format.
+   */
+  type: 'conversion.completed';
+}
+
+export namespace ConversionCompletedWebhookEvent {
+  /**
+   * Full resource snapshot at the time of the event.
+   */
+  export interface Payload {
+    /**
+     * Unique identifier of the conversion.
+     */
+    id: string;
+
+    /**
+     * ISO 8601 UTC timestamp when the conversion completed, or null.
+     */
+    completed_at: string | null;
+
+    /**
+     * ISO 8601 UTC timestamp when the conversion was created.
+     */
+    created_at: string;
+
+    /**
+     * Failure details when status is failed, otherwise null.
+     */
+    failure: Payload.Failure | null;
+
+    /**
+     * Key-value pairs stored with the conversion.
+     */
+    metadata: { [key: string]: string };
+
+    /**
+     * ID of the associated quote, or null.
+     */
+    quote_id: string | null;
+
+    /**
+     * ID of the source account, or null.
+     */
+    source_account_id: string | null;
+
+    /**
+     * Source amount as a string decimal.
+     */
+    source_amount: string;
+
+    /**
+     * Source currency code.
+     */
+    source_currency: string;
+
+    /**
+     * Current status of the conversion.
+     */
+    status: 'pending' | 'completed' | 'failed';
+
+    /**
+     * ID of the target account, or null.
+     */
+    target_account_id: string | null;
+
+    /**
+     * Target currency code.
+     */
+    target_currency: string;
+
+    /**
+     * Resource type discriminator.
+     */
+    type: 'conversion';
+
+    /**
+     * ISO 8601 UTC timestamp when the conversion was last updated.
+     */
+    updated_at: string;
+  }
+
+  export namespace Payload {
+    /**
+     * Failure details when status is failed, otherwise null.
+     */
+    export interface Failure {
+      /**
+       * Human-readable description of the failure.
+       */
+      message: string;
+    }
+  }
+}
+
+export interface ConversionFailedWebhookEvent {
+  /**
+   * Unique identifier for the event. Stable across retries.
+   */
+  id: string;
+
+  /**
+   * ISO 8601 UTC timestamp when the event was created.
+   */
+  date: string;
+
+  /**
+   * Full resource snapshot at the time of the event.
+   */
+  payload: ConversionFailedWebhookEvent.Payload;
+
+  /**
+   * Event type in resource.action format.
+   */
+  type: 'conversion.failed';
+}
+
+export namespace ConversionFailedWebhookEvent {
+  /**
+   * Full resource snapshot at the time of the event.
+   */
+  export interface Payload {
+    /**
+     * Unique identifier of the conversion.
+     */
+    id: string;
+
+    /**
+     * ISO 8601 UTC timestamp when the conversion completed, or null.
+     */
+    completed_at: string | null;
+
+    /**
+     * ISO 8601 UTC timestamp when the conversion was created.
+     */
+    created_at: string;
+
+    /**
+     * Failure details when status is failed, otherwise null.
+     */
+    failure: Payload.Failure | null;
+
+    /**
+     * Key-value pairs stored with the conversion.
+     */
+    metadata: { [key: string]: string };
+
+    /**
+     * ID of the associated quote, or null.
+     */
+    quote_id: string | null;
+
+    /**
+     * ID of the source account, or null.
+     */
+    source_account_id: string | null;
+
+    /**
+     * Source amount as a string decimal.
+     */
+    source_amount: string;
+
+    /**
+     * Source currency code.
+     */
+    source_currency: string;
+
+    /**
+     * Current status of the conversion.
+     */
+    status: 'pending' | 'completed' | 'failed';
+
+    /**
+     * ID of the target account, or null.
+     */
+    target_account_id: string | null;
+
+    /**
+     * Target currency code.
+     */
+    target_currency: string;
+
+    /**
+     * Resource type discriminator.
+     */
+    type: 'conversion';
+
+    /**
+     * ISO 8601 UTC timestamp when the conversion was last updated.
+     */
+    updated_at: string;
+  }
+
+  export namespace Payload {
+    /**
+     * Failure details when status is failed, otherwise null.
+     */
+    export interface Failure {
+      /**
+       * Human-readable description of the failure.
+       */
+      message: string;
+    }
+  }
+}
+
+export interface PingTestWebhookEvent {
+  /**
+   * Unique identifier for the event. Stable across retries.
+   */
+  id: string;
+
+  /**
+   * ISO 8601 UTC timestamp when the event was created.
+   */
+  date: string;
+
+  /**
+   * Full resource snapshot at the time of the event.
+   */
+  payload: PingTestWebhookEvent.Payload;
+
+  /**
+   * Event type in resource.action format.
+   */
+  type: 'ping.test';
+}
+
+export namespace PingTestWebhookEvent {
+  /**
+   * Full resource snapshot at the time of the event.
+   */
+  export interface Payload {
+    /**
+     * Unique identifier of the ping event.
+     */
+    id: string;
+
+    /**
+     * ISO 8601 UTC timestamp when the ping was dispatched.
+     */
+    dispatched_at: string;
+
+    /**
+     * Identifier of the merchant the ping was dispatched for.
+     */
+    merchant_id: string;
+
+    /**
+     * Human-readable notice that this event was generated by the test endpoint and
+     * does not reflect any real business activity.
+     */
+    message: string;
+
+    /**
+     * Resource type discriminator.
+     */
+    type: 'ping';
+  }
+}
+
 export type UnwrapWebhookEvent =
   | PayoutCreatedWebhookEvent
   | PayoutInitiatedWebhookEvent
@@ -1386,7 +1774,11 @@ export type UnwrapWebhookEvent =
   | ReturnPaidWebhookEvent
   | ReturnFailedWebhookEvent
   | ReturnReturnedWebhookEvent
-  | DepositReceivedWebhookEvent;
+  | DepositReceivedWebhookEvent
+  | ConversionCreatedWebhookEvent
+  | ConversionCompletedWebhookEvent
+  | ConversionFailedWebhookEvent
+  | PingTestWebhookEvent;
 
 export declare namespace Webhooks {
   export {
@@ -1399,6 +1791,10 @@ export declare namespace Webhooks {
     type ReturnFailedWebhookEvent as ReturnFailedWebhookEvent,
     type ReturnReturnedWebhookEvent as ReturnReturnedWebhookEvent,
     type DepositReceivedWebhookEvent as DepositReceivedWebhookEvent,
+    type ConversionCreatedWebhookEvent as ConversionCreatedWebhookEvent,
+    type ConversionCompletedWebhookEvent as ConversionCompletedWebhookEvent,
+    type ConversionFailedWebhookEvent as ConversionFailedWebhookEvent,
+    type PingTestWebhookEvent as PingTestWebhookEvent,
     type UnwrapWebhookEvent as UnwrapWebhookEvent,
   };
 }

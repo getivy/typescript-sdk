@@ -57,7 +57,11 @@ export interface EventRetrieveResponse {
     | 'return.paid'
     | 'return.failed'
     | 'return.returned'
-    | 'deposit.received';
+    | 'deposit.received'
+    | 'conversion.created'
+    | 'conversion.completed'
+    | 'conversion.failed'
+    | 'ping.test';
 
   /**
    * Resource type discriminator.
@@ -94,7 +98,11 @@ export interface EventListResponse {
     | 'return.paid'
     | 'return.failed'
     | 'return.returned'
-    | 'deposit.received';
+    | 'deposit.received'
+    | 'conversion.created'
+    | 'conversion.completed'
+    | 'conversion.failed'
+    | 'ping.test';
 
   /**
    * Resource type discriminator.
@@ -117,7 +125,11 @@ export interface EventListParams extends CursorPageParams {
     | 'return.paid'
     | 'return.failed'
     | 'return.returned'
-    | 'deposit.received';
+    | 'deposit.received'
+    | 'conversion.created'
+    | 'conversion.completed'
+    | 'conversion.failed'
+    | 'ping.test';
 }
 
 export namespace EventListParams {
