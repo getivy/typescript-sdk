@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.7.0 (2026-04-24)
+
+Full Changelog: [v0.6.0...v0.7.0](https://github.com/getivy/typescript-sdk/compare/v0.6.0...v0.7.0)
+
+### Features
+
+* **api:** api update ([073bc75](https://github.com/getivy/typescript-sdk/commit/073bc7544a32a12a27cd98a96056ac8d4f2c1ecd))
+* **api:** api update ([cfee627](https://github.com/getivy/typescript-sdk/commit/cfee62701f85ed3bf609001e2cd7d4dc23fd3d9c))
+* **api:** api update ([716b3bf](https://github.com/getivy/typescript-sdk/commit/716b3bf03a01cb189a67459f27258c2f77955579))
+
+
+### Chores
+
+* **internal:** more robust bootstrap script ([2700a1f](https://github.com/getivy/typescript-sdk/commit/2700a1f5d65e1a4f029e96aefb76bdbbc2253138))
+
 ## 0.6.0 (2026-04-21)
 
 Full Changelog: [v0.5.0...v0.6.0](https://github.com/getivy/typescript-sdk/compare/v0.5.0...v0.6.0)

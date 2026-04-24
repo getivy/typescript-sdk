@@ -66,9 +66,9 @@ describe('resource conversions', () => {
         {
           cursor: 'cursor',
           limit: 2,
-          source_currency: 'source_currency',
+          source_currency: 'EUR',
           status: 'pending',
-          target_currency: 'target_currency',
+          target_currency: 'EUR',
         },
         { path: '/_stainless_unknown_path' },
       ),

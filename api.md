@@ -11,6 +11,10 @@ Types:
 - <code><a href="./src/resources/webhooks.ts">ReturnFailedWebhookEvent</a></code>
 - <code><a href="./src/resources/webhooks.ts">ReturnReturnedWebhookEvent</a></code>
 - <code><a href="./src/resources/webhooks.ts">DepositReceivedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">ConversionCreatedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">ConversionCompletedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">ConversionFailedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">PingTestWebhookEvent</a></code>
 - <code><a href="./src/resources/webhooks.ts">UnwrapWebhookEvent</a></code>
 
 Methods:
@@ -77,6 +81,18 @@ Methods:
 
 - <code title="get /v1/quotes/indicative">client.quotes.indicative.<a href="./src/resources/quotes/indicative.ts">retrieve</a>({ ...params }) -> IndicativeRetrieveResponse</code>
 
+# Accounts
+
+Types:
+
+- <code><a href="./src/resources/accounts.ts">AccountRetrieveResponse</a></code>
+- <code><a href="./src/resources/accounts.ts">AccountListResponse</a></code>
+
+Methods:
+
+- <code title="get /v1/accounts/{id}">client.accounts.<a href="./src/resources/accounts.ts">retrieve</a>(id) -> AccountRetrieveResponse</code>
+- <code title="get /v1/accounts">client.accounts.<a href="./src/resources/accounts.ts">list</a>({ ...params }) -> AccountListResponsesCursorPage</code>
+
 # Returns
 
 Types:
@@ -96,6 +112,7 @@ Types:
 - <code><a href="./src/resources/webhook-subscriptions.ts">WebhookSubscriptionUpdateResponse</a></code>
 - <code><a href="./src/resources/webhook-subscriptions.ts">WebhookSubscriptionListResponse</a></code>
 - <code><a href="./src/resources/webhook-subscriptions.ts">WebhookSubscriptionDeleteResponse</a></code>
+- <code><a href="./src/resources/webhook-subscriptions.ts">WebhookSubscriptionSendTestEventResponse</a></code>
 
 Methods:
 
@@ -104,3 +121,30 @@ Methods:
 - <code title="post /v1/webhook_subscriptions/{id}">client.webhookSubscriptions.<a href="./src/resources/webhook-subscriptions.ts">update</a>(id, { ...params }) -> WebhookSubscriptionUpdateResponse</code>
 - <code title="get /v1/webhook_subscriptions">client.webhookSubscriptions.<a href="./src/resources/webhook-subscriptions.ts">list</a>({ ...params }) -> WebhookSubscriptionListResponsesCursorPage</code>
 - <code title="delete /v1/webhook_subscriptions/{id}">client.webhookSubscriptions.<a href="./src/resources/webhook-subscriptions.ts">delete</a>(id) -> WebhookSubscriptionDeleteResponse</code>
+- <code title="post /v1/webhook_subscriptions/{id}/send_test_event">client.webhookSubscriptions.<a href="./src/resources/webhook-subscriptions.ts">sendTestEvent</a>(id) -> WebhookSubscriptionSendTestEventResponse</code>
+
+# Events
+
+Types:
+
+- <code><a href="./src/resources/events.ts">EventRetrieveResponse</a></code>
+- <code><a href="./src/resources/events.ts">EventListResponse</a></code>
+
+Methods:
+
+- <code title="get /v1/events/{id}">client.events.<a href="./src/resources/events.ts">retrieve</a>(id) -> EventRetrieveResponse</code>
+- <code title="get /v1/events">client.events.<a href="./src/resources/events.ts">list</a>({ ...params }) -> EventListResponsesCursorPage</code>
+
+# WebhookDeliveries
+
+Types:
+
+- <code><a href="./src/resources/webhook-deliveries.ts">WebhookDeliveryRetrieveResponse</a></code>
+- <code><a href="./src/resources/webhook-deliveries.ts">WebhookDeliveryListResponse</a></code>
+- <code><a href="./src/resources/webhook-deliveries.ts">WebhookDeliveryRedeliverResponse</a></code>
+
+Methods:
+
+- <code title="get /v1/webhook_deliveries/{id}">client.webhookDeliveries.<a href="./src/resources/webhook-deliveries.ts">retrieve</a>(id) -> WebhookDeliveryRetrieveResponse</code>
+- <code title="get /v1/webhook_deliveries">client.webhookDeliveries.<a href="./src/resources/webhook-deliveries.ts">list</a>({ ...params }) -> WebhookDeliveryListResponsesCursorPage</code>
+- <code title="post /v1/webhook_deliveries/{id}/redeliver">client.webhookDeliveries.<a href="./src/resources/webhook-deliveries.ts">redeliver</a>(id) -> WebhookDeliveryRedeliverResponse</code>

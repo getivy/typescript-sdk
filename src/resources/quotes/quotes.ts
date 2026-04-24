@@ -52,7 +52,7 @@ export interface QuoteRetrieveResponse {
   /**
    * Source currency code.
    */
-  source_currency: string;
+  source_currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
 
   /**
    * Current status of the quote.
@@ -77,7 +77,7 @@ export interface QuoteRetrieveResponse {
   /**
    * Target currency code.
    */
-  target_currency: string;
+  target_currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
 
   /**
    * Resource type discriminator.

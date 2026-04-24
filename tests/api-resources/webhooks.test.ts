@@ -13,7 +13,7 @@ describe('resource webhooks', () => {
   test.skip('unwrap', () => {
     const key = 'whsec_c2VjcmV0Cg==';
     const payload =
-      '{"id":"id","date":"2019-12-27T18:11:19.117Z","payload":{"id":"id","amount":"amount","created_at":"2019-12-27T18:11:19.117Z","currency":"currency","destination":{"account_holder_name":"account_holder_name","bic":"bic","iban":"iban","type":"iban"},"failure":{"code":"account_closed","message":"message","retry":true},"metadata":{"foo":"string"},"reference":"reference","source_account_id":"source_account_id","status":"pending","type":"payout","updated_at":"2019-12-27T18:11:19.117Z"},"type":"payout.created"}';
+      '{"id":"id","api_version":"api_version","date":"2019-12-27T18:11:19.117Z","payload":{"id":"id","amount":"amount","created_at":"2019-12-27T18:11:19.117Z","currency":"EUR","destination":{"account_holder_name":"account_holder_name","bic":"bic","iban":"iban","type":"iban"},"failure":{"code":"account_closed","message":"message","retry":true},"metadata":{"foo":"string"},"reference":"reference","source_account_id":"source_account_id","status":"pending","type":"payout","updated_at":"2019-12-27T18:11:19.117Z"},"type":"payout.created"}';
     const msgID = '1';
     const timestamp = new Date();
     const wh = new Webhook('whsec_c2VjcmV0Cg==');

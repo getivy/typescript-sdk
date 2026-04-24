@@ -20,6 +20,13 @@ import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
 import {
+  AccountListParams,
+  AccountListResponse,
+  AccountListResponsesCursorPage,
+  AccountRetrieveResponse,
+  Accounts,
+} from './resources/accounts';
+import {
   ConversionCreateParams,
   ConversionCreateResponse,
   ConversionListParams,
@@ -36,6 +43,13 @@ import {
   Deposits,
 } from './resources/deposits';
 import {
+  EventListParams,
+  EventListResponse,
+  EventListResponsesCursorPage,
+  EventRetrieveResponse,
+  Events,
+} from './resources/events';
+import {
   PayoutCreateParams,
   PayoutCreateResponse,
   PayoutListParams,
@@ -46,6 +60,14 @@ import {
 } from './resources/payouts';
 import { ReturnRetrieveResponse, Returns } from './resources/returns';
 import {
+  WebhookDeliveries,
+  WebhookDeliveryListParams,
+  WebhookDeliveryListResponse,
+  WebhookDeliveryListResponsesCursorPage,
+  WebhookDeliveryRedeliverResponse,
+  WebhookDeliveryRetrieveResponse,
+} from './resources/webhook-deliveries';
+import {
   WebhookSubscriptionCreateParams,
   WebhookSubscriptionCreateResponse,
   WebhookSubscriptionDeleteResponse,
@@ -53,16 +75,21 @@ import {
   WebhookSubscriptionListResponse,
   WebhookSubscriptionListResponsesCursorPage,
   WebhookSubscriptionRetrieveResponse,
+  WebhookSubscriptionSendTestEventResponse,
   WebhookSubscriptionUpdateParams,
   WebhookSubscriptionUpdateResponse,
   WebhookSubscriptions,
 } from './resources/webhook-subscriptions';
 import {
+  ConversionCompletedWebhookEvent,
+  ConversionCreatedWebhookEvent,
+  ConversionFailedWebhookEvent,
   DepositReceivedWebhookEvent,
   PayoutCreatedWebhookEvent,
   PayoutFailedWebhookEvent,
   PayoutInitiatedWebhookEvent,
   PayoutPaidWebhookEvent,
+  PingTestWebhookEvent,
   ReturnFailedWebhookEvent,
   ReturnInitiatedWebhookEvent,
   ReturnPaidWebhookEvent,
@@ -833,8 +860,11 @@ export class Augustus {
   deposits: API.Deposits = new API.Deposits(this);
   conversions: API.Conversions = new API.Conversions(this);
   quotes: API.Quotes = new API.Quotes(this);
+  accounts: API.Accounts = new API.Accounts(this);
   returns: API.Returns = new API.Returns(this);
   webhookSubscriptions: API.WebhookSubscriptions = new API.WebhookSubscriptions(this);
+  events: API.Events = new API.Events(this);
+  webhookDeliveries: API.WebhookDeliveries = new API.WebhookDeliveries(this);
 }
 
 Augustus.Webhooks = Webhooks;
@@ -842,8 +872,11 @@ Augustus.Payouts = Payouts;
 Augustus.Deposits = Deposits;
 Augustus.Conversions = Conversions;
 Augustus.Quotes = Quotes;
+Augustus.Accounts = Accounts;
 Augustus.Returns = Returns;
 Augustus.WebhookSubscriptions = WebhookSubscriptions;
+Augustus.Events = Events;
+Augustus.WebhookDeliveries = WebhookDeliveries;
 
 export declare namespace Augustus {
   export type RequestOptions = Opts.RequestOptions;
@@ -862,6 +895,10 @@ export declare namespace Augustus {
     type ReturnFailedWebhookEvent as ReturnFailedWebhookEvent,
     type ReturnReturnedWebhookEvent as ReturnReturnedWebhookEvent,
     type DepositReceivedWebhookEvent as DepositReceivedWebhookEvent,
+    type ConversionCreatedWebhookEvent as ConversionCreatedWebhookEvent,
+    type ConversionCompletedWebhookEvent as ConversionCompletedWebhookEvent,
+    type ConversionFailedWebhookEvent as ConversionFailedWebhookEvent,
+    type PingTestWebhookEvent as PingTestWebhookEvent,
     type UnwrapWebhookEvent as UnwrapWebhookEvent,
   };
 
@@ -895,6 +932,14 @@ export declare namespace Augustus {
 
   export { Quotes as Quotes, type QuoteRetrieveResponse as QuoteRetrieveResponse };
 
+  export {
+    Accounts as Accounts,
+    type AccountRetrieveResponse as AccountRetrieveResponse,
+    type AccountListResponse as AccountListResponse,
+    type AccountListResponsesCursorPage as AccountListResponsesCursorPage,
+    type AccountListParams as AccountListParams,
+  };
+
   export { Returns as Returns, type ReturnRetrieveResponse as ReturnRetrieveResponse };
 
   export {
@@ -904,9 +949,27 @@ export declare namespace Augustus {
     type WebhookSubscriptionUpdateResponse as WebhookSubscriptionUpdateResponse,
     type WebhookSubscriptionListResponse as WebhookSubscriptionListResponse,
     type WebhookSubscriptionDeleteResponse as WebhookSubscriptionDeleteResponse,
+    type WebhookSubscriptionSendTestEventResponse as WebhookSubscriptionSendTestEventResponse,
     type WebhookSubscriptionListResponsesCursorPage as WebhookSubscriptionListResponsesCursorPage,
     type WebhookSubscriptionCreateParams as WebhookSubscriptionCreateParams,
     type WebhookSubscriptionUpdateParams as WebhookSubscriptionUpdateParams,
     type WebhookSubscriptionListParams as WebhookSubscriptionListParams,
+  };
+
+  export {
+    Events as Events,
+    type EventRetrieveResponse as EventRetrieveResponse,
+    type EventListResponse as EventListResponse,
+    type EventListResponsesCursorPage as EventListResponsesCursorPage,
+    type EventListParams as EventListParams,
+  };
+
+  export {
+    WebhookDeliveries as WebhookDeliveries,
+    type WebhookDeliveryRetrieveResponse as WebhookDeliveryRetrieveResponse,
+    type WebhookDeliveryListResponse as WebhookDeliveryListResponse,
+    type WebhookDeliveryRedeliverResponse as WebhookDeliveryRedeliverResponse,
+    type WebhookDeliveryListResponsesCursorPage as WebhookDeliveryListResponsesCursorPage,
+    type WebhookDeliveryListParams as WebhookDeliveryListParams,
   };
 }

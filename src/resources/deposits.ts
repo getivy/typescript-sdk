@@ -51,7 +51,7 @@ export interface DepositRetrieveResponse {
   /**
    * Supported fiat or crypto currency code for the deposit amount.
    */
-  currency: string;
+  currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
 
   /**
    * ID of the merchant account that received the deposit.
@@ -202,7 +202,7 @@ export interface DepositListResponse {
   /**
    * Supported fiat or crypto currency code for the deposit amount.
    */
-  currency: string;
+  currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
 
   /**
    * ID of the merchant account that received the deposit.

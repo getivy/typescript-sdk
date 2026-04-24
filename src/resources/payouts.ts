@@ -53,7 +53,7 @@ export interface PayoutCreateResponse {
   /**
    * Currency code (ISO 4217 currency code or crypto currency code).
    */
-  currency: string;
+  currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
 
   /**
    * Bank account or crypto wallet the payout was sent to.
@@ -117,7 +117,7 @@ export namespace PayoutCreateResponse {
     iban: string;
 
     /**
-     * Discriminator for IBAN destination.
+     * Discriminator for IBAN financial address.
      */
     type: 'iban';
   }
@@ -139,7 +139,7 @@ export namespace PayoutCreateResponse {
     sort_code: string;
 
     /**
-     * Discriminator for UK sort code destination.
+     * Discriminator for UK sort code financial address.
      */
     type: 'sort_code';
   }
@@ -156,7 +156,7 @@ export namespace PayoutCreateResponse {
     blockchain: 'ethereum' | 'solana' | 'polygon';
 
     /**
-     * Discriminator for crypto wallet destination.
+     * Discriminator for crypto wallet financial address.
      */
     type: 'crypto_wallet';
   }
@@ -215,7 +215,7 @@ export interface PayoutRetrieveResponse {
   /**
    * Currency code (ISO 4217 currency code or crypto currency code).
    */
-  currency: string;
+  currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
 
   /**
    * Bank account or crypto wallet the payout was sent to.
@@ -279,7 +279,7 @@ export namespace PayoutRetrieveResponse {
     iban: string;
 
     /**
-     * Discriminator for IBAN destination.
+     * Discriminator for IBAN financial address.
      */
     type: 'iban';
   }
@@ -301,7 +301,7 @@ export namespace PayoutRetrieveResponse {
     sort_code: string;
 
     /**
-     * Discriminator for UK sort code destination.
+     * Discriminator for UK sort code financial address.
      */
     type: 'sort_code';
   }
@@ -318,7 +318,7 @@ export namespace PayoutRetrieveResponse {
     blockchain: 'ethereum' | 'solana' | 'polygon';
 
     /**
-     * Discriminator for crypto wallet destination.
+     * Discriminator for crypto wallet financial address.
      */
     type: 'crypto_wallet';
   }
@@ -377,7 +377,7 @@ export interface PayoutListResponse {
   /**
    * Currency code (ISO 4217 currency code or crypto currency code).
    */
-  currency: string;
+  currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
 
   /**
    * Bank account or crypto wallet the payout was sent to.
@@ -441,7 +441,7 @@ export namespace PayoutListResponse {
     iban: string;
 
     /**
-     * Discriminator for IBAN destination.
+     * Discriminator for IBAN financial address.
      */
     type: 'iban';
   }
@@ -463,7 +463,7 @@ export namespace PayoutListResponse {
     sort_code: string;
 
     /**
-     * Discriminator for UK sort code destination.
+     * Discriminator for UK sort code financial address.
      */
     type: 'sort_code';
   }
@@ -480,7 +480,7 @@ export namespace PayoutListResponse {
     blockchain: 'ethereum' | 'solana' | 'polygon';
 
     /**
-     * Discriminator for crypto wallet destination.
+     * Discriminator for crypto wallet financial address.
      */
     type: 'crypto_wallet';
   }
@@ -527,9 +527,9 @@ export interface PayoutCreateParams {
   amount: string;
 
   /**
-   * Currency for the payout amount.
+   * Currency for the payout.
    */
-  currency: 'EUR' | 'GBP' | 'USDC';
+  currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
 
   /**
    * Bank account or crypto wallet to send funds to.
@@ -573,7 +573,7 @@ export namespace PayoutCreateParams {
     iban: string;
 
     /**
-     * Discriminator for IBAN destination.
+     * Discriminator for IBAN financial address.
      */
     type: 'iban';
 
@@ -600,7 +600,7 @@ export namespace PayoutCreateParams {
     sort_code: string;
 
     /**
-     * Discriminator for UK sort code destination.
+     * Discriminator for UK sort code financial address.
      */
     type: 'sort_code';
   }
@@ -617,7 +617,7 @@ export namespace PayoutCreateParams {
     blockchain: 'ethereum' | 'solana' | 'polygon';
 
     /**
-     * Discriminator for crypto wallet destination.
+     * Discriminator for crypto wallet financial address.
      */
     type: 'crypto_wallet';
   }
@@ -625,6 +625,12 @@ export namespace PayoutCreateParams {
 
 export interface PayoutListParams extends CursorPageParams {
   created_at?: PayoutListParams.CreatedAt;
+
+  /**
+   * Filter to these currency codes. Use a separate `currencies` query parameter for
+   * each value (e.g. `?currencies=EUR&currencies=USD`).
+   */
+  currencies?: Array<'EUR' | 'GBP' | 'USD' | 'USDC'>;
 
   /**
    * Filter by payout status.

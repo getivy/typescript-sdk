@@ -11,8 +11,8 @@ describe('resource indicative', () => {
   // Mock server tests are disabled
   test.skip('retrieve: only required params', async () => {
     const responsePromise = client.quotes.indicative.retrieve({
-      source_currency: 'source_currency',
-      target_currency: 'target_currency',
+      source_currency: 'EUR',
+      target_currency: 'EUR',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -26,8 +26,8 @@ describe('resource indicative', () => {
   // Mock server tests are disabled
   test.skip('retrieve: required and optional params', async () => {
     const response = await client.quotes.indicative.retrieve({
-      source_currency: 'source_currency',
-      target_currency: 'target_currency',
+      source_currency: 'EUR',
+      target_currency: 'EUR',
       source_amount: '321669910225',
     });
   });
