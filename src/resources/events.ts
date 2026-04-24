@@ -36,6 +36,12 @@ export interface EventRetrieveResponse {
   id: string;
 
   /**
+   * API version the event payload was rendered at. Stable across retries and
+   * redeliveries, and mirrored in the webhook envelope `api_version` field.
+   */
+  api_version: string;
+
+  /**
    * ISO 8601 UTC timestamp when the event was created.
    */
   created_at: string;
@@ -75,6 +81,12 @@ export interface EventListResponse {
    * webhook payload and is stable across subscription fan-out and retries.
    */
   id: string;
+
+  /**
+   * API version the event payload was rendered at. Stable across retries and
+   * redeliveries, and mirrored in the webhook envelope `api_version` field.
+   */
+  api_version: string;
 
   /**
    * ISO 8601 UTC timestamp when the event was created.

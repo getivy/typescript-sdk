@@ -51,7 +51,7 @@ export interface AccountRetrieveResponse {
   /**
    * ISO 4217 currency code for the account.
    */
-  currency: 'EUR' | 'GBP' | 'USDC' | 'USD';
+  currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
 
   /**
    * Payment identifiers (e.g. IBAN, account number, wallet address) through which
@@ -171,7 +171,7 @@ export interface AccountListResponse {
   /**
    * ISO 4217 currency code for the account.
    */
-  currency: 'EUR' | 'GBP' | 'USDC' | 'USD';
+  currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
 
   /**
    * Payment identifiers (e.g. IBAN, account number, wallet address) through which

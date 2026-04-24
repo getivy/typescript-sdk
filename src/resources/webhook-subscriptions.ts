@@ -302,6 +302,12 @@ export interface WebhookSubscriptionSendTestEventResponse {
   id: string;
 
   /**
+   * API version the event payload was rendered at. Stable across retries and
+   * redeliveries, and mirrored in the webhook envelope `api_version` field.
+   */
+  api_version: string;
+
+  /**
    * ISO 8601 UTC timestamp when the event was created.
    */
   created_at: string;
