@@ -33,7 +33,7 @@ export interface ReturnRetrieveResponse {
   /**
    * Currency code (ISO 4217 currency code or crypto currency code).
    */
-  currency: string;
+  currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
 
   /**
    * ID of the parent deposit.

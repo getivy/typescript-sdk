@@ -79,6 +79,7 @@ describe('resource payouts', () => {
       client.payouts.list(
         {
           created_at: { gte: '2019-12-27T18:11:19.117Z', lte: '2019-12-27T18:11:19.117Z' },
+          currencies: ['EUR'],
           cursor: 'cursor',
           limit: 2,
           status: 'pending',

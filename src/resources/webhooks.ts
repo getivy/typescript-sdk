@@ -25,6 +25,11 @@ export interface PayoutCreatedWebhookEvent {
   id: string;
 
   /**
+   * API version the payload was rendered at. Stable across retries and redeliveries.
+   */
+  api_version: string;
+
+  /**
    * ISO 8601 UTC timestamp when the event was created.
    */
   date: string;
@@ -63,7 +68,7 @@ export namespace PayoutCreatedWebhookEvent {
     /**
      * Currency code (ISO 4217 currency code or crypto currency code).
      */
-    currency: string;
+    currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
 
     /**
      * Bank account or crypto wallet the payout was sent to.
@@ -211,6 +216,11 @@ export interface PayoutInitiatedWebhookEvent {
   id: string;
 
   /**
+   * API version the payload was rendered at. Stable across retries and redeliveries.
+   */
+  api_version: string;
+
+  /**
    * ISO 8601 UTC timestamp when the event was created.
    */
   date: string;
@@ -249,7 +259,7 @@ export namespace PayoutInitiatedWebhookEvent {
     /**
      * Currency code (ISO 4217 currency code or crypto currency code).
      */
-    currency: string;
+    currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
 
     /**
      * Bank account or crypto wallet the payout was sent to.
@@ -397,6 +407,11 @@ export interface PayoutPaidWebhookEvent {
   id: string;
 
   /**
+   * API version the payload was rendered at. Stable across retries and redeliveries.
+   */
+  api_version: string;
+
+  /**
    * ISO 8601 UTC timestamp when the event was created.
    */
   date: string;
@@ -435,7 +450,7 @@ export namespace PayoutPaidWebhookEvent {
     /**
      * Currency code (ISO 4217 currency code or crypto currency code).
      */
-    currency: string;
+    currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
 
     /**
      * Bank account or crypto wallet the payout was sent to.
@@ -583,6 +598,11 @@ export interface PayoutFailedWebhookEvent {
   id: string;
 
   /**
+   * API version the payload was rendered at. Stable across retries and redeliveries.
+   */
+  api_version: string;
+
+  /**
    * ISO 8601 UTC timestamp when the event was created.
    */
   date: string;
@@ -621,7 +641,7 @@ export namespace PayoutFailedWebhookEvent {
     /**
      * Currency code (ISO 4217 currency code or crypto currency code).
      */
-    currency: string;
+    currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
 
     /**
      * Bank account or crypto wallet the payout was sent to.
@@ -769,6 +789,11 @@ export interface ReturnInitiatedWebhookEvent {
   id: string;
 
   /**
+   * API version the payload was rendered at. Stable across retries and redeliveries.
+   */
+  api_version: string;
+
+  /**
    * ISO 8601 UTC timestamp when the event was created.
    */
   date: string;
@@ -807,7 +832,7 @@ export namespace ReturnInitiatedWebhookEvent {
     /**
      * Currency code (ISO 4217 currency code or crypto currency code).
      */
-    currency: string;
+    currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
 
     /**
      * ID of the parent deposit.
@@ -879,6 +904,11 @@ export interface ReturnPaidWebhookEvent {
   id: string;
 
   /**
+   * API version the payload was rendered at. Stable across retries and redeliveries.
+   */
+  api_version: string;
+
+  /**
    * ISO 8601 UTC timestamp when the event was created.
    */
   date: string;
@@ -917,7 +947,7 @@ export namespace ReturnPaidWebhookEvent {
     /**
      * Currency code (ISO 4217 currency code or crypto currency code).
      */
-    currency: string;
+    currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
 
     /**
      * ID of the parent deposit.
@@ -989,6 +1019,11 @@ export interface ReturnFailedWebhookEvent {
   id: string;
 
   /**
+   * API version the payload was rendered at. Stable across retries and redeliveries.
+   */
+  api_version: string;
+
+  /**
    * ISO 8601 UTC timestamp when the event was created.
    */
   date: string;
@@ -1027,7 +1062,7 @@ export namespace ReturnFailedWebhookEvent {
     /**
      * Currency code (ISO 4217 currency code or crypto currency code).
      */
-    currency: string;
+    currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
 
     /**
      * ID of the parent deposit.
@@ -1099,6 +1134,11 @@ export interface ReturnReturnedWebhookEvent {
   id: string;
 
   /**
+   * API version the payload was rendered at. Stable across retries and redeliveries.
+   */
+  api_version: string;
+
+  /**
    * ISO 8601 UTC timestamp when the event was created.
    */
   date: string;
@@ -1137,7 +1177,7 @@ export namespace ReturnReturnedWebhookEvent {
     /**
      * Currency code (ISO 4217 currency code or crypto currency code).
      */
-    currency: string;
+    currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
 
     /**
      * ID of the parent deposit.
@@ -1209,6 +1249,11 @@ export interface DepositReceivedWebhookEvent {
   id: string;
 
   /**
+   * API version the payload was rendered at. Stable across retries and redeliveries.
+   */
+  api_version: string;
+
+  /**
    * ISO 8601 UTC timestamp when the event was created.
    */
   date: string;
@@ -1252,7 +1297,7 @@ export namespace DepositReceivedWebhookEvent {
     /**
      * Supported fiat or crypto currency code for the deposit amount.
      */
-    currency: string;
+    currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
 
     /**
      * ID of the merchant account that received the deposit.
@@ -1384,6 +1429,11 @@ export interface ConversionCreatedWebhookEvent {
   id: string;
 
   /**
+   * API version the payload was rendered at. Stable across retries and redeliveries.
+   */
+  api_version: string;
+
+  /**
    * ISO 8601 UTC timestamp when the event was created.
    */
   date: string;
@@ -1447,7 +1497,7 @@ export namespace ConversionCreatedWebhookEvent {
     /**
      * Source currency code.
      */
-    source_currency: string;
+    source_currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
 
     /**
      * Current status of the conversion.
@@ -1462,7 +1512,7 @@ export namespace ConversionCreatedWebhookEvent {
     /**
      * Target currency code.
      */
-    target_currency: string;
+    target_currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
 
     /**
      * Resource type discriminator.
@@ -1493,6 +1543,11 @@ export interface ConversionCompletedWebhookEvent {
    * Unique identifier for the event. Stable across retries.
    */
   id: string;
+
+  /**
+   * API version the payload was rendered at. Stable across retries and redeliveries.
+   */
+  api_version: string;
 
   /**
    * ISO 8601 UTC timestamp when the event was created.
@@ -1558,7 +1613,7 @@ export namespace ConversionCompletedWebhookEvent {
     /**
      * Source currency code.
      */
-    source_currency: string;
+    source_currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
 
     /**
      * Current status of the conversion.
@@ -1573,7 +1628,7 @@ export namespace ConversionCompletedWebhookEvent {
     /**
      * Target currency code.
      */
-    target_currency: string;
+    target_currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
 
     /**
      * Resource type discriminator.
@@ -1604,6 +1659,11 @@ export interface ConversionFailedWebhookEvent {
    * Unique identifier for the event. Stable across retries.
    */
   id: string;
+
+  /**
+   * API version the payload was rendered at. Stable across retries and redeliveries.
+   */
+  api_version: string;
 
   /**
    * ISO 8601 UTC timestamp when the event was created.
@@ -1669,7 +1729,7 @@ export namespace ConversionFailedWebhookEvent {
     /**
      * Source currency code.
      */
-    source_currency: string;
+    source_currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
 
     /**
      * Current status of the conversion.
@@ -1684,7 +1744,7 @@ export namespace ConversionFailedWebhookEvent {
     /**
      * Target currency code.
      */
-    target_currency: string;
+    target_currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
 
     /**
      * Resource type discriminator.
@@ -1715,6 +1775,11 @@ export interface PingTestWebhookEvent {
    * Unique identifier for the event. Stable across retries.
    */
   id: string;
+
+  /**
+   * API version the payload was rendered at. Stable across retries and redeliveries.
+   */
+  api_version: string;
 
   /**
    * ISO 8601 UTC timestamp when the event was created.

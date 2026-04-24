@@ -40,7 +40,7 @@ export interface IndicativeRetrieveResponse {
   /**
    * Source currency code.
    */
-  source_currency: string;
+  source_currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
 
   /**
    * Target amount as a string decimal.
@@ -50,7 +50,7 @@ export interface IndicativeRetrieveResponse {
   /**
    * Target currency code.
    */
-  target_currency: string;
+  target_currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
 
   /**
    * Venue the quote was fetched from.
@@ -71,20 +71,20 @@ export namespace IndicativeRetrieveResponse {
     /**
      * Fee currency code.
      */
-    currency: string;
+    currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
   }
 }
 
 export interface IndicativeRetrieveParams {
   /**
-   * Source currency code (e.g. EUR, USDC).
+   * Source currency code.
    */
-  source_currency: string;
+  source_currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
 
   /**
-   * Target currency code (e.g. USDC, EUR).
+   * Target currency code.
    */
-  target_currency: string;
+  target_currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
 
   /**
    * Source amount as a string decimal. Defaults to 1 unit if omitted.

@@ -53,7 +53,7 @@ export interface PayoutCreateResponse {
   /**
    * Currency code (ISO 4217 currency code or crypto currency code).
    */
-  currency: string;
+  currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
 
   /**
    * Bank account or crypto wallet the payout was sent to.
@@ -215,7 +215,7 @@ export interface PayoutRetrieveResponse {
   /**
    * Currency code (ISO 4217 currency code or crypto currency code).
    */
-  currency: string;
+  currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
 
   /**
    * Bank account or crypto wallet the payout was sent to.
@@ -377,7 +377,7 @@ export interface PayoutListResponse {
   /**
    * Currency code (ISO 4217 currency code or crypto currency code).
    */
-  currency: string;
+  currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
 
   /**
    * Bank account or crypto wallet the payout was sent to.
@@ -527,9 +527,9 @@ export interface PayoutCreateParams {
   amount: string;
 
   /**
-   * Currency for the payout amount.
+   * Currency for the payout.
    */
-  currency: 'EUR' | 'GBP' | 'USDC';
+  currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
 
   /**
    * Bank account or crypto wallet to send funds to.
@@ -625,6 +625,12 @@ export namespace PayoutCreateParams {
 
 export interface PayoutListParams extends CursorPageParams {
   created_at?: PayoutListParams.CreatedAt;
+
+  /**
+   * Filter to these currency codes. Use a separate `currencies` query parameter for
+   * each value (e.g. `?currencies=EUR&currencies=USD`).
+   */
+  currencies?: Array<'EUR' | 'GBP' | 'USD' | 'USDC'>;
 
   /**
    * Filter by payout status.
