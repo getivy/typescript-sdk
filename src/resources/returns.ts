@@ -69,21 +69,7 @@ export namespace ReturnRetrieveResponse {
     /**
      * Failure code.
      */
-    code:
-      | 'account_closed'
-      | 'account_blocked'
-      | 'insufficient_funds'
-      | 'invalid_account_format'
-      | 'invalid_instruction'
-      | 'invalid_amount'
-      | 'invalid_time'
-      | 'duplicate_transaction'
-      | 'payee_verification_failed'
-      | 'system_error'
-      | 'provider_system_error'
-      | 'rejected_by_correspondent_bank'
-      | 'blocked_by_review'
-      | 'unknown';
+    code: 'account_closed' | 'account_blocked' | 'insufficient_funds' | 'invalid_account_format' | 'invalid_instruction' | 'invalid_amount' | 'invalid_time' | 'duplicate_transaction' | 'payee_verification_failed' | 'system_error' | 'provider_system_error' | 'rejected_by_correspondent_bank' | 'blocked_by_review' | 'unknown';
 
     /**
      * Human-readable description of the failure.
@@ -98,5 +84,7 @@ export namespace ReturnRetrieveResponse {
 }
 
 export declare namespace Returns {
-  export { type ReturnRetrieveResponse as ReturnRetrieveResponse };
+  export {
+    type ReturnRetrieveResponse as ReturnRetrieveResponse
+  };
 }

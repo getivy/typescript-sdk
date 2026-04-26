@@ -18,15 +18,12 @@ export class Events extends APIResource {
    * Lists webhook events for the merchant with cursor-based pagination. Events are
    * retained for 30 days.
    */
-  list(
-    query: EventListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<EventListResponsesCursorPage, EventListResponse> {
+  list(query: EventListParams | null | undefined = {}, options?: RequestOptions): PagePromise<EventListResponsesCursorPage, EventListResponse> {
     return this._client.getAPIList('/v1/events', CursorPage<EventListResponse>, { query, ...options });
   }
 }
 
-export type EventListResponsesCursorPage = CursorPage<EventListResponse>;
+export type EventListResponsesCursorPage = CursorPage<EventListResponse>
 
 export interface EventRetrieveResponse {
   /**
@@ -54,20 +51,7 @@ export interface EventRetrieveResponse {
   /**
    * Event type.
    */
-  event_type:
-    | 'payout.created'
-    | 'payout.initiated'
-    | 'payout.paid'
-    | 'payout.failed'
-    | 'return.initiated'
-    | 'return.paid'
-    | 'return.failed'
-    | 'return.returned'
-    | 'deposit.received'
-    | 'conversion.created'
-    | 'conversion.completed'
-    | 'conversion.failed'
-    | 'ping.test';
+  event_type: 'payout.created' | 'payout.initiated' | 'payout.paid' | 'payout.failed' | 'return.initiated' | 'return.paid' | 'return.failed' | 'return.returned' | 'deposit.received' | 'conversion.created' | 'conversion.completed' | 'conversion.failed' | 'ping.test';
 
   /**
    * Resource type discriminator.
@@ -101,20 +85,7 @@ export interface EventListResponse {
   /**
    * Event type.
    */
-  event_type:
-    | 'payout.created'
-    | 'payout.initiated'
-    | 'payout.paid'
-    | 'payout.failed'
-    | 'return.initiated'
-    | 'return.paid'
-    | 'return.failed'
-    | 'return.returned'
-    | 'deposit.received'
-    | 'conversion.created'
-    | 'conversion.completed'
-    | 'conversion.failed'
-    | 'ping.test';
+  event_type: 'payout.created' | 'payout.initiated' | 'payout.paid' | 'payout.failed' | 'return.initiated' | 'return.paid' | 'return.failed' | 'return.returned' | 'deposit.received' | 'conversion.created' | 'conversion.completed' | 'conversion.failed' | 'ping.test';
 
   /**
    * Resource type discriminator.
@@ -128,20 +99,7 @@ export interface EventListParams extends CursorPageParams {
   /**
    * Filter by event type.
    */
-  event_type?:
-    | 'payout.created'
-    | 'payout.initiated'
-    | 'payout.paid'
-    | 'payout.failed'
-    | 'return.initiated'
-    | 'return.paid'
-    | 'return.failed'
-    | 'return.returned'
-    | 'deposit.received'
-    | 'conversion.created'
-    | 'conversion.completed'
-    | 'conversion.failed'
-    | 'ping.test';
+  event_type?: 'payout.created' | 'payout.initiated' | 'payout.paid' | 'payout.failed' | 'return.initiated' | 'return.paid' | 'return.failed' | 'return.returned' | 'deposit.received' | 'conversion.created' | 'conversion.completed' | 'conversion.failed' | 'ping.test';
 }
 
 export namespace EventListParams {
@@ -165,6 +123,6 @@ export declare namespace Events {
     type EventRetrieveResponse as EventRetrieveResponse,
     type EventListResponse as EventListResponse,
     type EventListResponsesCursorPage as EventListResponsesCursorPage,
-    type EventListParams as EventListParams,
+    type EventListParams as EventListParams
   };
 }

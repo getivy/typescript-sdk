@@ -24,15 +24,12 @@ export class Payouts extends APIResource {
   /**
    * Lists payouts for the merchant with cursor-based pagination.
    */
-  list(
-    query: PayoutListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<PayoutListResponsesCursorPage, PayoutListResponse> {
+  list(query: PayoutListParams | null | undefined = {}, options?: RequestOptions): PagePromise<PayoutListResponsesCursorPage, PayoutListResponse> {
     return this._client.getAPIList('/v1/payouts', CursorPage<PayoutListResponse>, { query, ...options });
   }
 }
 
-export type PayoutListResponsesCursorPage = CursorPage<PayoutListResponse>;
+export type PayoutListResponsesCursorPage = CursorPage<PayoutListResponse>
 
 export interface PayoutCreateResponse {
   /**
@@ -58,10 +55,7 @@ export interface PayoutCreateResponse {
   /**
    * Bank account or crypto wallet the payout was sent to.
    */
-  destination:
-    | PayoutCreateResponse.UnionMember0
-    | PayoutCreateResponse.UnionMember1
-    | PayoutCreateResponse.UnionMember2;
+  destination: PayoutCreateResponse.UnionMember0 | PayoutCreateResponse.UnionMember1 | PayoutCreateResponse.UnionMember2;
 
   /**
    * Failure details when status is failed, otherwise null.
@@ -168,21 +162,7 @@ export namespace PayoutCreateResponse {
     /**
      * Failure code.
      */
-    code:
-      | 'account_closed'
-      | 'account_blocked'
-      | 'insufficient_funds'
-      | 'invalid_account_format'
-      | 'invalid_instruction'
-      | 'invalid_amount'
-      | 'invalid_time'
-      | 'duplicate_transaction'
-      | 'payee_verification_failed'
-      | 'system_error'
-      | 'provider_system_error'
-      | 'rejected_by_correspondent_bank'
-      | 'blocked_by_review'
-      | 'unknown';
+    code: 'account_closed' | 'account_blocked' | 'insufficient_funds' | 'invalid_account_format' | 'invalid_instruction' | 'invalid_amount' | 'invalid_time' | 'duplicate_transaction' | 'payee_verification_failed' | 'system_error' | 'provider_system_error' | 'rejected_by_correspondent_bank' | 'blocked_by_review' | 'unknown';
 
     /**
      * Human-readable description of the failure.
@@ -220,10 +200,7 @@ export interface PayoutRetrieveResponse {
   /**
    * Bank account or crypto wallet the payout was sent to.
    */
-  destination:
-    | PayoutRetrieveResponse.UnionMember0
-    | PayoutRetrieveResponse.UnionMember1
-    | PayoutRetrieveResponse.UnionMember2;
+  destination: PayoutRetrieveResponse.UnionMember0 | PayoutRetrieveResponse.UnionMember1 | PayoutRetrieveResponse.UnionMember2;
 
   /**
    * Failure details when status is failed, otherwise null.
@@ -330,21 +307,7 @@ export namespace PayoutRetrieveResponse {
     /**
      * Failure code.
      */
-    code:
-      | 'account_closed'
-      | 'account_blocked'
-      | 'insufficient_funds'
-      | 'invalid_account_format'
-      | 'invalid_instruction'
-      | 'invalid_amount'
-      | 'invalid_time'
-      | 'duplicate_transaction'
-      | 'payee_verification_failed'
-      | 'system_error'
-      | 'provider_system_error'
-      | 'rejected_by_correspondent_bank'
-      | 'blocked_by_review'
-      | 'unknown';
+    code: 'account_closed' | 'account_blocked' | 'insufficient_funds' | 'invalid_account_format' | 'invalid_instruction' | 'invalid_amount' | 'invalid_time' | 'duplicate_transaction' | 'payee_verification_failed' | 'system_error' | 'provider_system_error' | 'rejected_by_correspondent_bank' | 'blocked_by_review' | 'unknown';
 
     /**
      * Human-readable description of the failure.
@@ -382,10 +345,7 @@ export interface PayoutListResponse {
   /**
    * Bank account or crypto wallet the payout was sent to.
    */
-  destination:
-    | PayoutListResponse.UnionMember0
-    | PayoutListResponse.UnionMember1
-    | PayoutListResponse.UnionMember2;
+  destination: PayoutListResponse.UnionMember0 | PayoutListResponse.UnionMember1 | PayoutListResponse.UnionMember2;
 
   /**
    * Failure details when status is failed, otherwise null.
@@ -492,21 +452,7 @@ export namespace PayoutListResponse {
     /**
      * Failure code.
      */
-    code:
-      | 'account_closed'
-      | 'account_blocked'
-      | 'insufficient_funds'
-      | 'invalid_account_format'
-      | 'invalid_instruction'
-      | 'invalid_amount'
-      | 'invalid_time'
-      | 'duplicate_transaction'
-      | 'payee_verification_failed'
-      | 'system_error'
-      | 'provider_system_error'
-      | 'rejected_by_correspondent_bank'
-      | 'blocked_by_review'
-      | 'unknown';
+    code: 'account_closed' | 'account_blocked' | 'insufficient_funds' | 'invalid_account_format' | 'invalid_instruction' | 'invalid_amount' | 'invalid_time' | 'duplicate_transaction' | 'payee_verification_failed' | 'system_error' | 'provider_system_error' | 'rejected_by_correspondent_bank' | 'blocked_by_review' | 'unknown';
 
     /**
      * Human-readable description of the failure.
@@ -534,10 +480,7 @@ export interface PayoutCreateParams {
   /**
    * Bank account or crypto wallet to send funds to.
    */
-  destination:
-    | PayoutCreateParams.UnionMember0
-    | PayoutCreateParams.UnionMember1
-    | PayoutCreateParams.UnionMember2;
+  destination: PayoutCreateParams.UnionMember0 | PayoutCreateParams.UnionMember1 | PayoutCreateParams.UnionMember2;
 
   /**
    * Payment reference.
@@ -661,6 +604,6 @@ export declare namespace Payouts {
     type PayoutListResponse as PayoutListResponse,
     type PayoutListResponsesCursorPage as PayoutListResponsesCursorPage,
     type PayoutCreateParams as PayoutCreateParams,
-    type PayoutListParams as PayoutListParams,
+    type PayoutListParams as PayoutListParams
   };
 }

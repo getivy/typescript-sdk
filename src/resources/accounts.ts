@@ -17,15 +17,12 @@ export class Accounts extends APIResource {
   /**
    * Returns a paginated list of accounts.
    */
-  list(
-    query: AccountListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<AccountListResponsesCursorPage, AccountListResponse> {
+  list(query: AccountListParams | null | undefined = {}, options?: RequestOptions): PagePromise<AccountListResponsesCursorPage, AccountListResponse> {
     return this._client.getAPIList('/v1/accounts', CursorPage<AccountListResponse>, { query, ...options });
   }
 }
 
-export type AccountListResponsesCursorPage = CursorPage<AccountListResponse>;
+export type AccountListResponsesCursorPage = CursorPage<AccountListResponse>
 
 export interface AccountRetrieveResponse {
   /**
@@ -57,11 +54,7 @@ export interface AccountRetrieveResponse {
    * Payment identifiers (e.g. IBAN, account number, wallet address) through which
    * this account can send or receive funds.
    */
-  financial_addresses: Array<
-    | AccountRetrieveResponse.UnionMember0
-    | AccountRetrieveResponse.UnionMember1
-    | AccountRetrieveResponse.UnionMember2
-  >;
+  financial_addresses: Array<AccountRetrieveResponse.UnionMember0 | AccountRetrieveResponse.UnionMember1 | AccountRetrieveResponse.UnionMember2>;
 
   /**
    * Human-readable label for the account.
@@ -177,9 +170,7 @@ export interface AccountListResponse {
    * Payment identifiers (e.g. IBAN, account number, wallet address) through which
    * this account can send or receive funds.
    */
-  financial_addresses: Array<
-    AccountListResponse.UnionMember0 | AccountListResponse.UnionMember1 | AccountListResponse.UnionMember2
-  >;
+  financial_addresses: Array<AccountListResponse.UnionMember0 | AccountListResponse.UnionMember1 | AccountListResponse.UnionMember2>;
 
   /**
    * Human-readable label for the account.
@@ -265,13 +256,14 @@ export namespace AccountListResponse {
   }
 }
 
-export interface AccountListParams extends CursorPageParams {}
+export interface AccountListParams extends CursorPageParams {
+}
 
 export declare namespace Accounts {
   export {
     type AccountRetrieveResponse as AccountRetrieveResponse,
     type AccountListResponse as AccountListResponse,
     type AccountListResponsesCursorPage as AccountListResponsesCursorPage,
-    type AccountListParams as AccountListParams,
+    type AccountListParams as AccountListParams
   };
 }
