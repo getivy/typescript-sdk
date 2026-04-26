@@ -24,18 +24,12 @@ export class Conversions extends APIResource {
   /**
    * Returns a paginated list of conversions.
    */
-  list(
-    query: ConversionListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<ConversionListResponsesCursorPage, ConversionListResponse> {
-    return this._client.getAPIList('/v1/conversions', CursorPage<ConversionListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: ConversionListParams | null | undefined = {}, options?: RequestOptions): PagePromise<ConversionListResponsesCursorPage, ConversionListResponse> {
+    return this._client.getAPIList('/v1/conversions', CursorPage<ConversionListResponse>, { query, ...options });
   }
 }
 
-export type ConversionListResponsesCursorPage = CursorPage<ConversionListResponse>;
+export type ConversionListResponsesCursorPage = CursorPage<ConversionListResponse>
 
 export interface ConversionCreateResponse {
   /**
@@ -335,6 +329,6 @@ export declare namespace Conversions {
     type ConversionListResponse as ConversionListResponse,
     type ConversionListResponsesCursorPage as ConversionListResponsesCursorPage,
     type ConversionCreateParams as ConversionCreateParams,
-    type ConversionListParams as ConversionListParams,
+    type ConversionListParams as ConversionListParams
   };
 }

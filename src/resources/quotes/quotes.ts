@@ -57,17 +57,7 @@ export interface QuoteRetrieveResponse {
   /**
    * Current status of the quote.
    */
-  status:
-    | 'pending'
-    | 'quote_accepted'
-    | 'order_pending'
-    | 'order_failed'
-    | 'order_completed'
-    | 'withdrawal_pending'
-    | 'withdrawal_failed'
-    | 'withdrawal_completed'
-    | 'completed'
-    | 'failed';
+  status: 'pending' | 'quote_accepted' | 'order_pending' | 'order_failed' | 'order_completed' | 'withdrawal_pending' | 'withdrawal_failed' | 'withdrawal_completed' | 'completed' | 'failed';
 
   /**
    * Target amount as a string decimal.
@@ -98,11 +88,13 @@ export interface QuoteRetrieveResponse {
 Quotes.Indicative = Indicative;
 
 export declare namespace Quotes {
-  export { type QuoteRetrieveResponse as QuoteRetrieveResponse };
+  export {
+    type QuoteRetrieveResponse as QuoteRetrieveResponse
+  };
 
   export {
     Indicative as Indicative,
     type IndicativeRetrieveResponse as IndicativeRetrieveResponse,
-    type IndicativeRetrieveParams as IndicativeRetrieveParams,
+    type IndicativeRetrieveParams as IndicativeRetrieveParams
   };
 }

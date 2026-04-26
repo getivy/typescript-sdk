@@ -4,10 +4,7 @@ import { APIResource } from '../core/resource';
 import { Webhook } from 'standardwebhooks';
 
 export class Webhooks extends APIResource {
-  unwrap(
-    body: string,
-    { headers, key }: { headers: Record<string, string>; key?: string },
-  ): UnwrapWebhookEvent {
+  unwrap(body: string, { headers, key }: { headers: Record<string, string>; key?: string }): UnwrapWebhookEvent {
     if (headers !== undefined) {
       const keyStr: string | null = key === undefined ? this._client.webhookKey : key;
       if (keyStr === null) throw new Error('Webhook key must not be null in order to unwrap');
@@ -180,21 +177,7 @@ export namespace PayoutCreatedWebhookEvent {
       /**
        * Failure code.
        */
-      code:
-        | 'account_closed'
-        | 'account_blocked'
-        | 'insufficient_funds'
-        | 'invalid_account_format'
-        | 'invalid_instruction'
-        | 'invalid_amount'
-        | 'invalid_time'
-        | 'duplicate_transaction'
-        | 'payee_verification_failed'
-        | 'system_error'
-        | 'provider_system_error'
-        | 'rejected_by_correspondent_bank'
-        | 'blocked_by_review'
-        | 'unknown';
+      code: 'account_closed' | 'account_blocked' | 'insufficient_funds' | 'invalid_account_format' | 'invalid_instruction' | 'invalid_amount' | 'invalid_time' | 'duplicate_transaction' | 'payee_verification_failed' | 'system_error' | 'provider_system_error' | 'rejected_by_correspondent_bank' | 'blocked_by_review' | 'unknown';
 
       /**
        * Human-readable description of the failure.
@@ -371,21 +354,7 @@ export namespace PayoutInitiatedWebhookEvent {
       /**
        * Failure code.
        */
-      code:
-        | 'account_closed'
-        | 'account_blocked'
-        | 'insufficient_funds'
-        | 'invalid_account_format'
-        | 'invalid_instruction'
-        | 'invalid_amount'
-        | 'invalid_time'
-        | 'duplicate_transaction'
-        | 'payee_verification_failed'
-        | 'system_error'
-        | 'provider_system_error'
-        | 'rejected_by_correspondent_bank'
-        | 'blocked_by_review'
-        | 'unknown';
+      code: 'account_closed' | 'account_blocked' | 'insufficient_funds' | 'invalid_account_format' | 'invalid_instruction' | 'invalid_amount' | 'invalid_time' | 'duplicate_transaction' | 'payee_verification_failed' | 'system_error' | 'provider_system_error' | 'rejected_by_correspondent_bank' | 'blocked_by_review' | 'unknown';
 
       /**
        * Human-readable description of the failure.
@@ -562,21 +531,7 @@ export namespace PayoutPaidWebhookEvent {
       /**
        * Failure code.
        */
-      code:
-        | 'account_closed'
-        | 'account_blocked'
-        | 'insufficient_funds'
-        | 'invalid_account_format'
-        | 'invalid_instruction'
-        | 'invalid_amount'
-        | 'invalid_time'
-        | 'duplicate_transaction'
-        | 'payee_verification_failed'
-        | 'system_error'
-        | 'provider_system_error'
-        | 'rejected_by_correspondent_bank'
-        | 'blocked_by_review'
-        | 'unknown';
+      code: 'account_closed' | 'account_blocked' | 'insufficient_funds' | 'invalid_account_format' | 'invalid_instruction' | 'invalid_amount' | 'invalid_time' | 'duplicate_transaction' | 'payee_verification_failed' | 'system_error' | 'provider_system_error' | 'rejected_by_correspondent_bank' | 'blocked_by_review' | 'unknown';
 
       /**
        * Human-readable description of the failure.
@@ -753,21 +708,7 @@ export namespace PayoutFailedWebhookEvent {
       /**
        * Failure code.
        */
-      code:
-        | 'account_closed'
-        | 'account_blocked'
-        | 'insufficient_funds'
-        | 'invalid_account_format'
-        | 'invalid_instruction'
-        | 'invalid_amount'
-        | 'invalid_time'
-        | 'duplicate_transaction'
-        | 'payee_verification_failed'
-        | 'system_error'
-        | 'provider_system_error'
-        | 'rejected_by_correspondent_bank'
-        | 'blocked_by_review'
-        | 'unknown';
+      code: 'account_closed' | 'account_blocked' | 'insufficient_funds' | 'invalid_account_format' | 'invalid_instruction' | 'invalid_amount' | 'invalid_time' | 'duplicate_transaction' | 'payee_verification_failed' | 'system_error' | 'provider_system_error' | 'rejected_by_correspondent_bank' | 'blocked_by_review' | 'unknown';
 
       /**
        * Human-readable description of the failure.
@@ -868,21 +809,7 @@ export namespace ReturnInitiatedWebhookEvent {
       /**
        * Failure code.
        */
-      code:
-        | 'account_closed'
-        | 'account_blocked'
-        | 'insufficient_funds'
-        | 'invalid_account_format'
-        | 'invalid_instruction'
-        | 'invalid_amount'
-        | 'invalid_time'
-        | 'duplicate_transaction'
-        | 'payee_verification_failed'
-        | 'system_error'
-        | 'provider_system_error'
-        | 'rejected_by_correspondent_bank'
-        | 'blocked_by_review'
-        | 'unknown';
+      code: 'account_closed' | 'account_blocked' | 'insufficient_funds' | 'invalid_account_format' | 'invalid_instruction' | 'invalid_amount' | 'invalid_time' | 'duplicate_transaction' | 'payee_verification_failed' | 'system_error' | 'provider_system_error' | 'rejected_by_correspondent_bank' | 'blocked_by_review' | 'unknown';
 
       /**
        * Human-readable description of the failure.
@@ -983,21 +910,7 @@ export namespace ReturnPaidWebhookEvent {
       /**
        * Failure code.
        */
-      code:
-        | 'account_closed'
-        | 'account_blocked'
-        | 'insufficient_funds'
-        | 'invalid_account_format'
-        | 'invalid_instruction'
-        | 'invalid_amount'
-        | 'invalid_time'
-        | 'duplicate_transaction'
-        | 'payee_verification_failed'
-        | 'system_error'
-        | 'provider_system_error'
-        | 'rejected_by_correspondent_bank'
-        | 'blocked_by_review'
-        | 'unknown';
+      code: 'account_closed' | 'account_blocked' | 'insufficient_funds' | 'invalid_account_format' | 'invalid_instruction' | 'invalid_amount' | 'invalid_time' | 'duplicate_transaction' | 'payee_verification_failed' | 'system_error' | 'provider_system_error' | 'rejected_by_correspondent_bank' | 'blocked_by_review' | 'unknown';
 
       /**
        * Human-readable description of the failure.
@@ -1098,21 +1011,7 @@ export namespace ReturnFailedWebhookEvent {
       /**
        * Failure code.
        */
-      code:
-        | 'account_closed'
-        | 'account_blocked'
-        | 'insufficient_funds'
-        | 'invalid_account_format'
-        | 'invalid_instruction'
-        | 'invalid_amount'
-        | 'invalid_time'
-        | 'duplicate_transaction'
-        | 'payee_verification_failed'
-        | 'system_error'
-        | 'provider_system_error'
-        | 'rejected_by_correspondent_bank'
-        | 'blocked_by_review'
-        | 'unknown';
+      code: 'account_closed' | 'account_blocked' | 'insufficient_funds' | 'invalid_account_format' | 'invalid_instruction' | 'invalid_amount' | 'invalid_time' | 'duplicate_transaction' | 'payee_verification_failed' | 'system_error' | 'provider_system_error' | 'rejected_by_correspondent_bank' | 'blocked_by_review' | 'unknown';
 
       /**
        * Human-readable description of the failure.
@@ -1213,21 +1112,7 @@ export namespace ReturnReturnedWebhookEvent {
       /**
        * Failure code.
        */
-      code:
-        | 'account_closed'
-        | 'account_blocked'
-        | 'insufficient_funds'
-        | 'invalid_account_format'
-        | 'invalid_instruction'
-        | 'invalid_amount'
-        | 'invalid_time'
-        | 'duplicate_transaction'
-        | 'payee_verification_failed'
-        | 'system_error'
-        | 'provider_system_error'
-        | 'rejected_by_correspondent_bank'
-        | 'blocked_by_review'
-        | 'unknown';
+      code: 'account_closed' | 'account_blocked' | 'insufficient_funds' | 'invalid_account_format' | 'invalid_instruction' | 'invalid_amount' | 'invalid_time' | 'duplicate_transaction' | 'payee_verification_failed' | 'system_error' | 'provider_system_error' | 'rejected_by_correspondent_bank' | 'blocked_by_review' | 'unknown';
 
       /**
        * Human-readable description of the failure.
@@ -1307,25 +1192,7 @@ export namespace DepositReceivedWebhookEvent {
     /**
      * Payment rail or blockchain used for the deposit.
      */
-    rail:
-      | 'sepa_instant'
-      | 'faster_payments'
-      | 'sepa'
-      | 'elixir'
-      | 'express_elixir'
-      | 'sek_account_to_account'
-      | 'sumclearing'
-      | 'straksclearing'
-      | 'swift'
-      | 'internal'
-      | 'target'
-      | 'eth'
-      | 'eth_sepolia'
-      | 'sol'
-      | 'sol_devnet'
-      | 'matic'
-      | 'matic_amoy'
-      | null;
+    rail: 'sepa_instant' | 'faster_payments' | 'sepa' | 'elixir' | 'express_elixir' | 'sek_account_to_account' | 'sumclearing' | 'straksclearing' | 'swift' | 'internal' | 'target' | 'eth' | 'eth_sepolia' | 'sol' | 'sol_devnet' | 'matic' | 'matic_amoy' | null;
 
     /**
      * Array of deposit return IDs associated with this deposit.
@@ -1830,20 +1697,7 @@ export namespace PingTestWebhookEvent {
   }
 }
 
-export type UnwrapWebhookEvent =
-  | PayoutCreatedWebhookEvent
-  | PayoutInitiatedWebhookEvent
-  | PayoutPaidWebhookEvent
-  | PayoutFailedWebhookEvent
-  | ReturnInitiatedWebhookEvent
-  | ReturnPaidWebhookEvent
-  | ReturnFailedWebhookEvent
-  | ReturnReturnedWebhookEvent
-  | DepositReceivedWebhookEvent
-  | ConversionCreatedWebhookEvent
-  | ConversionCompletedWebhookEvent
-  | ConversionFailedWebhookEvent
-  | PingTestWebhookEvent;
+export type UnwrapWebhookEvent = PayoutCreatedWebhookEvent | PayoutInitiatedWebhookEvent | PayoutPaidWebhookEvent | PayoutFailedWebhookEvent | ReturnInitiatedWebhookEvent | ReturnPaidWebhookEvent | ReturnFailedWebhookEvent | ReturnReturnedWebhookEvent | DepositReceivedWebhookEvent | ConversionCreatedWebhookEvent | ConversionCompletedWebhookEvent | ConversionFailedWebhookEvent | PingTestWebhookEvent
 
 export declare namespace Webhooks {
   export {
@@ -1860,6 +1714,6 @@ export declare namespace Webhooks {
     type ConversionCompletedWebhookEvent as ConversionCompletedWebhookEvent,
     type ConversionFailedWebhookEvent as ConversionFailedWebhookEvent,
     type PingTestWebhookEvent as PingTestWebhookEvent,
-    type UnwrapWebhookEvent as UnwrapWebhookEvent,
+    type UnwrapWebhookEvent as UnwrapWebhookEvent
   };
 }

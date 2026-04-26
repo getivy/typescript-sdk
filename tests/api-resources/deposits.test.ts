@@ -2,10 +2,7 @@
 
 import Augustus from '@augustus/typescript-sdk';
 
-const client = new Augustus({
-  apiKey: 'My API Key',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
-});
+const client = new Augustus({ apiKey: 'My API Key', baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010' });
 
 describe('resource deposits', () => {
   // Mock server tests are disabled
@@ -35,16 +32,13 @@ describe('resource deposits', () => {
   // Mock server tests are disabled
   test.skip('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.deposits.list(
-        {
-          created_at: { gte: '2019-12-27T18:11:19.117Z', lte: '2019-12-27T18:11:19.117Z' },
-          cursor: 'cursor',
-          limit: 2,
-          status: 'received',
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Augustus.NotFoundError);
+    await expect(client.deposits.list({
+    created_at: { gte: '2019-12-27T18:11:19.117Z', lte: '2019-12-27T18:11:19.117Z' },
+    cursor: 'cursor',
+    limit: 2,
+    status: 'received',
+  }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Augustus.NotFoundError);
   });
 });

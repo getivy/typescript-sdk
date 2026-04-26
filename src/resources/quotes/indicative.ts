@@ -8,10 +8,7 @@ export class Indicative extends APIResource {
   /**
    * Returns an indicative quote for a currency pair. Not persisted or holdable.
    */
-  retrieve(
-    query: IndicativeRetrieveParams,
-    options?: RequestOptions,
-  ): APIPromise<IndicativeRetrieveResponse> {
+  retrieve(query: IndicativeRetrieveParams, options?: RequestOptions): APIPromise<IndicativeRetrieveResponse> {
     return this._client.get('/v1/quotes/indicative', { query, ...options });
   }
 }
@@ -95,6 +92,6 @@ export interface IndicativeRetrieveParams {
 export declare namespace Indicative {
   export {
     type IndicativeRetrieveResponse as IndicativeRetrieveResponse,
-    type IndicativeRetrieveParams as IndicativeRetrieveParams,
+    type IndicativeRetrieveParams as IndicativeRetrieveParams
   };
 }

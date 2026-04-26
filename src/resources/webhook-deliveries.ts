@@ -18,14 +18,8 @@ export class WebhookDeliveries extends APIResource {
    * Lists webhook deliveries for the merchant with cursor-based pagination.
    * Deliveries are retained for 30 days.
    */
-  list(
-    query: WebhookDeliveryListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<WebhookDeliveryListResponsesCursorPage, WebhookDeliveryListResponse> {
-    return this._client.getAPIList('/v1/webhook_deliveries', CursorPage<WebhookDeliveryListResponse>, {
-      query,
-      ...options,
-    });
+  list(query: WebhookDeliveryListParams | null | undefined = {}, options?: RequestOptions): PagePromise<WebhookDeliveryListResponsesCursorPage, WebhookDeliveryListResponse> {
+    return this._client.getAPIList('/v1/webhook_deliveries', CursorPage<WebhookDeliveryListResponse>, { query, ...options });
   }
 
   /**
@@ -36,7 +30,7 @@ export class WebhookDeliveries extends APIResource {
   }
 }
 
-export type WebhookDeliveryListResponsesCursorPage = CursorPage<WebhookDeliveryListResponse>;
+export type WebhookDeliveryListResponsesCursorPage = CursorPage<WebhookDeliveryListResponse>
 
 export interface WebhookDeliveryRetrieveResponse {
   /**
@@ -262,6 +256,6 @@ export declare namespace WebhookDeliveries {
     type WebhookDeliveryListResponse as WebhookDeliveryListResponse,
     type WebhookDeliveryRedeliverResponse as WebhookDeliveryRedeliverResponse,
     type WebhookDeliveryListResponsesCursorPage as WebhookDeliveryListResponsesCursorPage,
-    type WebhookDeliveryListParams as WebhookDeliveryListParams,
+    type WebhookDeliveryListParams as WebhookDeliveryListParams
   };
 }

@@ -2,19 +2,16 @@
 
 import Augustus from '@augustus/typescript-sdk';
 
-const client = new Augustus({
-  apiKey: 'My API Key',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
-});
+const client = new Augustus({ apiKey: 'My API Key', baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010' });
 
 describe('resource conversions', () => {
   // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.conversions.create({
-      source_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      source_amount: '321669910225',
-      target_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    });
+    source_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    source_amount: '321669910225',
+    target_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -27,11 +24,11 @@ describe('resource conversions', () => {
   // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.conversions.create({
-      source_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      source_amount: '321669910225',
-      target_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      metadata: { foo: 'string' },
-    });
+    source_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    source_amount: '321669910225',
+    target_account_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    metadata: { foo: 'string' },
+  });
   });
 
   // Mock server tests are disabled
@@ -61,17 +58,14 @@ describe('resource conversions', () => {
   // Mock server tests are disabled
   test.skip('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.conversions.list(
-        {
-          cursor: 'cursor',
-          limit: 2,
-          source_currency: 'EUR',
-          status: 'pending',
-          target_currency: 'EUR',
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Augustus.NotFoundError);
+    await expect(client.conversions.list({
+    cursor: 'cursor',
+    limit: 2,
+    source_currency: 'EUR',
+    status: 'pending',
+    target_currency: 'EUR',
+  }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Augustus.NotFoundError);
   });
 });
