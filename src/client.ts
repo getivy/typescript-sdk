@@ -19,7 +19,7 @@ import { AbstractPage, type CursorPageParams, CursorPageResponse } from './core/
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
-import { AccountListParams, AccountListResponse, AccountListResponsesCursorPage, AccountRetrieveResponse, Accounts } from './resources/accounts';
+import { AccountCreateParams, AccountCreateResponse, AccountListParams, AccountListResponse, AccountListResponsesCursorPage, AccountRetrieveResponse, Accounts } from './resources/accounts';
 import { ConversionCreateParams, ConversionCreateResponse, ConversionListParams, ConversionListResponse, ConversionListResponsesCursorPage, ConversionRetrieveResponse, Conversions } from './resources/conversions';
 import { DepositListParams, DepositListResponse, DepositListResponsesCursorPage, DepositRetrieveResponse, Deposits } from './resources/deposits';
 import { EventListParams, EventListResponse, EventListResponsesCursorPage, EventRetrieveResponse, Events } from './resources/events';
@@ -785,9 +785,11 @@ export {
 
 export {
   Accounts as Accounts,
+  type AccountCreateResponse as AccountCreateResponse,
   type AccountRetrieveResponse as AccountRetrieveResponse,
   type AccountListResponse as AccountListResponse,
   type AccountListResponsesCursorPage as AccountListResponsesCursorPage,
+  type AccountCreateParams as AccountCreateParams,
   type AccountListParams as AccountListParams
 };
 
