@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export { Accounts, type AccountRetrieveResponse, type AccountListResponse, type AccountListParams, type AccountListResponsesCursorPage } from './accounts';;
+export { Accounts, type AccountCreateResponse, type AccountRetrieveResponse, type AccountListResponse, type AccountCreateParams, type AccountListParams, type AccountListResponsesCursorPage } from './accounts';;
 export { Conversions, type ConversionCreateResponse, type ConversionRetrieveResponse, type ConversionListResponse, type ConversionCreateParams, type ConversionListParams, type ConversionListResponsesCursorPage } from './conversions';;
 export { Deposits, type DepositRetrieveResponse, type DepositListResponse, type DepositListParams, type DepositListResponsesCursorPage } from './deposits';;
 export { Events, type EventRetrieveResponse, type EventListResponse, type EventListParams, type EventListResponsesCursorPage } from './events';;
