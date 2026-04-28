@@ -20,6 +20,8 @@ import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
 import {
+  AccountCreateParams,
+  AccountCreateResponse,
   AccountListParams,
   AccountListResponse,
   AccountListResponsesCursorPage,
@@ -279,6 +281,18 @@ export class Augustus {
     this.maxRetries = options.maxRetries ?? 2;
     this.fetch = options.fetch ?? Shims.getDefaultFetch();
     this.#encoder = Opts.FallbackEncoder;
+
+    const customHeadersEnv = readEnv('AUGUSTUS_CUSTOM_HEADERS');
+    if (customHeadersEnv) {
+      const parsed: Record<string, string> = {};
+      for (const line of customHeadersEnv.split('\n')) {
+        const colon = line.indexOf(':');
+        if (colon >= 0) {
+          parsed[line.substring(0, colon).trim()] = line.substring(colon + 1).trim();
+        }
+      }
+      options.defaultHeaders = { ...parsed, ...options.defaultHeaders };
+    }
 
     this._options = options;
     this.idempotencyHeader = 'Idempotency-Key';
@@ -934,9 +948,11 @@ export declare namespace Augustus {
 
   export {
     Accounts as Accounts,
+    type AccountCreateResponse as AccountCreateResponse,
     type AccountRetrieveResponse as AccountRetrieveResponse,
     type AccountListResponse as AccountListResponse,
     type AccountListResponsesCursorPage as AccountListResponsesCursorPage,
+    type AccountCreateParams as AccountCreateParams,
     type AccountListParams as AccountListParams,
   };
 

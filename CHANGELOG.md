@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.8.0 (2026-04-28)
+
+Full Changelog: [v0.7.0...v0.8.0](https://github.com/getivy/typescript-sdk/compare/v0.7.0...v0.8.0)
+
+### Features
+
+* **api:** api update ([7934e3b](https://github.com/getivy/typescript-sdk/commit/7934e3b054a1d6f940da9972999534a060c7cea6))
+* support setting headers via env ([b1a44d3](https://github.com/getivy/typescript-sdk/commit/b1a44d3ed4c8236a743565ae8a9f14204ff1c760))
+
+
+### Chores
+
+* **formatter:** run prettier and eslint separately ([13432f2](https://github.com/getivy/typescript-sdk/commit/13432f2a392fb5ebe866714eb875c78507e02022))
+* **internal:** codegen related update ([7c52a7b](https://github.com/getivy/typescript-sdk/commit/7c52a7bd56953646b03d3051dd806724f8a8c231))
+
 ## 0.7.0 (2026-04-24)
 
 Full Changelog: [v0.6.0...v0.7.0](https://github.com/getivy/typescript-sdk/compare/v0.6.0...v0.7.0)

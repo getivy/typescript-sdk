@@ -2,8 +2,10 @@
 
 export {
   Accounts,
+  type AccountCreateResponse,
   type AccountRetrieveResponse,
   type AccountListResponse,
+  type AccountCreateParams,
   type AccountListParams,
   type AccountListResponsesCursorPage,
 } from './accounts';

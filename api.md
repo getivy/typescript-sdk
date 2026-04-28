@@ -85,11 +85,13 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/accounts.ts">AccountCreateResponse</a></code>
 - <code><a href="./src/resources/accounts.ts">AccountRetrieveResponse</a></code>
 - <code><a href="./src/resources/accounts.ts">AccountListResponse</a></code>
 
 Methods:
 
+- <code title="post /v1/accounts">client.accounts.<a href="./src/resources/accounts.ts">create</a>({ ...params }) -> AccountCreateResponse</code>
 - <code title="get /v1/accounts/{id}">client.accounts.<a href="./src/resources/accounts.ts">retrieve</a>(id) -> AccountRetrieveResponse</code>
 - <code title="get /v1/accounts">client.accounts.<a href="./src/resources/accounts.ts">list</a>({ ...params }) -> AccountListResponsesCursorPage</code>
 
