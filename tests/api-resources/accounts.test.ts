@@ -2,27 +2,30 @@
 
 import Augustus from '@augustus/typescript-sdk';
 
-const client = new Augustus({ apiKey: 'My API Key', baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010' });
+const client = new Augustus({
+  apiKey: 'My API Key',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+});
 
 describe('resource accounts', () => {
   // Mock server tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.accounts.create({
-    account_program_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    account_type: 'virtual_account',
-    beneficiary_data: {
-    country_of_citizenship: 'AF',
-    date_of_birth: 'date_of_birth',
-    identification: { type: 'id', value: 'value' },
-    legal_name: 'x',
-    residential_address: {
-    city: 'x',
-    country: 'AF',
-    postal_code: 'x',
-    street_line_1: 'x',
-  },
-  },
-  });
+      account_program_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      account_type: 'virtual_account',
+      beneficiary_data: {
+        country_of_citizenship: 'AF',
+        date_of_birth: 'date_of_birth',
+        identification: { type: 'id', value: 'value' },
+        legal_name: 'x',
+        residential_address: {
+          city: 'x',
+          country: 'AF',
+          postal_code: 'x',
+          street_line_1: 'x',
+        },
+      },
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -35,23 +38,23 @@ describe('resource accounts', () => {
   // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.accounts.create({
-    account_program_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    account_type: 'virtual_account',
-    beneficiary_data: {
-    country_of_citizenship: 'AF',
-    date_of_birth: 'date_of_birth',
-    identification: { type: 'id', value: 'value' },
-    legal_name: 'x',
-    residential_address: {
-    city: 'x',
-    country: 'AF',
-    postal_code: 'x',
-    street_line_1: 'x',
-    state: 'state',
-    street_line_2: 'street_line_2',
-  },
-  },
-  });
+      account_program_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      account_type: 'virtual_account',
+      beneficiary_data: {
+        country_of_citizenship: 'AF',
+        date_of_birth: 'date_of_birth',
+        identification: { type: 'id', value: 'value' },
+        legal_name: 'x',
+        residential_address: {
+          city: 'x',
+          country: 'AF',
+          postal_code: 'x',
+          street_line_1: 'x',
+          state: 'state',
+          street_line_2: 'street_line_2',
+        },
+      },
+    });
   });
 
   // Mock server tests are disabled
@@ -81,12 +84,15 @@ describe('resource accounts', () => {
   // Mock server tests are disabled
   test.skip('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.accounts.list({
-    cursor: 'cursor',
-    limit: 2,
-    parent_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-  }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Augustus.NotFoundError);
+    await expect(
+      client.accounts.list(
+        {
+          cursor: 'cursor',
+          limit: 2,
+          parent_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Augustus.NotFoundError);
   });
 });
