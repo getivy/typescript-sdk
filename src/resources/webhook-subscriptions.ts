@@ -10,7 +10,10 @@ export class WebhookSubscriptions extends APIResource {
   /**
    * Creates a new webhook subscription.
    */
-  create(body: WebhookSubscriptionCreateParams, options?: RequestOptions): APIPromise<WebhookSubscriptionCreateResponse> {
+  create(
+    body: WebhookSubscriptionCreateParams,
+    options?: RequestOptions,
+  ): APIPromise<WebhookSubscriptionCreateResponse> {
     return this._client.post('/v1/webhook_subscriptions', { body, ...options });
   }
 
@@ -24,15 +27,25 @@ export class WebhookSubscriptions extends APIResource {
   /**
    * Updates the URL and/or subscribed events.
    */
-  update(id: string, body: WebhookSubscriptionUpdateParams, options?: RequestOptions): APIPromise<WebhookSubscriptionUpdateResponse> {
+  update(
+    id: string,
+    body: WebhookSubscriptionUpdateParams,
+    options?: RequestOptions,
+  ): APIPromise<WebhookSubscriptionUpdateResponse> {
     return this._client.post(path`/v1/webhook_subscriptions/${id}`, { body, ...options });
   }
 
   /**
    * Lists webhook subscriptions for the merchant with cursor-based pagination.
    */
-  list(query: WebhookSubscriptionListParams | null | undefined = {}, options?: RequestOptions): PagePromise<WebhookSubscriptionListResponsesCursorPage, WebhookSubscriptionListResponse> {
-    return this._client.getAPIList('/v1/webhook_subscriptions', CursorPage<WebhookSubscriptionListResponse>, { query, ...options });
+  list(
+    query: WebhookSubscriptionListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<WebhookSubscriptionListResponsesCursorPage, WebhookSubscriptionListResponse> {
+    return this._client.getAPIList('/v1/webhook_subscriptions', CursorPage<WebhookSubscriptionListResponse>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -54,7 +67,7 @@ export class WebhookSubscriptions extends APIResource {
   }
 }
 
-export type WebhookSubscriptionListResponsesCursorPage = CursorPage<WebhookSubscriptionListResponse>
+export type WebhookSubscriptionListResponsesCursorPage = CursorPage<WebhookSubscriptionListResponse>;
 
 export interface WebhookSubscriptionCreateResponse {
   /**
@@ -70,7 +83,20 @@ export interface WebhookSubscriptionCreateResponse {
   /**
    * Event types this subscription receives.
    */
-  events: Array<'payout.created' | 'payout.initiated' | 'payout.paid' | 'payout.failed' | 'return.initiated' | 'return.paid' | 'return.failed' | 'return.returned' | 'deposit.received' | 'conversion.created' | 'conversion.completed' | 'conversion.failed'>;
+  events: Array<
+    | 'payout.created'
+    | 'payout.initiated'
+    | 'payout.paid'
+    | 'payout.failed'
+    | 'return.initiated'
+    | 'return.paid'
+    | 'return.failed'
+    | 'return.returned'
+    | 'deposit.received'
+    | 'conversion.created'
+    | 'conversion.completed'
+    | 'conversion.failed'
+  >;
 
   /**
    * Resource type discriminator.
@@ -102,7 +128,20 @@ export interface WebhookSubscriptionRetrieveResponse {
   /**
    * Event types this subscription receives.
    */
-  events: Array<'payout.created' | 'payout.initiated' | 'payout.paid' | 'payout.failed' | 'return.initiated' | 'return.paid' | 'return.failed' | 'return.returned' | 'deposit.received' | 'conversion.created' | 'conversion.completed' | 'conversion.failed'>;
+  events: Array<
+    | 'payout.created'
+    | 'payout.initiated'
+    | 'payout.paid'
+    | 'payout.failed'
+    | 'return.initiated'
+    | 'return.paid'
+    | 'return.failed'
+    | 'return.returned'
+    | 'deposit.received'
+    | 'conversion.created'
+    | 'conversion.completed'
+    | 'conversion.failed'
+  >;
 
   /**
    * Resource type discriminator.
@@ -134,7 +173,20 @@ export interface WebhookSubscriptionUpdateResponse {
   /**
    * Event types this subscription receives.
    */
-  events: Array<'payout.created' | 'payout.initiated' | 'payout.paid' | 'payout.failed' | 'return.initiated' | 'return.paid' | 'return.failed' | 'return.returned' | 'deposit.received' | 'conversion.created' | 'conversion.completed' | 'conversion.failed'>;
+  events: Array<
+    | 'payout.created'
+    | 'payout.initiated'
+    | 'payout.paid'
+    | 'payout.failed'
+    | 'return.initiated'
+    | 'return.paid'
+    | 'return.failed'
+    | 'return.returned'
+    | 'deposit.received'
+    | 'conversion.created'
+    | 'conversion.completed'
+    | 'conversion.failed'
+  >;
 
   /**
    * Resource type discriminator.
@@ -166,7 +218,20 @@ export interface WebhookSubscriptionListResponse {
   /**
    * Event types this subscription receives.
    */
-  events: Array<'payout.created' | 'payout.initiated' | 'payout.paid' | 'payout.failed' | 'return.initiated' | 'return.paid' | 'return.failed' | 'return.returned' | 'deposit.received' | 'conversion.created' | 'conversion.completed' | 'conversion.failed'>;
+  events: Array<
+    | 'payout.created'
+    | 'payout.initiated'
+    | 'payout.paid'
+    | 'payout.failed'
+    | 'return.initiated'
+    | 'return.paid'
+    | 'return.failed'
+    | 'return.returned'
+    | 'deposit.received'
+    | 'conversion.created'
+    | 'conversion.completed'
+    | 'conversion.failed'
+  >;
 
   /**
    * Resource type discriminator.
@@ -198,7 +263,20 @@ export interface WebhookSubscriptionDeleteResponse {
   /**
    * Event types this subscription receives.
    */
-  events: Array<'payout.created' | 'payout.initiated' | 'payout.paid' | 'payout.failed' | 'return.initiated' | 'return.paid' | 'return.failed' | 'return.returned' | 'deposit.received' | 'conversion.created' | 'conversion.completed' | 'conversion.failed'>;
+  events: Array<
+    | 'payout.created'
+    | 'payout.initiated'
+    | 'payout.paid'
+    | 'payout.failed'
+    | 'return.initiated'
+    | 'return.paid'
+    | 'return.failed'
+    | 'return.returned'
+    | 'deposit.received'
+    | 'conversion.created'
+    | 'conversion.completed'
+    | 'conversion.failed'
+  >;
 
   /**
    * Resource type discriminator.
@@ -242,7 +320,20 @@ export interface WebhookSubscriptionSendTestEventResponse {
   /**
    * Event type.
    */
-  event_type: 'payout.created' | 'payout.initiated' | 'payout.paid' | 'payout.failed' | 'return.initiated' | 'return.paid' | 'return.failed' | 'return.returned' | 'deposit.received' | 'conversion.created' | 'conversion.completed' | 'conversion.failed' | 'ping.test';
+  event_type:
+    | 'payout.created'
+    | 'payout.initiated'
+    | 'payout.paid'
+    | 'payout.failed'
+    | 'return.initiated'
+    | 'return.paid'
+    | 'return.failed'
+    | 'return.returned'
+    | 'deposit.received'
+    | 'conversion.created'
+    | 'conversion.completed'
+    | 'conversion.failed'
+    | 'ping.test';
 
   /**
    * Resource type discriminator.
@@ -254,7 +345,21 @@ export interface WebhookSubscriptionCreateParams {
   /**
    * Event types to subscribe to. Use ["*"] for all events.
    */
-  events: Array<'payout.created' | 'payout.initiated' | 'payout.paid' | 'payout.failed' | 'return.initiated' | 'return.paid' | 'return.failed' | 'return.returned' | 'deposit.received' | 'conversion.created' | 'conversion.completed' | 'conversion.failed' | '*'>;
+  events: Array<
+    | 'payout.created'
+    | 'payout.initiated'
+    | 'payout.paid'
+    | 'payout.failed'
+    | 'return.initiated'
+    | 'return.paid'
+    | 'return.failed'
+    | 'return.returned'
+    | 'deposit.received'
+    | 'conversion.created'
+    | 'conversion.completed'
+    | 'conversion.failed'
+    | '*'
+  >;
 
   /**
    * The HTTPS URL where webhook events will be delivered.
@@ -266,7 +371,21 @@ export interface WebhookSubscriptionUpdateParams {
   /**
    * Event types to subscribe to. Use ["*"] for all events.
    */
-  events?: Array<'payout.created' | 'payout.initiated' | 'payout.paid' | 'payout.failed' | 'return.initiated' | 'return.paid' | 'return.failed' | 'return.returned' | 'deposit.received' | 'conversion.created' | 'conversion.completed' | 'conversion.failed' | '*'>;
+  events?: Array<
+    | 'payout.created'
+    | 'payout.initiated'
+    | 'payout.paid'
+    | 'payout.failed'
+    | 'return.initiated'
+    | 'return.paid'
+    | 'return.failed'
+    | 'return.returned'
+    | 'deposit.received'
+    | 'conversion.created'
+    | 'conversion.completed'
+    | 'conversion.failed'
+    | '*'
+  >;
 
   /**
    * The HTTPS URL where webhook events will be delivered.
@@ -274,8 +393,7 @@ export interface WebhookSubscriptionUpdateParams {
   url?: string;
 }
 
-export interface WebhookSubscriptionListParams extends CursorPageParams {
-}
+export interface WebhookSubscriptionListParams extends CursorPageParams {}
 
 export declare namespace WebhookSubscriptions {
   export {
@@ -288,6 +406,6 @@ export declare namespace WebhookSubscriptions {
     type WebhookSubscriptionListResponsesCursorPage as WebhookSubscriptionListResponsesCursorPage,
     type WebhookSubscriptionCreateParams as WebhookSubscriptionCreateParams,
     type WebhookSubscriptionUpdateParams as WebhookSubscriptionUpdateParams,
-    type WebhookSubscriptionListParams as WebhookSubscriptionListParams
+    type WebhookSubscriptionListParams as WebhookSubscriptionListParams,
   };
 }

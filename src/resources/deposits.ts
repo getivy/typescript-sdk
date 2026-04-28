@@ -17,12 +17,15 @@ export class Deposits extends APIResource {
   /**
    * Lists deposits for the merchant with cursor-based pagination.
    */
-  list(query: DepositListParams | null | undefined = {}, options?: RequestOptions): PagePromise<DepositListResponsesCursorPage, DepositListResponse> {
+  list(
+    query: DepositListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<DepositListResponsesCursorPage, DepositListResponse> {
     return this._client.getAPIList('/v1/deposits', CursorPage<DepositListResponse>, { query, ...options });
   }
 }
 
-export type DepositListResponsesCursorPage = CursorPage<DepositListResponse>
+export type DepositListResponsesCursorPage = CursorPage<DepositListResponse>;
 
 export interface DepositRetrieveResponse {
   /**
@@ -58,7 +61,25 @@ export interface DepositRetrieveResponse {
   /**
    * Payment rail or blockchain used for the deposit.
    */
-  rail: 'sepa_instant' | 'faster_payments' | 'sepa' | 'elixir' | 'express_elixir' | 'sek_account_to_account' | 'sumclearing' | 'straksclearing' | 'swift' | 'internal' | 'target' | 'eth' | 'eth_sepolia' | 'sol' | 'sol_devnet' | 'matic' | 'matic_amoy' | null;
+  rail:
+    | 'sepa_instant'
+    | 'faster_payments'
+    | 'sepa'
+    | 'elixir'
+    | 'express_elixir'
+    | 'sek_account_to_account'
+    | 'sumclearing'
+    | 'straksclearing'
+    | 'swift'
+    | 'internal'
+    | 'target'
+    | 'eth'
+    | 'eth_sepolia'
+    | 'sol'
+    | 'sol_devnet'
+    | 'matic'
+    | 'matic_amoy'
+    | null;
 
   /**
    * Array of deposit return IDs associated with this deposit.
@@ -68,7 +89,10 @@ export interface DepositRetrieveResponse {
   /**
    * Counterparty bank account or crypto wallet that sent the funds.
    */
-  source: DepositRetrieveResponse.UnionMember0 | DepositRetrieveResponse.UnionMember1 | DepositRetrieveResponse.UnionMember2;
+  source:
+    | DepositRetrieveResponse.UnionMember0
+    | DepositRetrieveResponse.UnionMember1
+    | DepositRetrieveResponse.UnionMember2;
 
   /**
    * Current status of the deposit.
@@ -188,7 +212,25 @@ export interface DepositListResponse {
   /**
    * Payment rail or blockchain used for the deposit.
    */
-  rail: 'sepa_instant' | 'faster_payments' | 'sepa' | 'elixir' | 'express_elixir' | 'sek_account_to_account' | 'sumclearing' | 'straksclearing' | 'swift' | 'internal' | 'target' | 'eth' | 'eth_sepolia' | 'sol' | 'sol_devnet' | 'matic' | 'matic_amoy' | null;
+  rail:
+    | 'sepa_instant'
+    | 'faster_payments'
+    | 'sepa'
+    | 'elixir'
+    | 'express_elixir'
+    | 'sek_account_to_account'
+    | 'sumclearing'
+    | 'straksclearing'
+    | 'swift'
+    | 'internal'
+    | 'target'
+    | 'eth'
+    | 'eth_sepolia'
+    | 'sol'
+    | 'sol_devnet'
+    | 'matic'
+    | 'matic_amoy'
+    | null;
 
   /**
    * Array of deposit return IDs associated with this deposit.
@@ -198,7 +240,10 @@ export interface DepositListResponse {
   /**
    * Counterparty bank account or crypto wallet that sent the funds.
    */
-  source: DepositListResponse.UnionMember0 | DepositListResponse.UnionMember1 | DepositListResponse.UnionMember2;
+  source:
+    | DepositListResponse.UnionMember0
+    | DepositListResponse.UnionMember1
+    | DepositListResponse.UnionMember2;
 
   /**
    * Current status of the deposit.
@@ -314,6 +359,6 @@ export declare namespace Deposits {
     type DepositRetrieveResponse as DepositRetrieveResponse,
     type DepositListResponse as DepositListResponse,
     type DepositListResponsesCursorPage as DepositListResponsesCursorPage,
-    type DepositListParams as DepositListParams
+    type DepositListParams as DepositListParams,
   };
 }
