@@ -73,7 +73,7 @@ export namespace PayoutCreatedWebhookEvent {
     /**
      * Bank account or crypto wallet the payout was sent to.
      */
-    destination: Payload.UnionMember0 | Payload.UnionMember1 | Payload.UnionMember2;
+    destination: Payload.UnionMember0 | Payload.UnionMember1 | Payload.UnionMember2 | Payload.UnionMember3;
 
     /**
      * Failure details when status is failed, otherwise null.
@@ -157,6 +157,28 @@ export namespace PayoutCreatedWebhookEvent {
     }
 
     export interface UnionMember2 {
+      /**
+       * Name of the account holder.
+       */
+      account_holder_name: string;
+
+      /**
+       * Bank account number.
+       */
+      account_number: string;
+
+      /**
+       * ABA routing number (9 digits).
+       */
+      routing_number: string;
+
+      /**
+       * Discriminator for ABA wire financial address.
+       */
+      type: 'aba';
+    }
+
+    export interface UnionMember3 {
       /**
        * Wallet address on the specified blockchain.
        */
@@ -264,7 +286,7 @@ export namespace PayoutInitiatedWebhookEvent {
     /**
      * Bank account or crypto wallet the payout was sent to.
      */
-    destination: Payload.UnionMember0 | Payload.UnionMember1 | Payload.UnionMember2;
+    destination: Payload.UnionMember0 | Payload.UnionMember1 | Payload.UnionMember2 | Payload.UnionMember3;
 
     /**
      * Failure details when status is failed, otherwise null.
@@ -348,6 +370,28 @@ export namespace PayoutInitiatedWebhookEvent {
     }
 
     export interface UnionMember2 {
+      /**
+       * Name of the account holder.
+       */
+      account_holder_name: string;
+
+      /**
+       * Bank account number.
+       */
+      account_number: string;
+
+      /**
+       * ABA routing number (9 digits).
+       */
+      routing_number: string;
+
+      /**
+       * Discriminator for ABA wire financial address.
+       */
+      type: 'aba';
+    }
+
+    export interface UnionMember3 {
       /**
        * Wallet address on the specified blockchain.
        */
@@ -455,7 +499,7 @@ export namespace PayoutPaidWebhookEvent {
     /**
      * Bank account or crypto wallet the payout was sent to.
      */
-    destination: Payload.UnionMember0 | Payload.UnionMember1 | Payload.UnionMember2;
+    destination: Payload.UnionMember0 | Payload.UnionMember1 | Payload.UnionMember2 | Payload.UnionMember3;
 
     /**
      * Failure details when status is failed, otherwise null.
@@ -539,6 +583,28 @@ export namespace PayoutPaidWebhookEvent {
     }
 
     export interface UnionMember2 {
+      /**
+       * Name of the account holder.
+       */
+      account_holder_name: string;
+
+      /**
+       * Bank account number.
+       */
+      account_number: string;
+
+      /**
+       * ABA routing number (9 digits).
+       */
+      routing_number: string;
+
+      /**
+       * Discriminator for ABA wire financial address.
+       */
+      type: 'aba';
+    }
+
+    export interface UnionMember3 {
       /**
        * Wallet address on the specified blockchain.
        */
@@ -646,7 +712,7 @@ export namespace PayoutFailedWebhookEvent {
     /**
      * Bank account or crypto wallet the payout was sent to.
      */
-    destination: Payload.UnionMember0 | Payload.UnionMember1 | Payload.UnionMember2;
+    destination: Payload.UnionMember0 | Payload.UnionMember1 | Payload.UnionMember2 | Payload.UnionMember3;
 
     /**
      * Failure details when status is failed, otherwise null.
@@ -730,6 +796,28 @@ export namespace PayoutFailedWebhookEvent {
     }
 
     export interface UnionMember2 {
+      /**
+       * Name of the account holder.
+       */
+      account_holder_name: string;
+
+      /**
+       * Bank account number.
+       */
+      account_number: string;
+
+      /**
+       * ABA routing number (9 digits).
+       */
+      routing_number: string;
+
+      /**
+       * Discriminator for ABA wire financial address.
+       */
+      type: 'aba';
+    }
+
+    export interface UnionMember3 {
       /**
        * Wallet address on the specified blockchain.
        */

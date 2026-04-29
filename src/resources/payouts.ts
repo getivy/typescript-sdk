@@ -61,7 +61,8 @@ export interface PayoutCreateResponse {
   destination:
     | PayoutCreateResponse.UnionMember0
     | PayoutCreateResponse.UnionMember1
-    | PayoutCreateResponse.UnionMember2;
+    | PayoutCreateResponse.UnionMember2
+    | PayoutCreateResponse.UnionMember3;
 
   /**
    * Failure details when status is failed, otherwise null.
@@ -146,6 +147,28 @@ export namespace PayoutCreateResponse {
 
   export interface UnionMember2 {
     /**
+     * Name of the account holder.
+     */
+    account_holder_name: string;
+
+    /**
+     * Bank account number.
+     */
+    account_number: string;
+
+    /**
+     * ABA routing number (9 digits).
+     */
+    routing_number: string;
+
+    /**
+     * Discriminator for ABA wire financial address.
+     */
+    type: 'aba';
+  }
+
+  export interface UnionMember3 {
+    /**
      * Wallet address on the specified blockchain.
      */
     address: string;
@@ -223,7 +246,8 @@ export interface PayoutRetrieveResponse {
   destination:
     | PayoutRetrieveResponse.UnionMember0
     | PayoutRetrieveResponse.UnionMember1
-    | PayoutRetrieveResponse.UnionMember2;
+    | PayoutRetrieveResponse.UnionMember2
+    | PayoutRetrieveResponse.UnionMember3;
 
   /**
    * Failure details when status is failed, otherwise null.
@@ -308,6 +332,28 @@ export namespace PayoutRetrieveResponse {
 
   export interface UnionMember2 {
     /**
+     * Name of the account holder.
+     */
+    account_holder_name: string;
+
+    /**
+     * Bank account number.
+     */
+    account_number: string;
+
+    /**
+     * ABA routing number (9 digits).
+     */
+    routing_number: string;
+
+    /**
+     * Discriminator for ABA wire financial address.
+     */
+    type: 'aba';
+  }
+
+  export interface UnionMember3 {
+    /**
      * Wallet address on the specified blockchain.
      */
     address: string;
@@ -385,7 +431,8 @@ export interface PayoutListResponse {
   destination:
     | PayoutListResponse.UnionMember0
     | PayoutListResponse.UnionMember1
-    | PayoutListResponse.UnionMember2;
+    | PayoutListResponse.UnionMember2
+    | PayoutListResponse.UnionMember3;
 
   /**
    * Failure details when status is failed, otherwise null.
@@ -469,6 +516,28 @@ export namespace PayoutListResponse {
   }
 
   export interface UnionMember2 {
+    /**
+     * Name of the account holder.
+     */
+    account_holder_name: string;
+
+    /**
+     * Bank account number.
+     */
+    account_number: string;
+
+    /**
+     * ABA routing number (9 digits).
+     */
+    routing_number: string;
+
+    /**
+     * Discriminator for ABA wire financial address.
+     */
+    type: 'aba';
+  }
+
+  export interface UnionMember3 {
     /**
      * Wallet address on the specified blockchain.
      */
