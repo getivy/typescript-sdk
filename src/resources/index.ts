@@ -1,10 +1,19 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 export {
+  AccountPrograms,
+  type AccountProgramRetrieveResponse,
+  type AccountProgramListResponse,
+  type AccountProgramListParams,
+  type AccountProgramListResponsesCursorPage,
+} from './account-programs';
+export {
   Accounts,
   type AccountCreateResponse,
   type AccountRetrieveResponse,
   type AccountListResponse,
+  type AccountFreezeResponse,
+  type AccountUnfreezeResponse,
   type AccountCreateParams,
   type AccountListParams,
   type AccountListResponsesCursorPage,

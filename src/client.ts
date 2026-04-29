@@ -20,12 +20,21 @@ import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
 import {
+  AccountProgramListParams,
+  AccountProgramListResponse,
+  AccountProgramListResponsesCursorPage,
+  AccountProgramRetrieveResponse,
+  AccountPrograms,
+} from './resources/account-programs';
+import {
   AccountCreateParams,
   AccountCreateResponse,
+  AccountFreezeResponse,
   AccountListParams,
   AccountListResponse,
   AccountListResponsesCursorPage,
   AccountRetrieveResponse,
+  AccountUnfreezeResponse,
   Accounts,
 } from './resources/accounts';
 import {
@@ -875,6 +884,7 @@ export class Augustus {
   conversions: API.Conversions = new API.Conversions(this);
   quotes: API.Quotes = new API.Quotes(this);
   accounts: API.Accounts = new API.Accounts(this);
+  accountPrograms: API.AccountPrograms = new API.AccountPrograms(this);
   returns: API.Returns = new API.Returns(this);
   webhookSubscriptions: API.WebhookSubscriptions = new API.WebhookSubscriptions(this);
   events: API.Events = new API.Events(this);
@@ -887,6 +897,7 @@ Augustus.Deposits = Deposits;
 Augustus.Conversions = Conversions;
 Augustus.Quotes = Quotes;
 Augustus.Accounts = Accounts;
+Augustus.AccountPrograms = AccountPrograms;
 Augustus.Returns = Returns;
 Augustus.WebhookSubscriptions = WebhookSubscriptions;
 Augustus.Events = Events;
@@ -951,9 +962,19 @@ export declare namespace Augustus {
     type AccountCreateResponse as AccountCreateResponse,
     type AccountRetrieveResponse as AccountRetrieveResponse,
     type AccountListResponse as AccountListResponse,
+    type AccountFreezeResponse as AccountFreezeResponse,
+    type AccountUnfreezeResponse as AccountUnfreezeResponse,
     type AccountListResponsesCursorPage as AccountListResponsesCursorPage,
     type AccountCreateParams as AccountCreateParams,
     type AccountListParams as AccountListParams,
+  };
+
+  export {
+    AccountPrograms as AccountPrograms,
+    type AccountProgramRetrieveResponse as AccountProgramRetrieveResponse,
+    type AccountProgramListResponse as AccountProgramListResponse,
+    type AccountProgramListResponsesCursorPage as AccountProgramListResponsesCursorPage,
+    type AccountProgramListParams as AccountProgramListParams,
   };
 
   export { Returns as Returns, type ReturnRetrieveResponse as ReturnRetrieveResponse };
