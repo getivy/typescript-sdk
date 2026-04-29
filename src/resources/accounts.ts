@@ -30,6 +30,20 @@ export class Accounts extends APIResource {
   ): PagePromise<AccountListResponsesCursorPage, AccountListResponse> {
     return this._client.getAPIList('/v1/accounts', CursorPage<AccountListResponse>, { query, ...options });
   }
+
+  /**
+   * Freezes an account
+   */
+  freeze(id: string, options?: RequestOptions): APIPromise<AccountFreezeResponse> {
+    return this._client.post(path`/v1/accounts/${id}/freeze`, options);
+  }
+
+  /**
+   * Unfreezes an account
+   */
+  unfreeze(id: string, options?: RequestOptions): APIPromise<AccountUnfreezeResponse> {
+    return this._client.post(path`/v1/accounts/${id}/unfreeze`, options);
+  }
 }
 
 export type AccountListResponsesCursorPage = CursorPage<AccountListResponse>;
@@ -68,6 +82,7 @@ export interface AccountCreateResponse {
     | AccountCreateResponse.UnionMember0
     | AccountCreateResponse.UnionMember1
     | AccountCreateResponse.UnionMember2
+    | AccountCreateResponse.UnionMember3
   >;
 
   /**
@@ -138,6 +153,28 @@ export namespace AccountCreateResponse {
 
   export interface UnionMember2 {
     /**
+     * Name of the account holder.
+     */
+    account_holder_name: string;
+
+    /**
+     * Bank account number.
+     */
+    account_number: string;
+
+    /**
+     * ABA routing number (9 digits).
+     */
+    routing_number: string;
+
+    /**
+     * Discriminator for ABA wire financial address.
+     */
+    type: 'aba';
+  }
+
+  export interface UnionMember3 {
+    /**
      * Wallet address on the specified blockchain.
      */
     address: string;
@@ -188,6 +225,7 @@ export interface AccountRetrieveResponse {
     | AccountRetrieveResponse.UnionMember0
     | AccountRetrieveResponse.UnionMember1
     | AccountRetrieveResponse.UnionMember2
+    | AccountRetrieveResponse.UnionMember3
   >;
 
   /**
@@ -258,6 +296,28 @@ export namespace AccountRetrieveResponse {
 
   export interface UnionMember2 {
     /**
+     * Name of the account holder.
+     */
+    account_holder_name: string;
+
+    /**
+     * Bank account number.
+     */
+    account_number: string;
+
+    /**
+     * ABA routing number (9 digits).
+     */
+    routing_number: string;
+
+    /**
+     * Discriminator for ABA wire financial address.
+     */
+    type: 'aba';
+  }
+
+  export interface UnionMember3 {
+    /**
      * Wallet address on the specified blockchain.
      */
     address: string;
@@ -305,7 +365,10 @@ export interface AccountListResponse {
    * this account can send or receive funds.
    */
   financial_addresses: Array<
-    AccountListResponse.UnionMember0 | AccountListResponse.UnionMember1 | AccountListResponse.UnionMember2
+    | AccountListResponse.UnionMember0
+    | AccountListResponse.UnionMember1
+    | AccountListResponse.UnionMember2
+    | AccountListResponse.UnionMember3
   >;
 
   /**
@@ -375,6 +438,314 @@ export namespace AccountListResponse {
   }
 
   export interface UnionMember2 {
+    /**
+     * Name of the account holder.
+     */
+    account_holder_name: string;
+
+    /**
+     * Bank account number.
+     */
+    account_number: string;
+
+    /**
+     * ABA routing number (9 digits).
+     */
+    routing_number: string;
+
+    /**
+     * Discriminator for ABA wire financial address.
+     */
+    type: 'aba';
+  }
+
+  export interface UnionMember3 {
+    /**
+     * Wallet address on the specified blockchain.
+     */
+    address: string;
+
+    /**
+     * Blockchain network for the crypto wallet.
+     */
+    blockchain: 'ethereum' | 'solana' | 'polygon';
+
+    /**
+     * Discriminator for crypto wallet financial address.
+     */
+    type: 'crypto_wallet';
+  }
+}
+
+export interface AccountFreezeResponse {
+  /**
+   * Unique identifier of the account.
+   */
+  id: string;
+
+  /**
+   * Type of the account.
+   */
+  account_type: 'virtual_account' | 'payment_account';
+
+  /**
+   * Asset type of the account.
+   */
+  asset_type: 'fiat' | 'crypto';
+
+  /**
+   * ISO 8601 UTC timestamp when the account was created.
+   */
+  created_at: string;
+
+  /**
+   * ISO 4217 currency code for the account.
+   */
+  currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
+
+  /**
+   * Payment identifiers (e.g. IBAN, account number, wallet address) through which
+   * this account can send or receive funds.
+   */
+  financial_addresses: Array<
+    | AccountFreezeResponse.UnionMember0
+    | AccountFreezeResponse.UnionMember1
+    | AccountFreezeResponse.UnionMember2
+    | AccountFreezeResponse.UnionMember3
+  >;
+
+  /**
+   * Human-readable label for the account.
+   */
+  label: string;
+
+  /**
+   * Current status of the account.
+   */
+  status: 'pending' | 'active' | 'frozen' | 'closed';
+
+  /**
+   * Resource type discriminator.
+   */
+  type: 'account';
+
+  /**
+   * ISO 8601 UTC timestamp when the account was last updated.
+   */
+  updated_at: string;
+}
+
+export namespace AccountFreezeResponse {
+  export interface UnionMember0 {
+    /**
+     * Name of the account holder.
+     */
+    account_holder_name: string;
+
+    /**
+     * Bank Identifier Code, or null if not provided.
+     */
+    bic: string | null;
+
+    /**
+     * International Bank Account Number.
+     */
+    iban: string;
+
+    /**
+     * Discriminator for IBAN financial address.
+     */
+    type: 'iban';
+  }
+
+  export interface UnionMember1 {
+    /**
+     * Name of the account holder.
+     */
+    account_holder_name: string;
+
+    /**
+     * UK account number (8 digits).
+     */
+    account_number: string;
+
+    /**
+     * UK sort code (6 digits).
+     */
+    sort_code: string;
+
+    /**
+     * Discriminator for UK sort code financial address.
+     */
+    type: 'sort_code';
+  }
+
+  export interface UnionMember2 {
+    /**
+     * Name of the account holder.
+     */
+    account_holder_name: string;
+
+    /**
+     * Bank account number.
+     */
+    account_number: string;
+
+    /**
+     * ABA routing number (9 digits).
+     */
+    routing_number: string;
+
+    /**
+     * Discriminator for ABA wire financial address.
+     */
+    type: 'aba';
+  }
+
+  export interface UnionMember3 {
+    /**
+     * Wallet address on the specified blockchain.
+     */
+    address: string;
+
+    /**
+     * Blockchain network for the crypto wallet.
+     */
+    blockchain: 'ethereum' | 'solana' | 'polygon';
+
+    /**
+     * Discriminator for crypto wallet financial address.
+     */
+    type: 'crypto_wallet';
+  }
+}
+
+export interface AccountUnfreezeResponse {
+  /**
+   * Unique identifier of the account.
+   */
+  id: string;
+
+  /**
+   * Type of the account.
+   */
+  account_type: 'virtual_account' | 'payment_account';
+
+  /**
+   * Asset type of the account.
+   */
+  asset_type: 'fiat' | 'crypto';
+
+  /**
+   * ISO 8601 UTC timestamp when the account was created.
+   */
+  created_at: string;
+
+  /**
+   * ISO 4217 currency code for the account.
+   */
+  currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
+
+  /**
+   * Payment identifiers (e.g. IBAN, account number, wallet address) through which
+   * this account can send or receive funds.
+   */
+  financial_addresses: Array<
+    | AccountUnfreezeResponse.UnionMember0
+    | AccountUnfreezeResponse.UnionMember1
+    | AccountUnfreezeResponse.UnionMember2
+    | AccountUnfreezeResponse.UnionMember3
+  >;
+
+  /**
+   * Human-readable label for the account.
+   */
+  label: string;
+
+  /**
+   * Current status of the account.
+   */
+  status: 'pending' | 'active' | 'frozen' | 'closed';
+
+  /**
+   * Resource type discriminator.
+   */
+  type: 'account';
+
+  /**
+   * ISO 8601 UTC timestamp when the account was last updated.
+   */
+  updated_at: string;
+}
+
+export namespace AccountUnfreezeResponse {
+  export interface UnionMember0 {
+    /**
+     * Name of the account holder.
+     */
+    account_holder_name: string;
+
+    /**
+     * Bank Identifier Code, or null if not provided.
+     */
+    bic: string | null;
+
+    /**
+     * International Bank Account Number.
+     */
+    iban: string;
+
+    /**
+     * Discriminator for IBAN financial address.
+     */
+    type: 'iban';
+  }
+
+  export interface UnionMember1 {
+    /**
+     * Name of the account holder.
+     */
+    account_holder_name: string;
+
+    /**
+     * UK account number (8 digits).
+     */
+    account_number: string;
+
+    /**
+     * UK sort code (6 digits).
+     */
+    sort_code: string;
+
+    /**
+     * Discriminator for UK sort code financial address.
+     */
+    type: 'sort_code';
+  }
+
+  export interface UnionMember2 {
+    /**
+     * Name of the account holder.
+     */
+    account_holder_name: string;
+
+    /**
+     * Bank account number.
+     */
+    account_number: string;
+
+    /**
+     * ABA routing number (9 digits).
+     */
+    routing_number: string;
+
+    /**
+     * Discriminator for ABA wire financial address.
+     */
+    type: 'aba';
+  }
+
+  export interface UnionMember3 {
     /**
      * Wallet address on the specified blockchain.
      */
@@ -1013,6 +1384,8 @@ export declare namespace Accounts {
     type AccountCreateResponse as AccountCreateResponse,
     type AccountRetrieveResponse as AccountRetrieveResponse,
     type AccountListResponse as AccountListResponse,
+    type AccountFreezeResponse as AccountFreezeResponse,
+    type AccountUnfreezeResponse as AccountUnfreezeResponse,
     type AccountListResponsesCursorPage as AccountListResponsesCursorPage,
     type AccountCreateParams as AccountCreateParams,
     type AccountListParams as AccountListParams,
