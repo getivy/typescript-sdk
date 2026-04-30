@@ -23,16 +23,20 @@ import {
   AccountProgramListParams,
   AccountProgramListResponse,
   AccountProgramListResponsesCursorPage,
+  AccountProgramRetrieveBalanceResponse,
   AccountProgramRetrieveResponse,
   AccountPrograms,
 } from './resources/account-programs';
 import {
+  AccountCloseParams,
+  AccountCloseResponse,
   AccountCreateParams,
   AccountCreateResponse,
   AccountFreezeResponse,
   AccountListParams,
   AccountListResponse,
   AccountListResponsesCursorPage,
+  AccountRetrieveBalanceResponse,
   AccountRetrieveResponse,
   AccountUnfreezeResponse,
   Accounts,
@@ -962,17 +966,21 @@ export declare namespace Augustus {
     type AccountCreateResponse as AccountCreateResponse,
     type AccountRetrieveResponse as AccountRetrieveResponse,
     type AccountListResponse as AccountListResponse,
+    type AccountCloseResponse as AccountCloseResponse,
     type AccountFreezeResponse as AccountFreezeResponse,
+    type AccountRetrieveBalanceResponse as AccountRetrieveBalanceResponse,
     type AccountUnfreezeResponse as AccountUnfreezeResponse,
     type AccountListResponsesCursorPage as AccountListResponsesCursorPage,
     type AccountCreateParams as AccountCreateParams,
     type AccountListParams as AccountListParams,
+    type AccountCloseParams as AccountCloseParams,
   };
 
   export {
     AccountPrograms as AccountPrograms,
     type AccountProgramRetrieveResponse as AccountProgramRetrieveResponse,
     type AccountProgramListResponse as AccountProgramListResponse,
+    type AccountProgramRetrieveBalanceResponse as AccountProgramRetrieveBalanceResponse,
     type AccountProgramListResponsesCursorPage as AccountProgramListResponsesCursorPage,
     type AccountProgramListParams as AccountProgramListParams,
   };
