@@ -32,10 +32,24 @@ export class Accounts extends APIResource {
   }
 
   /**
+   * Closes an account
+   */
+  close(id: string, body: AccountCloseParams, options?: RequestOptions): APIPromise<AccountCloseResponse> {
+    return this._client.post(path`/v1/accounts/${id}/close`, { body, ...options });
+  }
+
+  /**
    * Freezes an account
    */
   freeze(id: string, options?: RequestOptions): APIPromise<AccountFreezeResponse> {
     return this._client.post(path`/v1/accounts/${id}/freeze`, options);
+  }
+
+  /**
+   * Retrieves the available balance for an account.
+   */
+  retrieveBalance(id: string, options?: RequestOptions): APIPromise<AccountRetrieveBalanceResponse> {
+    return this._client.get(path`/v1/accounts/${id}/balance`, options);
   }
 
   /**
@@ -477,6 +491,149 @@ export namespace AccountListResponse {
   }
 }
 
+export interface AccountCloseResponse {
+  /**
+   * Unique identifier of the account.
+   */
+  id: string;
+
+  /**
+   * Type of the account.
+   */
+  account_type: 'virtual_account' | 'payment_account';
+
+  /**
+   * Asset type of the account.
+   */
+  asset_type: 'fiat' | 'crypto';
+
+  /**
+   * ISO 8601 UTC timestamp when the account was created.
+   */
+  created_at: string;
+
+  /**
+   * ISO 4217 currency code for the account.
+   */
+  currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
+
+  /**
+   * Payment identifiers (e.g. IBAN, account number, wallet address) through which
+   * this account can send or receive funds.
+   */
+  financial_addresses: Array<
+    | AccountCloseResponse.UnionMember0
+    | AccountCloseResponse.UnionMember1
+    | AccountCloseResponse.UnionMember2
+    | AccountCloseResponse.UnionMember3
+  >;
+
+  /**
+   * Human-readable label for the account.
+   */
+  label: string;
+
+  /**
+   * Current status of the account.
+   */
+  status: 'pending' | 'active' | 'frozen' | 'closed';
+
+  /**
+   * Resource type discriminator.
+   */
+  type: 'account';
+
+  /**
+   * ISO 8601 UTC timestamp when the account was last updated.
+   */
+  updated_at: string;
+}
+
+export namespace AccountCloseResponse {
+  export interface UnionMember0 {
+    /**
+     * Name of the account holder.
+     */
+    account_holder_name: string;
+
+    /**
+     * Bank Identifier Code, or null if not provided.
+     */
+    bic: string | null;
+
+    /**
+     * International Bank Account Number.
+     */
+    iban: string;
+
+    /**
+     * Discriminator for IBAN financial address.
+     */
+    type: 'iban';
+  }
+
+  export interface UnionMember1 {
+    /**
+     * Name of the account holder.
+     */
+    account_holder_name: string;
+
+    /**
+     * UK account number (8 digits).
+     */
+    account_number: string;
+
+    /**
+     * UK sort code (6 digits).
+     */
+    sort_code: string;
+
+    /**
+     * Discriminator for UK sort code financial address.
+     */
+    type: 'sort_code';
+  }
+
+  export interface UnionMember2 {
+    /**
+     * Name of the account holder.
+     */
+    account_holder_name: string;
+
+    /**
+     * Bank account number.
+     */
+    account_number: string;
+
+    /**
+     * ABA routing number (9 digits).
+     */
+    routing_number: string;
+
+    /**
+     * Discriminator for ABA wire financial address.
+     */
+    type: 'aba';
+  }
+
+  export interface UnionMember3 {
+    /**
+     * Wallet address on the specified blockchain.
+     */
+    address: string;
+
+    /**
+     * Blockchain network for the crypto wallet.
+     */
+    blockchain: 'ethereum' | 'solana' | 'polygon';
+
+    /**
+     * Discriminator for crypto wallet financial address.
+     */
+    type: 'crypto_wallet';
+  }
+}
+
 export interface AccountFreezeResponse {
   /**
    * Unique identifier of the account.
@@ -618,6 +775,33 @@ export namespace AccountFreezeResponse {
      */
     type: 'crypto_wallet';
   }
+}
+
+export interface AccountRetrieveBalanceResponse {
+  /**
+   * Unique identifier of the account.
+   */
+  account_id: string;
+
+  /**
+   * Available balance amount as a decimal string.
+   */
+  amount: string;
+
+  /**
+   * ISO 8601 UTC timestamp when the balance was retrieved.
+   */
+  as_of: string;
+
+  /**
+   * ISO 4217 currency code for the balance.
+   */
+  currency: 'EUR' | 'GBP' | 'USD' | 'USDC';
+
+  /**
+   * Resource type discriminator.
+   */
+  type: 'account_balance';
 }
 
 export interface AccountUnfreezeResponse {
@@ -1379,15 +1563,25 @@ export interface AccountListParams extends CursorPageParams {
   parent_id?: string;
 }
 
+export interface AccountCloseParams {
+  /**
+   * Reason for closing the account.
+   */
+  reason: 'aml_risk_fraud' | 'client_request';
+}
+
 export declare namespace Accounts {
   export {
     type AccountCreateResponse as AccountCreateResponse,
     type AccountRetrieveResponse as AccountRetrieveResponse,
     type AccountListResponse as AccountListResponse,
+    type AccountCloseResponse as AccountCloseResponse,
     type AccountFreezeResponse as AccountFreezeResponse,
+    type AccountRetrieveBalanceResponse as AccountRetrieveBalanceResponse,
     type AccountUnfreezeResponse as AccountUnfreezeResponse,
     type AccountListResponsesCursorPage as AccountListResponsesCursorPage,
     type AccountCreateParams as AccountCreateParams,
     type AccountListParams as AccountListParams,
+    type AccountCloseParams as AccountCloseParams,
   };
 }

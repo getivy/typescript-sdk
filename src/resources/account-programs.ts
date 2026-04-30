@@ -26,6 +26,14 @@ export class AccountPrograms extends APIResource {
       ...options,
     });
   }
+
+  /**
+   * Returns the aggregated available balance for all active and frozen virtual
+   * accounts under the account program.
+   */
+  retrieveBalance(id: string, options?: RequestOptions): APIPromise<AccountProgramRetrieveBalanceResponse> {
+    return this._client.get(path`/v1/account_programs/${id}/balance`, options);
+  }
 }
 
 export type AccountProgramListResponsesCursorPage = CursorPage<AccountProgramListResponse>;
@@ -108,12 +116,40 @@ export interface AccountProgramListResponse {
   updated_at: string;
 }
 
+export interface AccountProgramRetrieveBalanceResponse {
+  /**
+   * Unique identifier of the account program.
+   */
+  id: string;
+
+  /**
+   * Total available balance as a string decimal (e.g. "100.50").
+   */
+  amount: string;
+
+  /**
+   * ISO 8601 UTC timestamp when this balance snapshot was produced.
+   */
+  as_of: string;
+
+  /**
+   * ISO 4217 currency code for the balance.
+   */
+  currency: 'EUR' | 'GBP' | 'USD';
+
+  /**
+   * Resource type discriminator.
+   */
+  type: 'account_program_balance';
+}
+
 export interface AccountProgramListParams extends CursorPageParams {}
 
 export declare namespace AccountPrograms {
   export {
     type AccountProgramRetrieveResponse as AccountProgramRetrieveResponse,
     type AccountProgramListResponse as AccountProgramListResponse,
+    type AccountProgramRetrieveBalanceResponse as AccountProgramRetrieveBalanceResponse,
     type AccountProgramListResponsesCursorPage as AccountProgramListResponsesCursorPage,
     type AccountProgramListParams as AccountProgramListParams,
   };

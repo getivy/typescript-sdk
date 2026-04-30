@@ -88,7 +88,9 @@ Types:
 - <code><a href="./src/resources/accounts.ts">AccountCreateResponse</a></code>
 - <code><a href="./src/resources/accounts.ts">AccountRetrieveResponse</a></code>
 - <code><a href="./src/resources/accounts.ts">AccountListResponse</a></code>
+- <code><a href="./src/resources/accounts.ts">AccountCloseResponse</a></code>
 - <code><a href="./src/resources/accounts.ts">AccountFreezeResponse</a></code>
+- <code><a href="./src/resources/accounts.ts">AccountRetrieveBalanceResponse</a></code>
 - <code><a href="./src/resources/accounts.ts">AccountUnfreezeResponse</a></code>
 
 Methods:
@@ -96,7 +98,9 @@ Methods:
 - <code title="post /v1/accounts">client.accounts.<a href="./src/resources/accounts.ts">create</a>({ ...params }) -> AccountCreateResponse</code>
 - <code title="get /v1/accounts/{id}">client.accounts.<a href="./src/resources/accounts.ts">retrieve</a>(id) -> AccountRetrieveResponse</code>
 - <code title="get /v1/accounts">client.accounts.<a href="./src/resources/accounts.ts">list</a>({ ...params }) -> AccountListResponsesCursorPage</code>
+- <code title="post /v1/accounts/{id}/close">client.accounts.<a href="./src/resources/accounts.ts">close</a>(id, { ...params }) -> AccountCloseResponse</code>
 - <code title="post /v1/accounts/{id}/freeze">client.accounts.<a href="./src/resources/accounts.ts">freeze</a>(id) -> AccountFreezeResponse</code>
+- <code title="get /v1/accounts/{id}/balance">client.accounts.<a href="./src/resources/accounts.ts">retrieveBalance</a>(id) -> AccountRetrieveBalanceResponse</code>
 - <code title="post /v1/accounts/{id}/unfreeze">client.accounts.<a href="./src/resources/accounts.ts">unfreeze</a>(id) -> AccountUnfreezeResponse</code>
 
 # AccountPrograms
@@ -105,11 +109,13 @@ Types:
 
 - <code><a href="./src/resources/account-programs.ts">AccountProgramRetrieveResponse</a></code>
 - <code><a href="./src/resources/account-programs.ts">AccountProgramListResponse</a></code>
+- <code><a href="./src/resources/account-programs.ts">AccountProgramRetrieveBalanceResponse</a></code>
 
 Methods:
 
 - <code title="get /v1/account_programs/{id}">client.accountPrograms.<a href="./src/resources/account-programs.ts">retrieve</a>(id) -> AccountProgramRetrieveResponse</code>
 - <code title="get /v1/account_programs">client.accountPrograms.<a href="./src/resources/account-programs.ts">list</a>({ ...params }) -> AccountProgramListResponsesCursorPage</code>
+- <code title="get /v1/account_programs/{id}/balance">client.accountPrograms.<a href="./src/resources/account-programs.ts">retrieveBalance</a>(id) -> AccountProgramRetrieveBalanceResponse</code>
 
 # Returns
 
