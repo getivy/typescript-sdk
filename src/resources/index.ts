@@ -4,6 +4,7 @@ export {
   AccountPrograms,
   type AccountProgramRetrieveResponse,
   type AccountProgramListResponse,
+  type AccountProgramRetrieveBalanceResponse,
   type AccountProgramListParams,
   type AccountProgramListResponsesCursorPage,
 } from './account-programs';
@@ -12,10 +13,13 @@ export {
   type AccountCreateResponse,
   type AccountRetrieveResponse,
   type AccountListResponse,
+  type AccountCloseResponse,
   type AccountFreezeResponse,
+  type AccountRetrieveBalanceResponse,
   type AccountUnfreezeResponse,
   type AccountCreateParams,
   type AccountListParams,
+  type AccountCloseParams,
   type AccountListResponsesCursorPage,
 } from './accounts';
 export {
